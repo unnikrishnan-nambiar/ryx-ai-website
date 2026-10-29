@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next';
-import { Inter, Space_Grotesk } from 'next/font/google';
+import { Inter, Manrope } from 'next/font/google';
 import './globals.css';
 import { site } from '@/data/site';
 
@@ -10,22 +10,32 @@ const inter = Inter({
   weight: ['400', '500', '600'],
 });
 
-// Display/headline face — bold geometric grotesk for a maximalist, poster-scale look.
-const spaceGrotesk = Space_Grotesk({
+// Display/headline face — rounded geometric grotesk that sits well next to
+// the ryx ai wordmark.
+const manrope = Manrope({
   subsets: ['latin'],
   variable: '--font-display',
-  weight: ['500', '600', '700'],
+  weight: ['500', '600', '700', '800'],
 });
 
-const defaultTitle = 'RYX AI Community - Signal, Not Sales';
+const defaultTitle = 'RYX AI - AI that works for your business';
 const defaultDescription =
-  "RYX AI Community cuts through AI hype with real tools, real workflows, and honest experiments for people running a business, not selling a course.";
+  'RYX AI builds AI for sales, marketing and automation: website and WhatsApp agents, voice callbacks, CRM automation and AI consulting. Meet Ferry, our AI website sales agent.';
 
 export const metadata: Metadata = {
   metadataBase: new URL(`https://${site.domain}`),
   title: defaultTitle,
   description: defaultDescription,
-  keywords: ['AI community', 'AI tools', 'AI workflows', 'AI experiments', 'practical AI'],
+  keywords: [
+    'AI solutions',
+    'AI sales agent',
+    'sales automation',
+    'marketing automation',
+    'WhatsApp AI agent',
+    'AI chatbot CRM',
+    'AI consulting',
+    'Ferry AI',
+  ],
   alternates: { canonical: '/' },
   openGraph: {
     type: 'website',
@@ -45,7 +55,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: '#FFFFFF',
+  themeColor: '#111317',
 };
 
 export default function RootLayout({
@@ -54,8 +64,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable}`}>
-      <body className="bg-paper font-sans text-ink">{children}</body>
+    <html lang="en" className={`${inter.variable} ${manrope.variable}`}>
+      <body className="bg-night font-sans text-white">{children}</body>
     </html>
   );
 }

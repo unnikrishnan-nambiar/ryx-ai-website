@@ -1,16 +1,15 @@
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import Hero from '@/components/sections/Hero';
-import WhatIsRyx from '@/components/sections/WhatIsRyx';
-import AiNews from '@/components/sections/AiNews';
-import PracticalAi from '@/components/sections/PracticalAi';
-import AiTools from '@/components/sections/AiTools';
-import Experiments from '@/components/sections/Experiments';
-import People from '@/components/sections/People';
+import Problem from '@/components/sections/Problem';
+import Solutions from '@/components/sections/Solutions';
+import Ferry from '@/components/sections/Ferry';
+import Pricing from '@/components/sections/Pricing';
+import UseCases from '@/components/sections/UseCases';
+import Process from '@/components/sections/Process';
+import Integrations from '@/components/sections/Integrations';
 import Community from '@/components/sections/Community';
-import Founder from '@/components/sections/Founder';
-import Newsletter from '@/components/sections/Newsletter';
-import FinalCta from '@/components/sections/FinalCta';
+import Contact from '@/components/sections/Contact';
 
 export default function Home() {
   return (
@@ -18,16 +17,15 @@ export default function Home() {
       <Nav />
       <main>
         <Hero />
-        <WhatIsRyx />
-        <AiNews />
-        <PracticalAi />
-        <AiTools />
-        <Experiments />
-        <People />
+        <Problem />
+        <Solutions />
+        <Ferry />
+        <Pricing />
+        <UseCases />
+        <Process />
+        <Integrations />
         <Community />
-        <Founder />
-        <Newsletter />
-        <FinalCta />
+        <Contact />
       </main>
       <Footer />
     </>

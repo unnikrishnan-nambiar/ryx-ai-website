@@ -1,20 +1,21 @@
 import type { AnchorHTMLAttributes, ButtonHTMLAttributes } from 'react';
 import Link from 'next/link';
 
-type Variant = 'primary' | 'secondary' | 'accent' | 'dark' | 'light';
+type Variant = 'primary' | 'ghost' | 'gold' | 'light' | 'outline';
 
 const base =
-  'inline-flex items-center justify-center gap-1.5 rounded-full px-6 py-3 text-[15px] font-semibold transition-all duration-300 ease-out hover:-translate-y-0.5 active:translate-y-0 active:scale-95 active:duration-100';
+  'inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-[15px] font-semibold transition-all duration-300 ease-out hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.97] active:duration-100 disabled:pointer-events-none disabled:opacity-60';
 
 const variants: Record<Variant, string> = {
-  primary:
-    'bg-gradient-to-r from-violet to-pink text-paper shadow-glow-violet hover:shadow-glow-pink',
-  accent:
-    'bg-gradient-to-r from-cyan to-violet text-paper shadow-glow-cyan hover:shadow-glow-violet',
-  secondary:
-    'rounded-2xl border-[2.5px] border-ink bg-paper text-ink hover:bg-ink hover:text-paper',
-  dark: 'bg-ink text-paper hover:bg-ink/85',
-  light: 'bg-paper text-ink shadow-hard hover:shadow-lg',
+  // The deck's "Book a 30-minute call" button.
+  primary: 'bg-blue text-white shadow-glow hover:bg-blue-dark',
+  // Secondary action on dark surfaces.
+  ghost: 'border border-white/20 bg-white/5 text-white hover:border-white/40 hover:bg-white/10',
+  // Ferry's accent.
+  gold: 'bg-gold text-night shadow-glow-gold hover:brightness-105',
+  light: 'bg-white text-night hover:bg-white/90',
+  // Secondary action on light surfaces.
+  outline: 'border border-ink/15 bg-white text-ink hover:border-ink/40',
 };
 
 type LinkProps = AnchorHTMLAttributes<HTMLAnchorElement> & {
@@ -34,12 +35,10 @@ export default function Button(props: LinkProps | ButtonProps) {
   if ('href' in rest && rest.href) {
     const { href, ...anchorRest } = rest as LinkProps;
 
-    // Internal path (starts with "/", e.g. "/tools", "/#discover") — use
-    // next/link so GitHub Pages' basePath gets applied automatically.
-    // Plain <a href="/tools"> would ship that literal string with no
-    // prefix and 404 once deployed under a repo subpath. External URLs,
-    // mailto:, and same-page "#hash" links don't need that, so they stay
-    // plain <a> tags.
+    // Internal path (starts with "/", e.g. "/#pricing") — use next/link so
+    // GitHub Pages' basePath gets applied automatically. A plain <a> would
+    // ship the literal path with no prefix and 404 under a repo subpath.
+    // External URLs, mailto:, tel: and same-page "#hash" links stay <a>.
     if (href.startsWith('/')) {
       return (
         <Link href={href} className={classes} {...anchorRest}>

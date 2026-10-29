@@ -4,117 +4,95 @@ import { site } from '@/data/site';
 
 const columns = [
   {
-    heading: 'Explore',
+    heading: 'Solutions',
     links: [
-      { label: 'AI News', href: '/#discover' },
-      { label: 'AI Tools', href: '/tools' },
-      { label: 'Guides', href: '/guides' },
-      { label: 'Experiments', href: '/experiments' },
+      { label: 'AI for Sales', href: '/#solutions' },
+      { label: 'AI for Marketing', href: '/#solutions' },
+      { label: 'AI for Automation', href: '/#solutions' },
+      { label: 'AI Consulting', href: '/#solutions' },
     ],
   },
   {
-    heading: 'Community',
+    heading: 'Ferry',
     links: [
-      { label: 'Join RYX AI Community', href: '/#join' },
-      { label: 'Share Your Build', href: 'mailto:hello@ryxai.in?subject=I%20want%20to%20share%20my%20build' },
-      { label: 'Events', href: undefined, comingSoon: true },
+      { label: 'How Ferry works', href: '/#ferry' },
+      { label: 'Pricing', href: '/#pricing' },
+      { label: 'Use cases', href: '/#use-cases' },
     ],
   },
   {
-    heading: 'About',
+    heading: 'Company',
     links: [
-      { label: 'Our Story', href: '/about' },
-      { label: 'Contact', href: 'mailto:hello@ryxai.in' },
+      { label: 'How we work', href: '/#how-we-work' },
+      { label: 'Community', href: '/#community' },
+      { label: 'Contact', href: '/#contact' },
     ],
   },
 ];
 
+const social = [
+  { label: 'LinkedIn', href: site.linkedinUrl },
+  { label: 'Instagram', href: site.instagramUrl },
+  { label: 'YouTube', href: site.youtubeUrl },
+];
+
 export default function Footer() {
   return (
-    <footer className="bg-ink text-white">
-      <div className="h-[3px] bg-gradient-to-r from-cyan via-violet to-pink" aria-hidden />
+    <footer className="border-t border-white/10 bg-night-900">
       <div className="container-content py-14">
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1fr]">
           <div>
-            <Logo className="h-5 w-auto brightness-0 invert" />
-            <p className="mt-3 text-sm text-white/50">
-              Cutting through AI noise, for people actually doing the work.
+            <Logo className="h-7 w-auto" />
+            <p className="mt-4 max-w-[280px] text-sm leading-relaxed text-white/55">
+              AI for sales, marketing and automation, built to work for your business.
             </p>
+            <ul className="mt-5 space-y-1.5 text-sm">
+              <li>
+                <a href={`mailto:${site.email}`} className="text-white/70 transition-colors hover:text-white">
+                  {site.email}
+                </a>
+              </li>
+              <li>
+                <a href={site.phoneHref} className="text-white/70 transition-colors hover:text-white">
+                  {site.phone}
+                </a>
+              </li>
+            </ul>
           </div>
 
           {columns.map((column) => (
             <div key={column.heading}>
-              <p className="text-sm font-bold text-white">{column.heading}</p>
-              <ul className="mt-3 space-y-2">
+              <p className="text-sm font-semibold text-white">{column.heading}</p>
+              <ul className="mt-4 space-y-2.5">
                 {column.links.map((link) => (
                   <li key={link.label}>
-                    {link.comingSoon ? (
-                      <span className="text-sm text-white/50">
-                        {link.label} <span className="text-white/50">(soon)</span>
-                      </span>
-                    ) : link.href!.startsWith('/') ? (
-                      // Internal path — next/link so GitHub Pages' basePath
-                      // is applied automatically (a plain <a href="/tools">
-                      // would ship un-prefixed and 404 under a repo subpath).
-                      <Link
-                        href={link.href!}
-                        className="text-sm text-white/60 transition-colors hover:text-cyan"
-                      >
-                        {link.label}
-                      </Link>
-                    ) : (
-                      <a
-                        href={link.href}
-                        className="text-sm text-white/60 transition-colors hover:text-cyan"
-                      >
-                        {link.label}
-                      </a>
-                    )}
+                    {/* next/link so GitHub Pages' basePath is applied. */}
+                    <Link href={link.href} className="text-sm text-white/55 transition-colors hover:text-white">
+                      {link.label}
+                    </Link>
                   </li>
                 ))}
               </ul>
             </div>
           ))}
-
-          <div>
-            <p className="text-sm font-bold text-white">Social</p>
-            <ul className="mt-3 space-y-2">
-              <li>
-                <a
-                  href={site.instagramUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm text-white/60 transition-colors hover:text-pink"
-                >
-                  Instagram
-                </a>
-              </li>
-              <li>
-                <a
-                  href={site.youtubeUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm text-white/60 transition-colors hover:text-pink"
-                >
-                  YouTube
-                </a>
-              </li>
-              <li>
-                <a
-                  href={site.linkedinUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm text-white/60 transition-colors hover:text-pink"
-                >
-                  LinkedIn
-                </a>
-              </li>
-            </ul>
-          </div>
         </div>
 
-        <div className="mt-12 border-t border-white/15 pt-6">
-          <p className="text-sm text-white/50">{site.domain} © 2026</p>
+        <div className="mt-12 flex flex-col gap-4 border-t border-white/10 pt-6 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-sm text-white/45">© {new Date().getFullYear()} RYX AI · {site.domain}</p>
+          <ul className="flex gap-5">
+            {social.map((item) => (
+              <li key={item.label}>
+                <a
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-white/55 transition-colors hover:text-white"
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </footer>

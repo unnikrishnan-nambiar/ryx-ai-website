@@ -8,12 +8,20 @@ type ModalProps = {
   onClose: () => void;
   titleId: string;
   children: ReactNode;
+  /** Tailwind max-width class for the panel. */
+  size?: string;
 };
 
 // Minimal accessible popup: portals to <body>, locks page scroll while open,
 // closes on Escape or a backdrop click, and returns focus to whatever
 // triggered it on close.
-export default function Modal({ open, onClose, titleId, children }: ModalProps) {
+export default function Modal({
+  open,
+  onClose,
+  titleId,
+  children,
+  size = 'max-w-[460px]',
+}: ModalProps) {
   const panelRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLElement | null>(null);
 
@@ -28,7 +36,7 @@ export default function Modal({ open, onClose, titleId, children }: ModalProps) 
     // Focus the first focusable element inside the panel once it's mounted.
     const focusTimer = window.setTimeout(() => {
       const focusable = panelRef.current?.querySelector<HTMLElement>(
-        'input:not([type="hidden"]), textarea, select, button, [tabindex]:not([tabindex="-1"])'
+        'input:not([type="hidden"]), textarea, select, button, a[href], [tabindex]:not([tabindex="-1"])'
       );
       focusable?.focus();
     }, 0);
@@ -50,19 +58,19 @@ export default function Modal({ open, onClose, titleId, children }: ModalProps) 
 
   return createPortal(
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto px-4 py-8"
+      className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto px-4 py-8 sm:items-center"
       role="presentation"
       onMouseDown={(e) => {
         if (e.target === e.currentTarget) onClose();
       }}
     >
-      <div className="fixed inset-0 animate-backdrop-in bg-ink/60 backdrop-blur-sm" aria-hidden />
+      <div className="fixed inset-0 animate-backdrop-in bg-night-900/70 backdrop-blur-sm" aria-hidden />
       <div
         ref={panelRef}
         role="dialog"
         aria-modal="true"
         aria-labelledby={titleId}
-        className="relative w-full max-w-[440px] animate-modal-in rounded-card border-2 border-ink bg-paper p-6 shadow-hard sm:p-8"
+        className={`relative w-full ${size} animate-modal-in rounded-card bg-white p-6 text-ink shadow-lift sm:p-8`}
       >
         {children}
         {/* After children in DOM order (though pinned top-right visually)
@@ -72,7 +80,7 @@ export default function Modal({ open, onClose, titleId, children }: ModalProps) 
           type="button"
           onClick={onClose}
           aria-label="Close"
-          className="absolute right-4 top-4 flex h-8 w-8 items-center justify-center rounded-full text-ink-muted transition-colors hover:bg-card hover:text-ink"
+          className="absolute right-4 top-4 flex h-8 w-8 items-center justify-center rounded-full text-ink-muted transition-colors hover:bg-mist hover:text-ink"
         >
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden>
             <path

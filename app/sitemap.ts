@@ -12,7 +12,7 @@ export const dynamic = 'force-static';
 // URL search engines should index.
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = `https://${site.domain}`;
-  const routes = ['', '/about', '/community', '/experiments', '/guides', '/tools'];
+  const routes = [''];
 
   return routes.map((route) => ({
     url: `${base}${route}`,
