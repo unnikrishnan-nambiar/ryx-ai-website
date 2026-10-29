@@ -6,7 +6,7 @@
 // unconditionally (harmless for local/Vercel too, since our images are small
 // local files).
 const isGithubPages = process.env.GITHUB_PAGES === 'true';
-const repoName = 'unnikrishnan_nambiar';
+const repoName = 'ryx-ai-website';
 
 const nextConfig = {
   reactStrictMode: true,

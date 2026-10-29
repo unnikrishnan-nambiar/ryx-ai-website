@@ -31,7 +31,7 @@ ready — the route is the only place that needs to change.
 `.github/workflows/deploy-pages.yml` builds and deploys a static export on
 every push to `main`. One-time setup: in the repo's Settings → Pages, set
 **Source** to **GitHub Actions**. The site then publishes to
-`https://<owner>.github.io/unnikrishnan_nambiar/`.
+`https://<owner>.github.io/ryx-ai-website/`.
 
 GitHub Pages can't run the `/api/join` route (it's static hosting only), so
 that build strips `app/api` before compiling and the Join form falls back to

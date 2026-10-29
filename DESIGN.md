@@ -502,20 +502,20 @@ Ran through a standard pre-launch checklist end to end. What changed:
 - **Broken links — a real, live bug, not hypothetical**: every
   Button/Nav/Footer internal link (`href="/tools"`, `/about`, etc.) was
   a plain `<a href>` string. `next/link` applies the GitHub Pages
-  `basePath` (`/unnikrishnan_nambiar`) automatically; a raw `<a>` tag
+  `basePath` (`/ryx-ai-website`) automatically; a raw `<a>` tag
   does not. Since the site's actual live URL IS the github.io subpath
   (confirmed with the user — `ryxai.in` isn't wired up as a custom
   domain yet, despite `data/site.ts`'s `domain` field and
   `metadataBase` already assuming it), every nav click, footer link, and
   internal `Button` was almost certainly 404ing on the real deployed
-  site this whole time — built HTML had `/unnikrishnan_nambiar/_next/…`
+  site this whole time — built HTML had `/ryx-ai-website/_next/…`
   for assets but plain `/tools` (no prefix) for the nav link right next
   to it. Fixed by making `Button.tsx` render `next/link` instead of
   `<a>` whenever `href` starts with `/` (external URLs, `mailto:`, and
   same-page `#hash` links stay plain `<a>` — they don't need basePath),
   and converting `Nav.tsx`'s and `Footer.tsx`'s own raw internal anchors
   the same way. Verified by grepping the actual `GITHUB_PAGES=true`
-  build output for `href="/unnikrishnan_nambiar/tools"` etc., not just by
+  build output for `href="/ryx-ai-website/tools"` etc., not just by
   reading the diff. **If `ryxai.in` custom domain does get configured
   later** (repo Settings → Pages), `next.config.js`'s unconditional
   `basePath`/`assetPrefix` will need revisiting — a custom domain
