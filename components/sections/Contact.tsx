@@ -5,8 +5,8 @@ import LeadForm from '@/components/LeadForm';
 import { site } from '@/data/site';
 
 const contacts = [
-  { icon: 'bot', label: 'AI assistant', value: site.aiAssistantPhone, href: site.aiAssistantPhoneHref },
-  { icon: 'phone', label: 'Contact', value: site.phone, href: site.phoneHref },
+  { icon: 'bot', label: 'Call our AI assistant (live voice demo)', value: site.aiAssistantPhone, href: site.aiAssistantPhoneHref },
+  { icon: 'phone', label: 'Call our team', value: site.phone, href: site.phoneHref },
   { icon: 'mail', label: 'Email', value: site.email, href: `mailto:${site.email}` },
   { icon: 'chat', label: 'WhatsApp', value: 'Message us', href: site.whatsappUrl },
 ];
@@ -35,13 +35,14 @@ export default function Contact() {
             <span className="text-blue-soft">We&apos;ll show you the solution.</span>
           </h1>
           <p className="mt-6 max-w-[480px] text-lg leading-relaxed text-white/65">
-            A 30-minute call is enough to find the first thing worth automating, and what it&apos;s
-            worth to you.
+            Book a free 30-minute call. We&apos;ll find the first thing worth automating in your
+            business and send you a custom quote. Or skip the call and set up Ferry yourself in 5
+            minutes.
           </p>
           <div className="mt-8">
             <Button href={site.bookingUrl} variant="primary">
               <Icon name="calendar" className="h-[18px] w-[18px]" />
-              Book a 30-minute call
+              Book a free 30-minute call
             </Button>
           </div>
 

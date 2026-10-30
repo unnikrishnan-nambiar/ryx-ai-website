@@ -12,7 +12,7 @@ import { pageMetadata } from '@/lib/metadata';
 export const metadata = pageMetadata(
   '/solutions',
   'AI Solutions - RYX AI',
-  'AI creatives and ads, personalised customer nudges, workflow automation, AI training for teams, AI lead generation and website conversion with Ferry.'
+  'Ferry, the self-serve AI assistant for your website, plus AI lead generation, AI ads, WhatsApp follow-ups, paperwork automation and AI training for teams.'
 );
 
 export default function SolutionsPage() {
@@ -22,15 +22,15 @@ export default function SolutionsPage() {
       <main>
         <PageHero
           eyebrow="Solutions"
-          title="Six ways AI can grow your business."
-          intro="Each solution fixes one clear problem: getting seen, winning leads, keeping customers or saving time. Start with one; add more when it pays off."
+          title="What AI can do for your business."
+          intro="Grouped by what you want: more customers, customers who come back, or more time. Start with Ferry yourself today, or let our team build the rest for you."
         >
           <Button href={site.bookingUrl} variant="primary">
             <Icon name="calendar" className="h-[18px] w-[18px]" />
-            Not sure? Book a call
+            Not sure? Book a free call
           </Button>
         </PageHero>
-        <SolutionsGrid heading={false} />
+        <SolutionsGrid heading={false} includeFerry />
         <HowWeWork />
         <CtaBand />
       </main>

@@ -4,7 +4,8 @@ import Button from '@/components/ui/Button';
 import Icon from '@/components/ui/Icon';
 import Reveal from '@/components/ui/Reveal';
 import SectionHeading from '@/components/ui/SectionHeading';
-import LeadButton from '@/components/LeadButton';
+import GetFerryButton from '@/components/GetFerryButton';
+import Faq from '@/components/sections/Faq';
 import PageHero from '@/components/sections/PageHero';
 import ChatPreview from '@/components/sections/ChatPreview';
 import Pricing from '@/components/sections/Pricing';
@@ -12,7 +13,7 @@ import CtaBand from '@/components/sections/CtaBand';
 import EasiestWay from '@/components/sections/EasiestWay';
 import JsonLd, { breadcrumbLd, faqLd, siteUrl } from '@/components/JsonLd';
 import SolutionAnimation from '@/components/animations/SolutionAnimation';
-import { ferryAnalytics, ferryFaq, ferryFeatures, plans } from '@/data/ferry';
+import { ferryAnalytics, ferryFaq, ferryFeatures, notAChatbot, plans } from '@/data/ferry';
 import { getSolution } from '@/data/solutions';
 import { site } from '@/data/site';
 import { pageMetadata } from '@/lib/metadata';
@@ -20,7 +21,7 @@ import { pageMetadata } from '@/lib/metadata';
 export const metadata = pageMetadata(
   '/ferry',
   'Ferry: the easiest way to adopt AI in your business | RYX AI',
-  'Ferry is the easiest way to adopt AI: an AI agent built from your own website that turns visitors into purchases and demo bookings. No tech team, live in a day, from ₹2,000 a month.'
+  'Ferry is the easiest way to adopt AI: an AI assistant built from your own website that turns visitors into purchases and demo bookings. Set it up yourself in 5 minutes, from ₹2,000 a month.'
 );
 
 const ferryLd = {
@@ -31,7 +32,7 @@ const ferryLd = {
   applicationCategory: 'BusinessApplication',
   operatingSystem: 'Web',
   description:
-    'Ferry by RYX AI is the easiest way for a business to adopt AI: an AI sales agent built from your own website that answers visitors, qualifies leads and books meetings or guides purchases, live in about a day.',
+    'Ferry by RYX AI is the easiest way for a business to adopt AI: an AI assistant built from your own website that answers visitors, collects leads and books meetings or guides purchases. Self-serve setup in about 5 minutes.',
   publisher: { '@id': `${siteUrl}/#organization` },
   offers: plans
     .filter((p) => p.price)
@@ -73,19 +74,13 @@ export default function FerryPage() {
               The easiest way to adopt AI <span className="text-gold">in your business.</span>
             </>
           }
-          intro="Ferry puts an AI agent on your website in a day. No tech team and nothing new to learn: it learns from your own website, answers every visitor, and turns them into purchases and demo bookings."
+          intro="Ferry is an AI assistant for your website. Set it up yourself in 5 minutes: it learns from your own website, answers every visitor, and turns them into sales and booked demos, day and night."
           aside={<ChatPreview />}
         >
-          <LeadButton
-            variant="gold"
-            title="Try Ferry on your website"
-            intro="Share your website and we’ll set up a Ferry agent trained on your content."
-            source="Ferry demo request"
-            submitLabel="Request a demo"
-          >
-            Try Ferry
+          <GetFerryButton>
+            Get Ferry: live in 5 minutes
             <Icon name="arrow" className="h-4 w-4" />
-          </LeadButton>
+          </GetFerryButton>
           <Button href="#pricing" variant="ghost">
             See pricing
           </Button>
@@ -125,6 +120,44 @@ export default function FerryPage() {
                 ))}
               </ol>
             </div>
+          </div>
+        </section>
+
+        {/* Not a chatbot */}
+        <section className="bg-white py-20 text-ink sm:py-24">
+          <div className="container-content">
+            <SectionHeading
+              tone="light"
+              eyebrow="Ferry vs a basic chatbot"
+              eyebrowClass="text-gold-dark"
+              title="Not another chatbot."
+              intro="If you’ve tried a website chatbot before and it didn’t help, here’s the difference."
+            />
+            <Reveal className="mt-10">
+              <div className="overflow-hidden rounded-card border border-line">
+                <table className="w-full text-left text-[15px]">
+                  <caption className="sr-only">A basic chatbot compared with Ferry</caption>
+                  <thead>
+                    <tr className="bg-mist">
+                      <th scope="col" className="w-1/2 px-5 py-4 font-semibold text-ink-secondary sm:px-7">
+                        A basic chatbot
+                      </th>
+                      <th scope="col" className="w-1/2 bg-gold-light px-5 py-4 font-semibold text-gold-dark sm:px-7">
+                        Ferry
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {notAChatbot.map((row) => (
+                      <tr key={row.ferry} className="border-t border-line">
+                        <td className="px-5 py-4 text-ink-muted sm:px-7">{row.chatbot}</td>
+                        <td className="bg-gold-light/40 px-5 py-4 font-medium sm:px-7">{row.ferry}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </Reveal>
           </div>
         </section>
 
@@ -184,7 +217,7 @@ export default function FerryPage() {
 
             <Reveal className="mt-16">
               <h3 className="max-w-[640px] font-display text-2xl font-bold tracking-tight sm:text-3xl">
-                One dashboard for your agent and your website.
+                One dashboard for Ferry and your website.
               </h3>
             </Reveal>
             <div className="mt-8 grid gap-8 md:grid-cols-3">
@@ -203,29 +236,11 @@ export default function FerryPage() {
 
         <Pricing />
 
-        {/* FAQ */}
-        <section className="bg-mist py-20 text-ink sm:py-24">
-          <div className="container-content grid gap-10 lg:grid-cols-[1fr_1.5fr]">
-            <SectionHeading tone="light" eyebrow="Questions" eyebrowClass="text-gold-dark" title="Good to know." />
-            <div className="divide-y divide-line rounded-card border border-line bg-white">
-              {ferryFaq.map((item) => (
-                <details key={item.q} className="group p-6 [&_summary::-webkit-details-marker]:hidden">
-                  <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-display text-lg font-bold">
-                    {item.q}
-                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-mist text-ink-secondary transition-transform duration-300 group-open:rotate-45">
-                      +
-                    </span>
-                  </summary>
-                  <p className="mt-3 leading-relaxed text-ink-secondary">{item.a}</p>
-                </details>
-              ))}
-            </div>
-          </div>
-        </section>
+        <Faq items={ferryFaq} eyebrowClass="text-gold-dark" title="Good to know." />
 
         <CtaBand
-          title="See Ferry on your own website."
-          intro="Share your website and we’ll show you what Ferry would say to your visitors."
+          title="See Ferry on your own website, in 5 minutes."
+          intro="Set it up yourself and watch it answer your first visitors today. Prefer to talk first? Book a free call."
         />
       </main>
       <Footer />

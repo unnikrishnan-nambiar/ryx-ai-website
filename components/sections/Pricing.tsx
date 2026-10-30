@@ -1,7 +1,7 @@
 import Icon from '@/components/ui/Icon';
 import Reveal from '@/components/ui/Reveal';
 import SectionHeading from '@/components/ui/SectionHeading';
-import LeadButton from '@/components/LeadButton';
+import GetFerryButton from '@/components/GetFerryButton';
 import { plans } from '@/data/ferry';
 
 export default function Pricing() {
@@ -12,8 +12,8 @@ export default function Pricing() {
           align="center"
           eyebrow="Ferry pricing"
           eyebrowClass="text-gold"
-          title="Simple monthly plans. Live in a day."
-          intro="One website agent per plan, billed monthly. Need WhatsApp, voice or a custom build? Talk to us."
+          title="Simple monthly subscription. Set up in 5 minutes."
+          intro="One AI assistant for your website on every plan. Need WhatsApp, voice or something built for you? Book a free call."
         />
 
         <div className="mt-14 grid gap-5 lg:grid-cols-3">
@@ -24,25 +24,23 @@ export default function Pricing() {
                   plan.highlighted
                     ? 'bg-gold text-night shadow-glow-gold'
                     : plan.earlyAdopter
-                      ? 'border border-dashed border-white/25 bg-night-800'
+                      ? 'border border-dashed border-gold/50 bg-night-800'
                       : 'border border-white/10 bg-night-800'
                 }`}
               >
-                {plan.highlighted && (
-                  <span className="absolute right-6 top-6 rounded-full bg-night px-3 py-1 text-xs font-semibold text-gold">
-                    Most popular
+                {(plan.highlighted || plan.badge) && (
+                  <span
+                    className={`absolute right-6 top-6 rounded-full px-3 py-1 text-xs font-semibold ${
+                      plan.highlighted ? 'bg-night text-gold' : 'bg-gold/15 text-gold'
+                    }`}
+                  >
+                    {plan.badge ?? 'Most popular'}
                   </span>
                 )}
                 <p className={`eyebrow ${plan.highlighted ? 'text-night/70' : 'text-white/55'}`}>{plan.name}</p>
                 <div className="mt-4 flex items-baseline gap-1">
-                  {plan.price ? (
-                    <>
-                      <span className="font-display text-5xl font-bold tracking-tight">{plan.price}</span>
-                      <span className={plan.highlighted ? 'text-night/65' : 'text-white/50'}>{plan.period}</span>
-                    </>
-                  ) : (
-                    <span className="font-display text-5xl font-bold tracking-tight">Let&apos;s talk</span>
-                  )}
+                  <span className="font-display text-5xl font-bold tracking-tight">{plan.price}</span>
+                  <span className={plan.highlighted ? 'text-night/65' : 'text-white/50'}>{plan.period}</span>
                 </div>
                 <p className={`mt-3 leading-relaxed ${plan.highlighted ? 'text-night/80' : 'text-white/65'}`}>
                   {plan.summary}
@@ -60,27 +58,20 @@ export default function Pricing() {
                   ))}
                 </ul>
 
-                <LeadButton
+                <GetFerryButton
+                  plan={plan.name}
                   variant={plan.highlighted ? 'light' : plan.earlyAdopter ? 'gold' : 'ghost'}
                   className={`mt-8 w-full ${plan.highlighted ? '!bg-night !text-white hover:!bg-night-700' : ''}`}
-                  title={plan.earlyAdopter ? 'Become an early adopter' : `Get Ferry ${plan.name}`}
-                  intro={
-                    plan.earlyAdopter
-                      ? "Tell us about your business and we'll get back to you about pilot terms."
-                      : `Tell us about your website and we'll get your ${plan.name} agent live.`
-                  }
-                  source={`Ferry ${plan.name}`}
-                  submitLabel={plan.earlyAdopter ? 'Contact us' : 'Get started'}
                 >
                   {plan.cta}
-                </LeadButton>
+                </GetFerryButton>
               </div>
             </Reveal>
           ))}
         </div>
 
-        <p className="mt-8 text-center text-sm text-white/45">
-          Prices in INR, billed monthly in advance, exclusive of applicable taxes. Voice agents coming soon.
+        <p className="mt-8 text-center text-sm text-white/50">
+          Monthly subscription. Prices in INR, excluding taxes. In the UAE or elsewhere? Ask us for pricing in AED or USD.
         </p>
       </div>
     </section>

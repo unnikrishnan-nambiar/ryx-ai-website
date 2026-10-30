@@ -1,222 +1,208 @@
-// The six RYX AI solutions. Each one gets a card on the homepage and its own
-// page at /solutions/<slug> (Ferry lives at /ferry). The four `steps` are the
-// same four beats the solution's animation plays, so keep them in sync with
+// The six RYX AI solutions. Each one gets a card and its own page at
+// /solutions/<slug> (Ferry lives at /ferry). The four `steps` are the same
+// four beats the solution's animation plays, so keep them in sync with
 // components/animations/<animation>.tsx if you reorder or rename them.
+//
+// Wording rule: plain language a shop, clinic or factory owner understands.
+// Examples are real projects with the client's name kept private; a service
+// RYX AI hasn't delivered yet is marked `pilot` and has no client story.
 
 export type SolutionStep = { title: string; body: string };
+
+export type SolutionGoal = 'Get more customers' | 'Keep your customers' | 'Save time';
 
 export type Solution = {
   slug: string;
   href: string;
-  number: string;
   title: string;
   /** One line for cards and the page hero. */
   short: string;
   /** Plain-language definition: what it is, in two or three sentences. */
   definition: string;
   icon: string;
+  goal: SolutionGoal;
   animation: 'ads' | 'nudges' | 'workflow' | 'training' | 'leads' | 'ferry';
   whoFor: string[];
   steps: SolutionStep[];
   outcomes: string[];
+  /** A real project (client name private), or for pilots what a first project looks like. */
   example: { title: string; body: string };
   flagship?: boolean;
+  /** Offered, but not yet delivered for a client: shown as a pilot. */
+  pilot?: boolean;
 };
 
 export const solutions: Solution[] = [
   {
-    slug: 'ai-ads',
-    href: '/solutions/ai-ads',
-    number: '01',
-    title: 'AI Creatives & Ads',
-    short: 'Make scroll-stopping ads in hours, not weeks, and let AI find the ones that sell.',
+    slug: 'ferry',
+    href: '/ferry',
+    title: 'Ferry: your 24/7 website salesperson',
+    short: 'An AI assistant on your website that answers every visitor and turns them into sales or booked demos. Set it up yourself in 5 minutes.',
     definition:
-      'We use AI to create ad images, videos and copy in your brand style, launch them on Meta, Instagram and Google, and keep moving your budget to the ads that bring customers. You get a steady stream of fresh creatives without hiring a studio.',
-    icon: 'megaphone',
-    animation: 'ads',
-    whoFor: ['D2C and retail brands', 'Real estate', 'Education and coaching', 'Clinics and local services'],
+      'Most visitors leave a website without saying a word. Ferry greets them, answers their questions using your own website, and guides them to buy or book a demo, day and night. You set it up yourself in about 5 minutes.',
+    icon: 'bot',
+    goal: 'Get more customers',
+    animation: 'ferry',
+    whoFor: ['Any business with a website', 'Software and product companies', 'Real estate and education', 'Clinics and service businesses'],
     steps: [
-      { title: 'Brief', body: 'Tell us your product, offer and who you want to reach. That is all we need.' },
-      {
-        title: 'Create',
-        body: 'AI produces many on-brand versions of images, short videos and ad copy. Our team reviews every one.',
-      },
-      { title: 'Launch', body: 'The ads go live on Meta, Instagram and Google, set up and tracked properly.' },
-      {
-        title: 'Optimise',
-        body: 'AI watches the results, pauses the ads that don’t work, scales the winners and makes new versions of them.',
-      },
+      { title: 'Visit', body: 'A visitor lands on your website and starts looking around.' },
+      { title: 'Chat', body: 'Ferry says hello at the right moment and answers their questions from your own website.' },
+      { title: 'Details', body: 'It finds out what they need and asks for their name and number, naturally.' },
+      { title: 'Book or buy', body: 'The visitor books a demo or buys, and you see the lead in your dashboard.' },
     ],
     outcomes: [
-      'Fresh creatives every week, without a design team',
-      'Budget shifts to the ads that actually bring leads and sales',
+      'More sales and demos from the visitors you already get',
+      'Every question answered instantly, even at midnight',
+      'Every lead and conversation in one dashboard',
+    ],
+    example: {
+      title: 'A home-care agency',
+      body: 'Had steady website traffic but few enquiries. Ferry now answers families’ questions at night and hands the interested ones to the owner every morning.',
+    },
+    flagship: true,
+  },
+  {
+    slug: 'lead-generation',
+    href: '/solutions/lead-generation',
+    title: 'AI Lead Generation',
+    short: 'A steady flow of interested buyers, without your team cold-calling all day.',
+    definition:
+      'AI finds companies and people who match your ideal customer, gets their contact details, writes a personal message to each one and follows up. When someone is interested, they land in your customer list or book a meeting with you.',
+    icon: 'chart',
+    goal: 'Get more customers',
+    animation: 'leads',
+    whoFor: ['Companies that sell to other businesses', 'IT and software companies', 'Manufacturers and exporters', 'Agencies and consultants'],
+    steps: [
+      { title: 'Find', body: 'You tell us who your ideal customer is. AI finds matching companies and decision-makers.' },
+      { title: 'Get contacts', body: 'Each person gets a checked email and phone number, plus a note on why they fit.' },
+      { title: 'Reach out', body: 'Personal messages go out on email, LinkedIn or WhatsApp, with polite follow-ups.' },
+      { title: 'Shortlist', body: 'Replies are sorted: interested, maybe later, not now. Interested people book a meeting with you.' },
+    ],
+    outcomes: [
+      'A full pipeline without a big sales team',
+      'Your salespeople only talk to people who are interested',
+      'Every lead and reply saved in your customer list',
+    ],
+    example: {
+      title: 'A company selling to other businesses',
+      body: 'Wanted meetings with operations heads at mid-size manufacturers. AI found and wrote to the right people every week and booked the interested ones into the founder’s calendar.',
+    },
+  },
+  {
+    slug: 'ai-ads',
+    href: '/solutions/ai-ads',
+    title: 'AI Ads & Creatives',
+    short: 'Ad images, videos and copy made with AI, tested on Meta and Google, with your budget moved to the ads that sell.',
+    definition:
+      'We use AI to make ad images, short videos and ad text in your brand style, run them on Instagram, Facebook and Google, and keep moving your budget to the ads that bring customers. You get fresh ads every week without hiring a design studio.',
+    icon: 'megaphone',
+    goal: 'Get more customers',
+    animation: 'ads',
+    whoFor: ['Online stores and consumer brands', 'Real estate', 'Education and coaching', 'Clinics and local services'],
+    steps: [
+      { title: 'Brief', body: 'Tell us your product, your offer and who you want to reach.' },
+      { title: 'Create', body: 'AI makes many versions of images, short videos and ad text. Our team checks every one.' },
+      { title: 'Launch', body: 'The ads go live on Instagram, Facebook and Google, with tracking set up properly.' },
+      { title: 'Improve', body: 'AI watches the results, stops the ads that don’t sell and puts more money behind the ones that do.' },
+    ],
+    outcomes: [
+      'Fresh ads every week, without a design team',
+      'Your budget goes to the ads that actually bring customers',
       'A simple weekly report: what ran, what worked, what’s next',
     ],
     example: {
-      title: 'A clinic launching a new treatment',
-      body: 'Gets 20 ad variations in a day, tests them on Instagram, and within a week keeps the three that bring the cheapest enquiries.',
+      title: 'What a pilot project looks like',
+      body: 'We agree one product or offer, make a first batch of ad versions, run them for a few weeks and report what sold. You only continue if the results are worth it.',
     },
+    pilot: true,
   },
   {
     slug: 'customer-nudges',
     href: '/solutions/customer-nudges',
-    number: '02',
-    title: 'Personalised Customer Nudges',
-    short: 'The right message to each customer at the right moment, written for them.',
+    title: 'WhatsApp Follow-ups & Reminders',
+    short: 'Automatic, personal WhatsApp messages that bring customers back: cart reminders, refills, renewals and offers.',
     definition:
-      'AI looks at what each customer bought, browsed or asked about, spots the right moment, like a cart left behind, a refill due or a renewal coming up, and sends a personal message on WhatsApp, SMS or email. It feels one-to-one, but runs on its own.',
+      'AI looks at what each customer bought, browsed or asked about and sends them a personal message at the right moment: a cart they left, a refill that’s due, a renewal coming up, or a nudge after weeks of silence. It feels one-to-one, but runs by itself.',
     icon: 'chat',
+    goal: 'Keep your customers',
     animation: 'nudges',
-    whoFor: ['E-commerce and D2C', 'Pharmacies and clinics', 'Subscriptions and memberships', 'Insurance and finance'],
+    whoFor: ['Online stores and consumer brands', 'Pharmacies and clinics', 'Subscriptions and memberships', 'Insurance and finance'],
     steps: [
-      { title: 'Connect', body: 'We connect your customer list from your store, CRM or spreadsheets.' },
-      {
-        title: 'Spot the moment',
-        body: 'AI finds who needs a nudge and why: an abandoned cart, a refill, a renewal, or 60 days of silence.',
-      },
-      {
-        title: 'Send',
-        body: 'Each customer gets a personal message in their language, on the channel they use, at a good time.',
-      },
-      { title: 'Results', body: 'Replies are handled, orders and renewals are tracked, and you see what each nudge earned.' },
+      { title: 'Connect', body: 'We connect your customer list: your online store, customer software or spreadsheets.' },
+      { title: 'Spot the moment', body: 'AI finds who needs a message and why: a left cart, a refill, a renewal or a long silence.' },
+      { title: 'Send', body: 'Each customer gets a personal WhatsApp, SMS or email, in their language, at a good time.' },
+      { title: 'Results', body: 'Replies are answered, orders and renewals are tracked, and you see what each message earned.' },
     ],
     outcomes: [
       'More repeat orders and renewals from customers you already have',
-      'Fewer abandoned carts and lapsed customers',
+      'Fewer forgotten carts and customers who drift away',
       'No more manual follow-up lists',
     ],
     example: {
       title: 'A pharmacy with monthly customers',
-      body: 'Reminds each customer three days before their medicine runs out, with a one-tap re-order link on WhatsApp.',
+      body: 'Reminds each regular customer before their medicine runs out, with a one-tap re-order link on WhatsApp.',
     },
   },
   {
     slug: 'workflow-automation',
     href: '/solutions/workflow-automation',
-    number: '03',
-    title: 'Workflow Automation',
-    short: 'Let AI do the paperwork, from an RFQ in your inbox to a ready report.',
+    title: 'Paperwork Automation',
+    short: 'AI reads your emails, PDFs and spreadsheets and prepares the quotes and reports for you.',
     definition:
-      'Many teams spend hours copying data from emails, PDFs and spreadsheets into reports. AI reads the documents, pulls out the details, checks and compares them, and produces the report or reply for a person to approve.',
+      'Many teams spend hours copying details from emails, PDFs and spreadsheets into reports. AI reads the documents, pulls out the details, checks and compares them, and prepares the report or reply. A person checks it and clicks approve.',
     icon: 'cycle',
+    goal: 'Save time',
     animation: 'workflow',
-    whoFor: ['Trading and distribution', 'Manufacturing and procurement', 'Logistics', 'Finance and accounting teams'],
+    whoFor: ['Trading and distribution', 'Manufacturing and purchasing teams', 'Logistics', 'Accounts and finance teams'],
     steps: [
-      { title: 'Receive', body: 'RFQs, quotes and invoices arrive by email, WhatsApp or upload, as PDFs, scans or Excel.' },
+      { title: 'Receive', body: 'Price requests, supplier quotes and invoices arrive by email or WhatsApp, as PDFs, scans or Excel.' },
       { title: 'Read', body: 'AI reads each document and pulls out items, quantities, prices, dates and terms.' },
-      {
-        title: 'Compare',
-        body: 'It checks the data against your price lists and past quotes, compares vendors and flags anything missing.',
-      },
-      {
-        title: 'Report',
-        body: 'A clean comparison report or draft quote is ready for approval, and the data goes into your system.',
-      },
+      { title: 'Compare', body: 'It checks them against your price lists, compares suppliers and flags anything missing.' },
+      { title: 'Report', body: 'A clean comparison report or draft quote is ready to approve, and the data goes into your system.' },
     ],
     outcomes: [
       'Hours of copying and typing removed every week',
-      'Faster quotes and replies to customers',
-      'Fewer errors, with a person still approving',
+      'Faster quotes and replies to your customers',
+      'Fewer mistakes, with a person still approving',
     ],
     example: {
-      title: 'A trading company handling RFQs',
-      body: 'Receives about 30 RFQs and vendor quotes a week. The AI prepares the quote-comparison sheet in minutes; the team only reviews and sends.',
+      title: 'A trading company',
+      body: 'Receives price requests from customers and quotes from suppliers every week. AI now prepares the comparison sheet in minutes; the team only checks it and sends.',
     },
   },
   {
     slug: 'ai-training',
     href: '/solutions/ai-training',
-    number: '04',
-    title: 'AI Training for Teams',
-    short: 'Hands-on training that gets your team using AI in their daily work.',
+    title: 'AI Training for Your Team',
+    short: 'Hands-on training that gets your team using AI in their daily work, safely.',
     definition:
-      'Workshops and ongoing support that teach your people to use AI tools on their own tasks: sales, marketing, operations and HR. Teams leave with ready-to-use prompts, custom assistants for their work and clear rules on using AI safely.',
+      'Practical workshops and follow-up support that teach your people to use AI tools on their own work: sales, marketing, operations and HR. Each team leaves with ready-made prompts, simple AI assistants for their tasks and clear rules for using AI safely.',
     icon: 'users',
+    goal: 'Save time',
     animation: 'training',
-    whoFor: ['Leadership teams', 'Sales and marketing teams', 'Operations and HR', 'Companies starting with AI'],
+    whoFor: ['Owners and leadership teams', 'Sales and marketing teams', 'Operations and HR', 'Companies just starting with AI'],
     steps: [
       { title: 'Assess', body: 'We learn where your team spends its time and how comfortable they are with AI today.' },
-      {
-        title: 'Train',
-        body: 'Hands-on sessions using your team’s real tasks, with tools like ChatGPT, Claude and Gemini.',
-      },
-      {
-        title: 'Equip',
-        body: 'Each team gets a prompt library, custom assistants for their workflows and a simple AI-use policy.',
-      },
+      { title: 'Train', body: 'Hands-on sessions using your team’s real tasks, with tools like ChatGPT, Claude and Gemini.' },
+      { title: 'Equip', body: 'Each team gets a prompt library, simple assistants for their work and an AI-use policy.' },
       { title: 'Enable', body: 'Follow-up support and refreshers, so AI becomes a daily habit, not a one-day event.' },
     ],
     outcomes: [
-      'Teams that use AI confidently, every day',
+      'A team that uses AI confidently, every day',
       'Time saved on writing, research, reports and analysis',
-      'Clear guardrails for data safety',
+      'Clear rules that keep your company’s data safe',
     ],
     example: {
-      title: 'A 40-person sales and support team',
-      body: 'A half-day workshop plus four weekly sessions. Each person leaves with assistants for proposals, follow-up emails and call summaries.',
+      title: 'A sales and support team',
+      body: 'A hands-on workshop followed by weekly sessions. Each person left with AI assistants for proposals, follow-up emails and call summaries.',
     },
   },
-  {
-    slug: 'lead-generation',
-    href: '/solutions/lead-generation',
-    number: '05',
-    title: 'AI Lead Generation',
-    short: 'A steady flow of qualified leads, without cold-calling all day.',
-    definition:
-      'AI finds businesses and people that match your ideal customer, adds their contact details, writes personal outreach on email, LinkedIn or WhatsApp, follows up, and hands you the people who are interested, already in your CRM.',
-    icon: 'chart',
-    animation: 'leads',
-    whoFor: ['B2B services', 'IT and software companies', 'Manufacturers and exporters', 'Agencies and consultants'],
-    steps: [
-      {
-        title: 'Find',
-        body: 'We define your ideal customer; AI finds matching companies and decision-makers from public sources.',
-      },
-      { title: 'Enrich', body: 'Each prospect gets verified contact details and the context needed to write to them.' },
-      { title: 'Reach out', body: 'Personal messages go out with polite follow-ups, on the channels that work for you.' },
-      {
-        title: 'Qualify',
-        body: 'Replies are sorted as hot, warm or not now. Hot leads book a meeting or go straight to your team.',
-      },
-    ],
-    outcomes: [
-      'A full pipeline without a big sales team',
-      'Your salespeople talk only to interested buyers',
-      'Every lead and conversation logged in your CRM',
-    ],
-    example: {
-      title: 'A B2B services firm',
-      body: 'Wanted meetings with operations heads at mid-size manufacturers. AI found and wrote to the right people each week and booked the interested ones into the founder’s calendar.',
-    },
-  },
-  {
-    slug: 'ferry',
-    href: '/ferry',
-    number: '06',
-    title: 'Website Conversion with Ferry',
-    short: 'The easiest way to adopt AI: turn website visitors into purchases or demo bookings, around the clock.',
-    definition:
-      'Most visitors leave a website without saying a word. Ferry, our flagship product, is an AI agent that greets them, answers questions from your own content, and guides them to buy or book a demo, day and night.',
-    icon: 'bot',
-    animation: 'ferry',
-    whoFor: ['Any business with a website', 'SaaS and product companies', 'Real estate and education', 'Clinics and services'],
-    steps: [
-      { title: 'Visit', body: 'A visitor lands on your website and starts looking around.' },
-      { title: 'Chat', body: 'Ferry opens at the right moment and answers their questions from your own content.' },
-      { title: 'Qualify', body: 'It learns what they need and collects their details naturally.' },
-      { title: 'Convert', body: 'The visitor buys or books a demo in the chat, and the lead lands in your dashboard.' },
-    ],
-    outcomes: [
-      'More sales and demos from the traffic you already have',
-      'Every question answered instantly, even at midnight',
-      'A dashboard of every lead and conversation',
-    ],
-    example: {
-      title: 'A home-care agency',
-      body: 'Had steady traffic but few enquiries. Ferry now answers families’ questions at night and hands qualified leads to the owner every morning.',
-    },
-    flagship: true,
-  },
+];
+
+export const goals: { goal: SolutionGoal; blurb: string }[] = [
+  { goal: 'Get more customers', blurb: 'Turn visitors, prospects and ad views into paying customers.' },
+  { goal: 'Keep your customers', blurb: 'Bring customers back with the right message at the right time.' },
+  { goal: 'Save time', blurb: 'Take repetitive work off your team.' },
 ];
 
 export function getSolution(slug: string) {

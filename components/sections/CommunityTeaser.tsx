@@ -2,7 +2,8 @@ import Button from '@/components/ui/Button';
 import Icon from '@/components/ui/Icon';
 import Reveal from '@/components/ui/Reveal';
 
-// Short pointer to the community page.
+// Short pointer to the community page. The community is still being built,
+// so this only asks people to register interest.
 export default function CommunityTeaser() {
   return (
     <section className="bg-night pt-16 sm:pt-20">
@@ -14,17 +15,17 @@ export default function CommunityTeaser() {
                 <Icon name="users" className="h-6 w-6" />
               </span>
               <div>
-                <p className="eyebrow text-blue-soft">RYX AI Community</p>
+                <p className="eyebrow text-blue-soft">Coming soon · RYX AI Community</p>
                 <h2 className="mt-3 font-display text-2xl font-bold tracking-tight sm:text-3xl">
-                  Learn practical AI with other business owners.
+                  A community for business owners using AI.
                 </h2>
                 <p className="mt-2 max-w-[560px] leading-relaxed text-white/60">
-                  Free to join. Real use cases, playbooks and early access to what we build.
+                  We’re building it now. Register your interest and you’ll be among the first invited.
                 </p>
               </div>
             </div>
             <Button href="/community" variant="light" className="shrink-0">
-              Visit the community
+              Register interest
               <Icon name="arrow" className="h-4 w-4" />
             </Button>
           </div>

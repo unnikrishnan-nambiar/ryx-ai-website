@@ -20,7 +20,12 @@ export const site = {
   instagramUrl: 'https://www.instagram.com/ryxai.in/',
   youtubeUrl: 'https://youtube.com/@ryx.ai',
   linkedinUrl: 'https://linkedin.com/company/ryxai',
+  // Where RYX AI sells today. Pricing is in INR; other markets on request.
+  markets: 'India and the UAE',
   ferry: {
+    // Ferry's self-serve signup page. While this is null, "Get Ferry"
+    // buttons open a short form instead.
+    signupUrl: null as string | null,
     // Explainer video in /public, or a YouTube embed URL
     // (https://www.youtube.com/embed/<id>). Set to null to hide it.
     videoSrc: '/ferry-explainer.mp4' as string | null,
@@ -38,8 +43,8 @@ export const site = {
 };
 
 export const nav = [
-  { label: 'Solutions', href: '/solutions' },
   { label: 'Ferry', href: '/ferry' },
+  { label: 'Solutions', href: '/solutions' },
   { label: 'Adopt AI', href: '/how-to-adopt-ai' },
   { label: 'Community', href: '/community' },
   { label: 'Contact', href: '/contact' },

@@ -13,7 +13,7 @@ const fontsHref =
 
 const defaultTitle = 'RYX AI - AI that works for your business';
 const defaultDescription =
-  'RYX AI helps businesses adopt AI the easy way: AI ads, customer nudges, lead generation, workflow automation and team training. Start with Ferry, the AI website agent that goes live in a day.';
+  'The easiest way to put AI to work in your business. Start with Ferry, an AI assistant for your website you can set up yourself in 5 minutes. Then let RYX AI build AI for your lead generation, WhatsApp follow-ups, paperwork and team training.';
 
 export const metadata: Metadata = {
   metadataBase: new URL(`https://${site.domain}`),

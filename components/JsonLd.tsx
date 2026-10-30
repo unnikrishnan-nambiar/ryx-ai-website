@@ -26,7 +26,7 @@ export const organizationLd = {
   email: site.email,
   telephone: '+91-9605799089',
   description:
-    'RYX AI helps businesses adopt AI: AI creatives and ads, personalised customer nudges, workflow automation, AI training for teams, AI lead generation, and Ferry, the AI website sales agent.',
+    'RYX AI is the easiest way to put AI to work in a business. Its self-serve product Ferry is an AI assistant for websites, set up in about 5 minutes. RYX AI also builds AI lead generation, WhatsApp follow-ups, paperwork automation, AI ads and team training.',
   sameAs: [site.instagramUrl, site.linkedinUrl, site.youtubeUrl],
   knowsAbout: [
     'AI adoption for business',

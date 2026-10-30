@@ -1,9 +1,9 @@
+import Link from 'next/link';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import Button from '@/components/ui/Button';
 import Icon from '@/components/ui/Icon';
 import Reveal from '@/components/ui/Reveal';
-import SectionHeading from '@/components/ui/SectionHeading';
 import LeadForm from '@/components/LeadForm';
 import PageHero from '@/components/sections/PageHero';
 import { site } from '@/data/site';
@@ -11,31 +11,18 @@ import { pageMetadata } from '@/lib/metadata';
 
 export const metadata = pageMetadata(
   '/community',
-  'RYX AI Community - practical AI for business owners',
-  'A free community for business owners and teams who want practical AI, not hype. Use cases, playbooks and early access to what RYX AI builds.'
+  'RYX AI Community (coming soon) - register your interest',
+  'We’re building a community for business owners and teams putting AI to work. Register your interest to be among the first invited.'
 );
 
-const perks = [
-  {
-    icon: 'spark',
-    title: 'Real use cases',
-    body: 'What is actually working for businesses like yours, explained simply, with the results behind it.',
-  },
-  {
-    icon: 'repeat',
-    title: 'Playbooks you can copy',
-    body: 'Step-by-step guides and prompts for sales, marketing and operations that you can use the same day.',
-  },
-  {
-    icon: 'users',
-    title: 'People doing the work',
-    body: 'Founders, sales leads and operators comparing notes on putting AI to work in their own business.',
-  },
-  {
-    icon: 'calendar',
-    title: 'Early access',
-    body: 'First look at new RYX AI tools and features, including Ferry voice agents, before anyone else.',
-  },
+// The community is still being built: this page only collects interest and
+// says plainly what it's meant to become. Don't promise events or perks
+// here until they exist.
+const plans = [
+  'Practical ways other businesses are using AI',
+  'Simple guides and prompts you can use the same day',
+  'A place to ask questions and compare notes with other owners',
+  'First look at new RYX AI tools',
 ];
 
 const audience = ['Business owners and founders', 'Sales and marketing teams', 'Operations and HR leads', 'Anyone starting with AI at work'];
@@ -47,16 +34,16 @@ export default function CommunityPage() {
       <main>
         <PageHero
           crumbs={[{ label: 'Community', href: '/community' }]}
-          eyebrow="RYX AI Community"
+          eyebrow="Coming soon · RYX AI Community"
           title={
             <>
-              Practical AI for business, <span className="text-blue-soft">learned together.</span>
+              A community for business owners <span className="text-blue-soft">putting AI to work.</span>
             </>
           }
-          intro="A free community for business owners and teams who want AI that actually helps their work. No hype, no jargon, no spam."
+          intro="We’re building it now. Register your interest and you’ll be among the first invited when it opens. It’s free, and we won’t spam you."
         >
           <Button href="#join" variant="primary">
-            Join for free
+            Register my interest
             <Icon name="arrow" className="h-4 w-4" />
           </Button>
           {site.communityUrl && (
@@ -67,61 +54,48 @@ export default function CommunityPage() {
           )}
         </PageHero>
 
-        <section className="bg-mist py-20 text-ink sm:py-28">
-          <div className="container-content">
-            <SectionHeading tone="light" eyebrow="What you get" title="Everything you need to start using AI." />
-            <div className="mt-12 grid gap-5 sm:grid-cols-2">
-              {perks.map((perk, i) => (
-                <Reveal key={perk.title} delay={(i % 2) * 0.08}>
-                  <div className="flex h-full gap-5 rounded-card border border-line bg-white p-7 shadow-card">
-                    <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-blue-light text-blue">
-                      <Icon name={perk.icon} className="h-6 w-6" />
-                    </span>
-                    <div>
-                      <h3 className="font-display text-xl font-bold">{perk.title}</h3>
-                      <p className="mt-2 leading-relaxed text-ink-secondary">{perk.body}</p>
-                    </div>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section id="join" className="scroll-mt-16 bg-night py-20 sm:py-28">
-          <div className="container-content grid gap-12 lg:grid-cols-[1.1fr_1fr] lg:items-center">
+        <section id="join" className="scroll-mt-16 bg-mist py-20 text-ink sm:py-28">
+          <div className="container-content grid gap-12 lg:grid-cols-[1.1fr_1fr] lg:items-start">
             <Reveal>
-              <p className="eyebrow text-blue-soft">Who it’s for</p>
-              <h2 className="mt-4 text-balance font-display text-[32px] font-bold leading-[1.1] tracking-[-0.02em] sm:text-[44px]">
-                If you run a business or a team, you belong here.
+              <p className="eyebrow text-blue">What we’re planning</p>
+              <h2 className="mt-4 text-balance font-display text-[32px] font-bold leading-[1.1] tracking-[-0.02em] sm:text-[42px]">
+                Practical AI, learned together.
               </h2>
-              <ul className="mt-8 grid gap-3 sm:grid-cols-2">
+              <ul className="mt-8 space-y-3">
+                {plans.map((p) => (
+                  <li key={p} className="flex gap-3 text-lg leading-snug">
+                    <Icon name="check" className="mt-1 h-5 w-5 shrink-0 text-blue" />
+                    {p}
+                  </li>
+                ))}
+              </ul>
+              <p className="eyebrow mt-10 text-blue">Who it’s for</p>
+              <ul className="mt-4 flex flex-wrap gap-2">
                 {audience.map((a) => (
-                  <li key={a} className="flex items-center gap-3 text-white/80">
-                    <Icon name="check" className="h-5 w-5 shrink-0 text-blue-soft" />
+                  <li key={a} className="rounded-full border border-line bg-white px-3.5 py-2 text-[15px] text-ink-secondary">
                     {a}
                   </li>
                 ))}
               </ul>
-              <p className="mt-8 text-white/55">
-                Prefer to follow along first?{' '}
-                <a href={site.instagramUrl} target="_blank" rel="noopener noreferrer" className="font-semibold text-white hover:text-blue-soft">
-                  Follow us on Instagram
-                </a>
-                .
-              </p>
             </Reveal>
             <Reveal delay={0.1}>
-              <div className="rounded-card bg-white p-6 text-ink shadow-lift sm:p-8">
-                <h3 className="font-display text-2xl font-bold tracking-tight">Join the community</h3>
-                <p className="mt-2 text-ink-secondary">Free. Just your name and email.</p>
+              <div className="rounded-card bg-white p-6 shadow-lift sm:p-8">
+                <h3 className="font-display text-2xl font-bold tracking-tight">Register your interest</h3>
+                <p className="mt-2 text-ink-secondary">Just your name and email. We’ll invite you when it opens.</p>
                 <div className="mt-6">
                   <LeadForm
-                    source="Community signup"
-                    submitLabel="Join for free"
-                    successMessage="You’re in. Welcome to the RYX AI Community."
+                    source="Community interest"
+                    submitLabel="Register my interest"
+                    successMessage="Thanks! You’re on the list. We’ll invite you when the community opens."
                   />
                 </div>
+                <p className="mt-5 text-sm text-ink-muted">
+                  Want to use AI in your business now?{' '}
+                  <Link href="/ferry" className="font-semibold text-blue hover:text-blue-dark">
+                    Set up Ferry in 5 minutes
+                  </Link>
+                  .
+                </p>
               </div>
             </Reveal>
           </div>

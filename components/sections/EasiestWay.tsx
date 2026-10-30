@@ -2,7 +2,7 @@ import Button from '@/components/ui/Button';
 import Icon from '@/components/ui/Icon';
 import Reveal from '@/components/ui/Reveal';
 import SectionHeading from '@/components/ui/SectionHeading';
-import LeadButton from '@/components/LeadButton';
+import GetFerryButton from '@/components/GetFerryButton';
 import { comparison, whyFerryEasiest } from '@/data/adoptAi';
 
 // "Ferry is the easiest way to adopt AI": five reasons plus a side-by-side
@@ -25,10 +25,10 @@ export default function EasiestWay({
           eyebrowClass="text-gold"
           title={
             <>
-              Your first AI project, <span className="text-gold">live in a day.</span>
+              Your first AI project, <span className="text-gold">live in 5 minutes.</span>
             </>
           }
-          intro="Most companies never get past the planning stage with AI. Ferry skips it: no tech team, no data project, no big budget. Just your website address."
+          intro="Most companies never get past the planning stage with AI. Ferry skips it: no tech team, no data project, no big budget. Just your website address and 5 minutes."
         />
 
         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
@@ -76,16 +76,10 @@ export default function EasiestWay({
         </Reveal>
 
         <Reveal className="mt-10 flex flex-col gap-3 sm:flex-row">
-          <LeadButton
-            variant="gold"
-            title="Start with Ferry"
-            intro="Share your website and we’ll set up a Ferry agent trained on your content."
-            source="Ferry demo request (adopt AI)"
-            submitLabel="Request a demo"
-          >
+          <GetFerryButton>
             Start with Ferry
             <Icon name="arrow" className="h-4 w-4" />
-          </LeadButton>
+          </GetFerryButton>
           {showFerryLink && (
             <Button href="/ferry" variant="ghost">
               How Ferry works

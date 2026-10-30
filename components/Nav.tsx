@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Logo from './Logo';
 import Button from './ui/Button';
 import Icon from './ui/Icon';
+import GetFerryButton from './GetFerryButton';
 import { nav, site } from '@/data/site';
 import { solutions } from '@/data/solutions';
 
@@ -26,7 +27,10 @@ function SolutionLink({ s, onClick }: { s: (typeof solutions)[number]; onClick: 
         <span className="flex items-center gap-2 text-sm font-semibold text-white">
           {s.title}
           {s.flagship && (
-            <span className="rounded-full bg-gold/20 px-2 py-0.5 text-[10px] font-semibold text-gold">Flagship</span>
+            <span className="rounded-full bg-gold/20 px-2 py-0.5 text-[10px] font-semibold text-gold">Self-serve</span>
+          )}
+          {s.pilot && (
+            <span className="rounded-full bg-blue/20 px-2 py-0.5 text-[10px] font-semibold text-blue-soft">Pilot</span>
           )}
         </span>
         <span className="mt-0.5 line-clamp-1 block text-[13px] text-white/50">{s.short}</span>
@@ -147,10 +151,11 @@ export default function Nav() {
         </nav>
 
         <div className="flex items-center gap-3">
-          <div className="hidden md:block">
-            <Button href={site.bookingUrl} variant="primary" className="px-5 py-2.5 text-sm">
+          <div className="hidden items-center gap-5 md:flex">
+            <a href={site.bookingUrl} className="text-sm font-medium text-white/70 transition-colors hover:text-white">
               Book a call
-            </Button>
+            </a>
+            <GetFerryButton className="px-5 py-2.5 text-sm">Get Ferry</GetFerryButton>
           </div>
 
           <button
@@ -196,9 +201,12 @@ export default function Nav() {
                   {item.label}
                 </Link>
               ))}
-            <Button href={site.bookingUrl} variant="primary" className="mt-3 w-full" onClick={close}>
-              Book a 30-minute call
-            </Button>
+            <div className="mt-3 grid gap-2">
+              <GetFerryButton className="w-full">Get Ferry: live in 5 minutes</GetFerryButton>
+              <Button href={site.bookingUrl} variant="ghost" className="w-full" onClick={close}>
+                Book a free call
+              </Button>
+            </div>
           </div>
         </nav>
       )}

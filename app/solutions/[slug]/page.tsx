@@ -42,13 +42,13 @@ export default async function SolutionPage({ params }: { params: Promise<{ slug:
       <main>
         <PageHero
           crumbs={[{ label: 'Solutions', href: '/solutions' }]}
-          eyebrow={`Solution ${s.number}`}
+          eyebrow={s.pilot ? `${s.goal} · Pilot` : s.goal}
           title={s.title}
           intro={s.short}
         >
           <Button href={site.bookingUrl} variant="primary">
             <Icon name="calendar" className="h-[18px] w-[18px]" />
-            Book a 30-minute call
+            Book a free 30-minute call
           </Button>
           <Button href="#how-it-works" variant="ghost">
             See how it works
@@ -130,12 +130,14 @@ export default async function SolutionPage({ params }: { params: Promise<{ slug:
             </Reveal>
             <Reveal delay={0.1}>
               <div className="h-full rounded-card border border-line bg-white p-8 shadow-card sm:p-10">
-                <p className="eyebrow text-blue">Example scenario</p>
+                <p className="eyebrow text-blue">
+                  {s.pilot ? 'Pilot programme' : 'From our work · client name kept private'}
+                </p>
                 <h3 className="mt-4 font-display text-2xl font-bold tracking-tight">{s.example.title}</h3>
                 <p className="mt-3 text-lg leading-relaxed text-ink-secondary">{s.example.body}</p>
                 <div className="mt-8">
                   <Button href={site.bookingUrl} variant="primary">
-                    Talk to us about this
+                    {s.pilot ? 'Ask about a pilot' : 'Get a custom quote'}
                     <Icon name="arrow" className="h-4 w-4" />
                   </Button>
                 </div>

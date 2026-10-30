@@ -1,12 +1,14 @@
 import Button from '@/components/ui/Button';
 import Icon from '@/components/ui/Icon';
 import Reveal from '@/components/ui/Reveal';
+import GetFerryButton from '@/components/GetFerryButton';
 import { site } from '@/data/site';
 
-// Closing call-to-action at the bottom of every page.
+// Closing call-to-action at the bottom of every page: the two main actions,
+// get Ferry (self-serve) or talk to the team.
 export default function CtaBand({
-  title = 'Tell us your problem. We’ll show you the solution.',
-  intro = 'A 30-minute call is enough to find the first thing worth automating in your business, and what it’s worth to you.',
+  title = 'Start with Ferry today. Talk to us when you want more.',
+  intro = 'Set up Ferry yourself in 5 minutes, or book a free 30-minute call and we’ll find the first thing worth automating in your business.',
 }: {
   title?: string;
   intro?: string;
@@ -29,17 +31,23 @@ export default function CtaBand({
             <h2 className="relative mx-auto max-w-[760px] text-balance font-display text-[32px] font-bold leading-[1.1] tracking-[-0.02em] sm:text-[46px]">
               {title}
             </h2>
-            <p className="relative mx-auto mt-5 max-w-[560px] text-lg leading-relaxed text-white/80">{intro}</p>
+            <p className="relative mx-auto mt-5 max-w-[580px] text-lg leading-relaxed text-white/85">{intro}</p>
             <div className="relative mt-9 flex flex-col justify-center gap-3 sm:flex-row">
+              <GetFerryButton variant="gold">
+                Get Ferry
+                <Icon name="arrow" className="h-4 w-4" />
+              </GetFerryButton>
               <Button href={site.bookingUrl} variant="light">
                 <Icon name="calendar" className="h-[18px] w-[18px]" />
-                Book a 30-minute call
-              </Button>
-              <Button href={site.whatsappUrl} variant="ghost" className="!border-white/40 !bg-white/10">
-                <Icon name="chat" className="h-[18px] w-[18px]" />
-                WhatsApp us
+                Book a free call
               </Button>
             </div>
+            <p className="relative mt-6 text-sm text-white/75">
+              Or call our AI assistant:{' '}
+              <a href={site.aiAssistantPhoneHref} className="font-semibold text-white underline-offset-4 hover:underline">
+                {site.aiAssistantPhone}
+              </a>
+            </p>
           </div>
         </Reveal>
       </div>

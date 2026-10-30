@@ -21,7 +21,7 @@ export const metadata = {
     'AI adoption for business',
     'how to start using AI in my company',
     'AI for small business India',
-    'AI website agent',
+    'AI website assistant',
     'Ferry AI',
   ],
 };
@@ -56,7 +56,7 @@ export default function AdoptAiGuidePage() {
     image: `${siteUrl}/opengraph-image.png`,
     author: { '@type': 'Organization', name: 'RYX AI', url: siteUrl },
     publisher: { '@id': `${siteUrl}/#organization` },
-    about: ['AI adoption', 'Small business', 'AI website agent'],
+    about: ['AI adoption', 'Small business', 'AI website assistant'],
     mentions: { '@type': 'SoftwareApplication', name: 'Ferry', url: `${siteUrl}/ferry` },
   };
 
@@ -202,18 +202,18 @@ export default function AdoptAiGuidePage() {
 
               {/* Easiest first step (summary; full section below) */}
               <section>
-                <H2 id="easiest-first-step">The easiest first step: an AI agent on your website</H2>
+                <H2 id="easiest-first-step">The easiest first step: an AI assistant on your website</H2>
                 <p className="mt-4 text-lg leading-relaxed text-ink-secondary">
                   If you’re not sure where to begin, begin with your website. It already explains
                   your business, it already gets visitors, and most of them leave without saying a
-                  word. An AI agent that answers them turns AI from an idea into leads you can count,
+                  word. An AI assistant that answers them turns AI from an idea into leads you can count,
                   usually within the first week.
                 </p>
                 <p className="mt-4 text-lg leading-relaxed text-ink-secondary">
                   That’s exactly what <Link href="/ferry" className="font-semibold text-blue hover:text-blue-dark">Ferry</Link>{' '}
                   does. You enter your website address; Ferry learns from your pages and documents,
                   greets visitors at the right moment, answers their questions, and guides them to buy
-                  or book a demo. It goes live in about a day, from ₹2,000 a month.
+                  or book a demo. You set it up yourself in about 5 minutes, from ₹2,000 a month.
                 </p>
               </section>
             </div>

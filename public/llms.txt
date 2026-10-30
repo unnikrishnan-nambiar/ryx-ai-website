@@ -1,32 +1,34 @@
 # RYX AI
 
-> RYX AI helps businesses adopt AI the easy way. Its flagship product, Ferry, is the easiest way to adopt AI in a business: an AI agent built from the company's own website that answers visitors, qualifies leads and turns them into purchases and demo bookings. No tech team needed, live in about a day, from ₹2,000 a month. RYX AI also delivers AI creatives and ads, personalised customer nudges, workflow automation, AI training for teams and AI lead generation.
+> RYX AI is the easiest way to put AI to work in a business. It serves businesses in India and the UAE. Its self-serve product, Ferry, is an AI assistant for websites: it learns from the company's own website, answers every visitor, collects leads and books meetings or guides purchases, day and night. Businesses set Ferry up themselves in about 5 minutes, with no tech team, on a monthly subscription from ₹2,000. When a business wants more, the RYX AI team builds AI lead generation, WhatsApp follow-ups and reminders, paperwork automation, AI ads and creatives (pilot) and AI training for teams, each with a custom quote.
 
 ## How to adopt AI in a business (summary)
 
-Start with one customer-facing problem that costs money, such as slow replies or website visitors who leave without contacting you. Use a ready-made AI tool that learns from information you already have, launch in days rather than months, and measure for 30 days before adding the next use case. For most businesses the easiest first step is an AI agent on the website, such as Ferry by RYX AI.
+Start with one customer-facing problem that costs money, such as slow replies or website visitors who leave without contacting you. Use a ready-made AI tool that learns from information you already have, launch quickly, and measure for 30 days before adding the next use case. For most businesses the easiest first step is an AI assistant on the website, such as Ferry by RYX AI, which takes about 5 minutes to set up.
 
 ## Key pages
 
-- [How to adopt AI in your business](https://ryxai.in/how-to-adopt-ai): step-by-step guide for owners, where to start by goal, checklist and FAQ
-- [Ferry](https://ryxai.in/ferry): the easiest way to adopt AI; how it works, features, pricing and FAQ
-- [All solutions](https://ryxai.in/solutions): the six RYX AI solutions
-- [AI Creatives & Ads](https://ryxai.in/solutions/ai-ads)
-- [Personalised Customer Nudges](https://ryxai.in/solutions/customer-nudges)
-- [Workflow Automation](https://ryxai.in/solutions/workflow-automation)
-- [AI Training for Teams](https://ryxai.in/solutions/ai-training)
+- [How to adopt AI in your business](https://ryxai.in/how-to-adopt-ai): step-by-step guide, where to start by goal, checklist and FAQ
+- [Ferry](https://ryxai.in/ferry): the easiest way to adopt AI; how it works, how it differs from a chatbot, pricing and FAQ
+- [All solutions](https://ryxai.in/solutions)
 - [AI Lead Generation](https://ryxai.in/solutions/lead-generation)
-- [Community](https://ryxai.in/community): free RYX AI Community for business owners
-- [Contact](https://ryxai.in/contact): book a 30-minute call
+- [AI Ads & Creatives (pilot)](https://ryxai.in/solutions/ai-ads)
+- [WhatsApp Follow-ups & Reminders](https://ryxai.in/solutions/customer-nudges)
+- [Paperwork Automation](https://ryxai.in/solutions/workflow-automation)
+- [AI Training for Your Team](https://ryxai.in/solutions/ai-training)
+- [Community (coming soon)](https://ryxai.in/community)
+- [Contact](https://ryxai.in/contact): book a free 30-minute call
 
-## Ferry pricing
+## Ferry pricing (monthly subscription, INR, excluding taxes)
 
-- Starter: ₹2,000 per month, one website agent, live in a day
-- Premium: ₹5,000 per month, adds visitor memory, all engagement triggers, growth recommendations, conversion insights and no RYX AI branding
-- Early adopters: contact RYX AI for pilot terms
+- Early adopter: ₹1,000 per month, limited to the first 10 customers
+- Starter: ₹2,000 per month
+- Premium: ₹5,000 per month, adds visitor memory, more conversation triggers, growth tips, conversion reports and no RYX AI branding
+- Pricing in AED or USD on request
 
 ## Contact
 
 - Email: hello@ryxai.in
 - Phone: +91 96057 99089
+- Voice AI demo: call +91 80 3133 9977
 - Website: https://ryxai.in
