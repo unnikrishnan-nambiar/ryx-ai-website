@@ -2,7 +2,7 @@ import Icon from '@/components/ui/Icon';
 import Reveal from '@/components/ui/Reveal';
 import SectionHeading from '@/components/ui/SectionHeading';
 import LeadButton from '@/components/LeadButton';
-import { plans } from '@/data/content';
+import { plans } from '@/data/ferry';
 
 export default function Pricing() {
   return (

@@ -1,17 +1,47 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import Logo from './Logo';
 import Button from './ui/Button';
+import Icon from './ui/Icon';
 import { nav, site } from '@/data/site';
+import { solutions } from '@/data/solutions';
+
+function SolutionLink({ s, onClick }: { s: (typeof solutions)[number]; onClick: () => void }) {
+  return (
+    <Link
+      href={s.href}
+      onClick={onClick}
+      className="group flex gap-3 rounded-xl p-3 transition-colors hover:bg-white/5"
+    >
+      <span
+        className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-lg ${
+          s.flagship ? 'bg-gold/15 text-gold' : 'bg-blue/15 text-blue-soft'
+        }`}
+      >
+        <Icon name={s.icon} className="h-[18px] w-[18px]" />
+      </span>
+      <span>
+        <span className="flex items-center gap-2 text-sm font-semibold text-white">
+          {s.title}
+          {s.flagship && (
+            <span className="rounded-full bg-gold/20 px-2 py-0.5 text-[10px] font-semibold text-gold">Flagship</span>
+          )}
+        </span>
+        <span className="mt-0.5 line-clamp-1 block text-[13px] text-white/50">{s.short}</span>
+      </span>
+    </Link>
+  );
+}
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
+  const [menu, setMenu] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const closeTimer = useRef<number | null>(null);
 
-  // Solid background once the page scrolls past the hero's top edge;
-  // transparent over the hero itself.
+  // Solid background once the page scrolls; transparent over the hero.
   useEffect(() => {
     function onScroll() {
       setScrolled(window.scrollY > 12);
@@ -21,34 +51,99 @@ export default function Nav() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  const solid = scrolled || open;
+  useEffect(() => {
+    if (!menu) return;
+    function onKey(e: KeyboardEvent) {
+      if (e.key === 'Escape') setMenu(false);
+    }
+    document.addEventListener('keydown', onKey);
+    return () => document.removeEventListener('keydown', onKey);
+  }, [menu]);
+
+  // Small delay before closing so the pointer can travel from the trigger
+  // into the panel without it snapping shut.
+  function openMenu() {
+    if (closeTimer.current) window.clearTimeout(closeTimer.current);
+    setMenu(true);
+  }
+  function closeMenuSoon() {
+    closeTimer.current = window.setTimeout(() => setMenu(false), 150);
+  }
+
+  const close = () => {
+    setOpen(false);
+    setMenu(false);
+  };
 
   return (
     <header
       className={`fixed inset-x-0 top-0 z-40 transition-colors duration-300 ${
-        open
+        open || menu
           ? 'border-b border-white/10 bg-night'
-          : solid
+          : scrolled
             ? 'border-b border-white/10 bg-night/85 backdrop-blur-xl'
             : 'border-b border-transparent'
       }`}
     >
       <div className="container-content flex h-16 items-center justify-between gap-6">
-        <Link href="/" className="shrink-0" onClick={() => setOpen(false)}>
+        <Link href="/" className="shrink-0" onClick={close}>
           <Logo className="h-6 w-auto" />
           <span className="sr-only">RYX AI home</span>
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex" aria-label="Main">
-          {nav.map((item) => (
-            <Link
-              key={item.label}
-              href={item.href}
-              className="text-sm font-medium text-white/70 transition-colors duration-200 hover:text-white"
-            >
-              {item.label}
-            </Link>
-          ))}
+          {nav.map((item) =>
+            item.label === 'Solutions' ? (
+              <div key={item.label} className="relative" onMouseEnter={openMenu} onMouseLeave={closeMenuSoon}>
+                <button
+                  type="button"
+                  onClick={() => setMenu((v) => !v)}
+                  aria-expanded={menu}
+                  aria-controls="solutions-menu"
+                  className="flex items-center gap-1 text-sm font-medium text-white/70 transition-colors duration-200 hover:text-white"
+                >
+                  Solutions
+                  <svg
+                    width="12"
+                    height="12"
+                    viewBox="0 0 12 12"
+                    fill="none"
+                    aria-hidden
+                    className={`transition-transform duration-200 ${menu ? 'rotate-180' : ''}`}
+                  >
+                    <path d="M3 4.5 6 7.5l3-3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                  </svg>
+                </button>
+                {menu && (
+                  <div id="solutions-menu" className="absolute left-1/2 top-full w-[640px] -translate-x-1/2 pt-4">
+                    <div className="animate-dropdown rounded-card border border-white/10 bg-night-800 p-3 shadow-lift">
+                      <div className="grid grid-cols-2 gap-1">
+                        {solutions.map((s) => (
+                          <SolutionLink key={s.slug} s={s} onClick={close} />
+                        ))}
+                      </div>
+                      <Link
+                        href="/solutions"
+                        onClick={close}
+                        className="mt-2 flex items-center justify-between rounded-xl bg-white/5 px-4 py-3 text-sm font-semibold text-white/80 transition-colors hover:bg-white/10 hover:text-white"
+                      >
+                        See all solutions
+                        <Icon name="arrow" className="h-4 w-4" />
+                      </Link>
+                    </div>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <Link
+                key={item.label}
+                href={item.href}
+                className="text-sm font-medium text-white/70 transition-colors duration-200 hover:text-white"
+              >
+                {item.label}
+              </Link>
+            )
+          )}
         </nav>
 
         <div className="flex items-center gap-3">
@@ -78,24 +173,30 @@ export default function Nav() {
       </div>
 
       {open && (
-        <nav id="mobile-nav" aria-label="Main" className="animate-dropdown border-t border-white/10 md:hidden">
-          <div className="container-content flex flex-col gap-1 py-4">
-            {nav.map((item) => (
-              <Link
-                key={item.label}
-                href={item.href}
-                onClick={() => setOpen(false)}
-                className="rounded-xl px-3 py-3 text-base font-medium text-white/80 transition-colors hover:bg-white/5 hover:text-white"
-              >
-                {item.label}
-              </Link>
+        <nav
+          id="mobile-nav"
+          aria-label="Main"
+          className="max-h-[calc(100vh-4rem)] animate-dropdown overflow-y-auto border-t border-white/10 md:hidden"
+        >
+          <div className="container-content py-4">
+            <p className="eyebrow px-3 pb-1 pt-2 text-white/40">Solutions</p>
+            {solutions.map((s) => (
+              <SolutionLink key={s.slug} s={s} onClick={close} />
             ))}
-            <Button
-              href={site.bookingUrl}
-              variant="primary"
-              className="mt-3 w-full"
-              onClick={() => setOpen(false)}
-            >
+            <div className="my-3 border-t border-white/10" />
+            {nav
+              .filter((item) => item.label !== 'Solutions')
+              .map((item) => (
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  onClick={close}
+                  className="block rounded-xl px-3 py-3 text-base font-medium text-white/80 transition-colors hover:bg-white/5 hover:text-white"
+                >
+                  {item.label}
+                </Link>
+              ))}
+            <Button href={site.bookingUrl} variant="primary" className="mt-3 w-full" onClick={close}>
               Book a 30-minute call
             </Button>
           </div>

@@ -1,31 +1,26 @@
 import Link from 'next/link';
 import Logo from './Logo';
 import { site } from '@/data/site';
+import { solutions } from '@/data/solutions';
 
 const columns = [
   {
     heading: 'Solutions',
-    links: [
-      { label: 'AI for Sales', href: '/#solutions' },
-      { label: 'AI for Marketing', href: '/#solutions' },
-      { label: 'AI for Automation', href: '/#solutions' },
-      { label: 'AI Consulting', href: '/#solutions' },
-    ],
+    links: solutions.map((sol) => ({ label: sol.title, href: sol.href })),
   },
   {
     heading: 'Ferry',
     links: [
-      { label: 'How Ferry works', href: '/#ferry' },
-      { label: 'Pricing', href: '/#pricing' },
-      { label: 'Use cases', href: '/#use-cases' },
+      { label: 'How Ferry works', href: '/ferry' },
+      { label: 'Pricing', href: '/ferry#pricing' },
     ],
   },
   {
     heading: 'Company',
     links: [
-      { label: 'How we work', href: '/#how-we-work' },
-      { label: 'Community', href: '/#community' },
-      { label: 'Contact', href: '/#contact' },
+      { label: 'All solutions', href: '/solutions' },
+      { label: 'Community', href: '/community' },
+      { label: 'Contact', href: '/contact' },
     ],
   },
 ];
@@ -40,7 +35,7 @@ export default function Footer() {
   return (
     <footer className="border-t border-white/10 bg-night-900">
       <div className="container-content py-14">
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1fr]">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.3fr_1.4fr_1fr_1fr]">
           <div>
             <Logo className="h-7 w-auto" />
             <p className="mt-4 max-w-[280px] text-sm leading-relaxed text-white/55">

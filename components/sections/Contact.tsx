@@ -13,7 +13,7 @@ const contacts = [
 
 export default function Contact() {
   return (
-    <section id="contact" className="relative scroll-mt-16 overflow-hidden bg-night-900 py-20 sm:py-28">
+    <section id="contact" className="relative overflow-hidden bg-night-900 pb-20 pt-28 sm:pb-28 sm:pt-36">
       <svg
         className="pointer-events-none absolute -right-40 top-0 h-full w-[900px] opacity-70"
         viewBox="0 0 900 700"
@@ -29,11 +29,11 @@ export default function Contact() {
 
       <div className="container-content relative grid gap-12 lg:grid-cols-[1.1fr_1fr] lg:items-start">
         <Reveal>
-          <h2 className="font-display text-[40px] font-bold leading-[1.05] tracking-[-0.03em] sm:text-[60px]">
+          <h1 className="font-display text-[40px] font-bold leading-[1.05] tracking-[-0.03em] sm:text-[60px]">
             Tell us your problem.
             <br />
             <span className="text-blue-soft">We&apos;ll show you the solution.</span>
-          </h2>
+          </h1>
           <p className="mt-6 max-w-[480px] text-lg leading-relaxed text-white/65">
             A 30-minute call is enough to find the first thing worth automating, and what it&apos;s
             worth to you.

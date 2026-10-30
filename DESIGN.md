@@ -21,6 +21,22 @@ proposals read as one brand:
 - Ferry has its own accent, gold (`gold`, #D6A84E), from the Ferry deck.
   Gold is used only in the Ferry and Pricing sections.
 
+## Structure (multipage)
+
+The single long page was split on request ("too much Ferry, simplify, go
+multipage"). The homepage only introduces the six solutions; each solution
+has its own page built from one template (`app/solutions/[slug]`), and Ferry,
+the flagship, gets the full product page with pricing at `/ferry`. Keep the
+homepage short: anything detailed belongs on an inner page.
+
+## Solution animations
+
+Each solution has a four-step SVG animation (`components/animations/`) that
+explains it to a non-technical business owner: what goes in, what AI does,
+what comes out. They play only while on screen, loop, can be stepped through
+by tapping the step labels, and show the final frame under reduced motion.
+Keep the four steps identical to `steps` in `data/solutions.ts`.
+
 ## Type
 
 `Manrope` (display/headings, `--font-display`) and `Inter` (body), via

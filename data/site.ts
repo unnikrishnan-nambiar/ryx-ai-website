@@ -26,6 +26,9 @@ export const site = {
     videoSrc: '/ferry-explainer.mp4' as string | null,
     videoPoster: '/ferry-explainer-poster.jpg',
   },
+  // Optional link to the community's WhatsApp group / platform. When set,
+  // the community page shows a "Join on WhatsApp" button next to the form.
+  communityUrl: null as string | null,
   // Deployed Google Apps Script Web App URL that LeadForm.tsx posts to
   // (writes a row into the "RYX AI Community Signups" Sheet) — see
   // scripts/signup-apps-script.gs. LeadForm falls back to email/WhatsApp
@@ -35,9 +38,8 @@ export const site = {
 };
 
 export const nav = [
-  { label: 'Solutions', href: '/#solutions' },
-  { label: 'Ferry', href: '/#ferry' },
-  { label: 'Use cases', href: '/#use-cases' },
-  { label: 'Pricing', href: '/#pricing' },
-  { label: 'Community', href: '/#community' },
+  { label: 'Solutions', href: '/solutions' },
+  { label: 'Ferry', href: '/ferry' },
+  { label: 'Community', href: '/community' },
+  { label: 'Contact', href: '/contact' },
 ];

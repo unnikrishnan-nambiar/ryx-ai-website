@@ -87,6 +87,10 @@ module.exports = {
           '0%, 100%': { opacity: '0.3' },
           '50%': { opacity: '1' },
         },
+        float: {
+          '0%, 100%': { transform: 'translate(-50%, -50%)' },
+          '50%': { transform: 'translate(-50%, calc(-50% - 6px))' },
+        },
       },
       animation: {
         'fade-up': 'fade-up 700ms cubic-bezier(0.22,1,0.36,1) both',
@@ -97,6 +101,7 @@ module.exports = {
         'orbit-reverse': 'orbit 120s linear infinite reverse',
         'msg-in': 'msg-in 500ms cubic-bezier(0.22,1,0.36,1) both',
         blink: 'blink 1.2s ease-in-out infinite',
+        float: 'float 5s ease-in-out infinite',
       },
     },
   },

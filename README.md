@@ -13,22 +13,29 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000).
 
+## Pages
+
+- `/` — homepage: hero, the six solutions, how we work, Ferry, community, call to action
+- `/solutions` and `/solutions/<slug>` — one page per solution
+- `/ferry` — the flagship product: how it works, video, features, pricing, FAQ
+- `/community` — RYX AI Community and sign-up
+- `/contact` — booking, phone, WhatsApp, email and message form
+
 ## Editing content
 
 You rarely need to touch components to change words, prices or links:
 
-- `data/site.ts` — contact details (email, phone, WhatsApp), the
-  "Book a call" link (`bookingUrl`, swap in a Cal.com/Calendly link when
-  ready), social links, the Ferry video, and the form endpoint.
-- `data/content.ts` — every piece of homepage copy from the sales deck:
-  problems, solutions, the 12 use cases, how-we-work steps, integrations,
-  Ferry features and the **pricing plans**.
-- `components/sections/` — one file per homepage section, in page order:
-  `Hero`, `Problem`, `Solutions`, `Ferry`, `Pricing`, `UseCases`,
-  `Process`, `Integrations`, `Community`, `Contact`.
+- `data/solutions.ts` — the six solutions: title, one-liner, plain-language
+  definition, who it's for, the four steps, outcomes and example scenario.
+  Each solution's page is generated from this file.
+- `data/ferry.ts` — Ferry features, dashboard, **pricing plans** and FAQ.
+- `data/site.ts` — contact details, the "Book a call" link (`bookingUrl`,
+  swap in a Cal.com/Calendly link when ready), the community WhatsApp link
+  (`communityUrl`), social links, the Ferry video and the form endpoint.
+- `components/animations/` — one SVG animation per solution. Each shows
+  four steps that match the `steps` in `data/solutions.ts`.
 - `public/brand/` — the ryx ai wordmark (white and black SVG).
-- `public/ferry-explainer.mp4` — the Ferry explainer video shown in the
-  Ferry section (`ferry-explainer-poster.jpg` is its cover frame).
+- `public/ferry-explainer.mp4` — the Ferry explainer video.
 
 ## Forms
 

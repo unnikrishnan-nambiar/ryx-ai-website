@@ -1,5 +1,6 @@
 import type { MetadataRoute } from 'next';
 import { site } from '@/data/site';
+import { solutions } from '@/data/solutions';
 
 // Required for `output: 'export'` — without it the build refuses to treat
 // this route as prerenderable static output.
@@ -12,7 +13,14 @@ export const dynamic = 'force-static';
 // URL search engines should index.
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = `https://${site.domain}`;
-  const routes = [''];
+  const routes = [
+    '',
+    '/solutions',
+    ...solutions.filter((s) => s.href.startsWith('/solutions/')).map((s) => s.href),
+    '/ferry',
+    '/community',
+    '/contact',
+  ];
 
   return routes.map((route) => ({
     url: `${base}${route}`,
