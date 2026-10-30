@@ -1,22 +1,14 @@
 import type { Metadata, Viewport } from 'next';
-import { Inter, Manrope } from 'next/font/google';
 import './globals.css';
 import { site } from '@/data/site';
 
-// UI/body face.
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-sans',
-  weight: ['400', '500', '600'],
-});
-
-// Display/headline face — rounded geometric grotesk that sits well next to
-// the ryx ai wordmark.
-const manrope = Manrope({
-  subsets: ['latin'],
-  variable: '--font-display',
-  weight: ['500', '600', '700', '800'],
-});
+// Inter (body) and Manrope (headings) load from Google Fonts at runtime via
+// a stylesheet link rather than next/font/google: next/font downloads the
+// font files during the build, and that download intermittently failed in
+// the GitHub Pages build ("next/font/google queries have exactly one
+// entry"), breaking deploys. The CSS variables are set in globals.css.
+const fontsHref =
+  'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@500;600;700;800&display=swap';
 
 const defaultTitle = 'RYX AI - AI that works for your business';
 const defaultDescription =
@@ -64,7 +56,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${manrope.variable}`}>
+    <html lang="en">
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="stylesheet" href={fontsHref} />
+      </head>
       <body className="bg-night font-sans text-white">{children}</body>
     </html>
   );
