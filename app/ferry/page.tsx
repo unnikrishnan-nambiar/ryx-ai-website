@@ -9,17 +9,40 @@ import PageHero from '@/components/sections/PageHero';
 import ChatPreview from '@/components/sections/ChatPreview';
 import Pricing from '@/components/sections/Pricing';
 import CtaBand from '@/components/sections/CtaBand';
+import EasiestWay from '@/components/sections/EasiestWay';
+import JsonLd, { breadcrumbLd, faqLd, siteUrl } from '@/components/JsonLd';
 import SolutionAnimation from '@/components/animations/SolutionAnimation';
-import { ferryAnalytics, ferryFaq, ferryFeatures } from '@/data/ferry';
+import { ferryAnalytics, ferryFaq, ferryFeatures, plans } from '@/data/ferry';
 import { getSolution } from '@/data/solutions';
 import { site } from '@/data/site';
 import { pageMetadata } from '@/lib/metadata';
 
 export const metadata = pageMetadata(
   '/ferry',
-  'Ferry - AI website sales agent by RYX AI',
-  'Ferry turns website visitors into purchases and demo bookings. An AI agent built from your own website, live in a day, from ₹2,000 a month.'
+  'Ferry: the easiest way to adopt AI in your business | RYX AI',
+  'Ferry is the easiest way to adopt AI: an AI agent built from your own website that turns visitors into purchases and demo bookings. No tech team, live in a day, from ₹2,000 a month.'
 );
+
+const ferryLd = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Ferry',
+  url: `${siteUrl}/ferry`,
+  applicationCategory: 'BusinessApplication',
+  operatingSystem: 'Web',
+  description:
+    'Ferry by RYX AI is the easiest way for a business to adopt AI: an AI sales agent built from your own website that answers visitors, qualifies leads and books meetings or guides purchases, live in about a day.',
+  publisher: { '@id': `${siteUrl}/#organization` },
+  offers: plans
+    .filter((p) => p.price)
+    .map((p) => ({
+      '@type': 'Offer',
+      name: `Ferry ${p.name}`,
+      price: p.price!.replace(/[^0-9]/g, ''),
+      priceCurrency: 'INR',
+      description: p.summary,
+    })),
+};
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? '';
 
@@ -29,18 +52,28 @@ export default function FerryPage() {
 
   return (
     <>
+      <JsonLd
+        data={[
+          ferryLd,
+          faqLd(ferryFaq),
+          breadcrumbLd([
+            { name: 'Home', path: '/' },
+            { name: 'Ferry', path: '/ferry' },
+          ]),
+        ]}
+      />
       <Nav />
       <main>
         <PageHero
           accent="gold"
           crumbs={[{ label: 'Ferry', href: '/ferry' }]}
-          eyebrow="Our flagship product"
+          eyebrow="Ferry · Our flagship product"
           title={
             <>
-              Turn website visitors into <span className="text-gold">customers.</span>
+              The easiest way to adopt AI <span className="text-gold">in your business.</span>
             </>
           }
-          intro="Ferry is an AI agent that lives on your website. It answers visitors from your own content and guides them to buy or book a demo, day and night."
+          intro="Ferry puts an AI agent on your website in a day. No tech team and nothing new to learn: it learns from your own website, answers every visitor, and turns them into purchases and demo bookings."
           aside={<ChatPreview />}
         >
           <LeadButton
@@ -57,6 +90,8 @@ export default function FerryPage() {
             See pricing
           </Button>
         </PageHero>
+
+        <EasiestWay />
 
         {/* How it works */}
         <section className="bg-mist py-20 text-ink sm:py-28">

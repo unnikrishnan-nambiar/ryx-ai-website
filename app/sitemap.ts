@@ -18,6 +18,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/solutions',
     ...solutions.filter((s) => s.href.startsWith('/solutions/')).map((s) => s.href),
     '/ferry',
+    '/how-to-adopt-ai',
     '/community',
     '/contact',
   ];
@@ -26,6 +27,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     url: `${base}${route}`,
     lastModified: new Date(),
     changeFrequency: route === '' ? 'weekly' : 'monthly',
-    priority: route === '' ? 1 : 0.7,
+    priority: route === '' ? 1 : route === '/ferry' || route === '/how-to-adopt-ai' ? 0.9 : 0.7,
   }));
 }

@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import { site } from '@/data/site';
+import JsonLd, { organizationLd } from '@/components/JsonLd';
 
 // Inter (body) and Manrope (headings) load from Google Fonts at runtime via
 // a stylesheet link rather than next/font/google: next/font downloads the
@@ -12,13 +13,16 @@ const fontsHref =
 
 const defaultTitle = 'RYX AI - AI that works for your business';
 const defaultDescription =
-  'RYX AI builds AI for sales, marketing and automation: website and WhatsApp agents, voice callbacks, CRM automation and AI consulting. Meet Ferry, our AI website sales agent.';
+  'RYX AI helps businesses adopt AI the easy way: AI ads, customer nudges, lead generation, workflow automation and team training. Start with Ferry, the AI website agent that goes live in a day.';
 
 export const metadata: Metadata = {
   metadataBase: new URL(`https://${site.domain}`),
   title: defaultTitle,
   description: defaultDescription,
   keywords: [
+    'how to adopt AI in business',
+    'easiest way to adopt AI',
+    'AI adoption for small business',
     'AI solutions',
     'AI sales agent',
     'sales automation',
@@ -62,7 +66,10 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="stylesheet" href={fontsHref} />
       </head>
-      <body className="bg-night font-sans text-white">{children}</body>
+      <body className="bg-night font-sans text-white">
+        <JsonLd data={organizationLd} />
+        {children}
+      </body>
     </html>
   );
 }

@@ -13,6 +13,7 @@ const columns = [
     links: [
       { label: 'How Ferry works', href: '/ferry' },
       { label: 'Pricing', href: '/ferry#pricing' },
+      { label: 'How to adopt AI', href: '/how-to-adopt-ai' },
     ],
   },
   {

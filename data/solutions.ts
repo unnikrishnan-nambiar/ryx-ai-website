@@ -194,7 +194,7 @@ export const solutions: Solution[] = [
     href: '/ferry',
     number: '06',
     title: 'Website Conversion with Ferry',
-    short: 'Turn website visitors into purchases or demo bookings, around the clock.',
+    short: 'The easiest way to adopt AI: turn website visitors into purchases or demo bookings, around the clock.',
     definition:
       'Most visitors leave a website without saying a word. Ferry, our flagship product, is an AI agent that greets them, answers questions from your own content, and guides them to buy or book a demo, day and night.',
     icon: 'bot',

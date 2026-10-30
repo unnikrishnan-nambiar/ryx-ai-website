@@ -62,7 +62,14 @@ export default function Hero() {
 
       <div className="container-content relative grid items-center gap-14 lg:grid-cols-[1.05fr_1fr]">
         <div>
-          <p className="eyebrow animate-fade-up text-blue-soft">AI solutions for growing businesses</p>
+          <Link
+            href="/how-to-adopt-ai"
+            className="inline-flex animate-fade-up items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-sm text-white/80 transition-colors hover:border-white/30 hover:text-white"
+          >
+            <span className="h-1.5 w-1.5 rounded-full bg-gold" />
+            New to AI? The easiest way to start
+            <Icon name="arrow" className="h-3.5 w-3.5" />
+          </Link>
           <h1
             className="mt-6 animate-fade-up text-balance font-display text-[46px] font-bold leading-[1.02] tracking-[-0.03em] sm:text-[66px] lg:text-[72px]"
             style={{ animationDelay: '90ms' }}

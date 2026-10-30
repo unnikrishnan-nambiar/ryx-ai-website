@@ -40,6 +40,7 @@ export const site = {
 export const nav = [
   { label: 'Solutions', href: '/solutions' },
   { label: 'Ferry', href: '/ferry' },
+  { label: 'Adopt AI', href: '/how-to-adopt-ai' },
   { label: 'Community', href: '/community' },
   { label: 'Contact', href: '/contact' },
 ];
