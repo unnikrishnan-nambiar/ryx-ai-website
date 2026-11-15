@@ -13,7 +13,7 @@ import SolutionScene from '@/components/animations/SolutionScene';
 import BrowserFerry from '@/components/visuals/BrowserFerry';
 import LeadsDashboard from '@/components/visuals/LeadsDashboard';
 import { categories, useCases } from '@/data/useCases';
-import { asset } from '@/data/team';
+import { asset } from '@/data/assets';
 import VoiceDemo from '@/components/visuals/VoiceDemo';
 
 const pillars = [

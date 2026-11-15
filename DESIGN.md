@@ -37,7 +37,7 @@ Feedback on the first redesign: too bland, no animation or 3D, reads like
   five-language sample call (`visuals/VoiceDemo`), the Ferry explainer video,
   and real tool logos (`public/icons`, CC0 from gilbarbara/logos and
   simple-icons). Exports for decks: `/mnt/project-files/website-redesign/sales-visuals`.
-- **No founder photos** (the user asked). Names and roles only.
+- **No founder section or photos, and no gradient "R" mark** (the user asked; the R mark is not their logo). Use only the ryx / ryx ai wordmarks in `public/brand`.
 - Sample businesses and figures are labelled as samples or examples.
 
 ## Earlier idea: night to morning
