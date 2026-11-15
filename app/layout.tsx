@@ -18,9 +18,9 @@ const bricolage = Bricolage_Grotesque({
   variable: '--font-display',
 });
 
-const defaultTitle = 'RYX AI - The AI company for growing Indian businesses';
+const defaultTitle = 'RYX AI - The AI consultancy for Indian businesses';
 const defaultDescription =
-  'RYX AI is an AI company in India. We put AI to work in sales, marketing and operations for growing businesses, in English, Hindi, Malayalam, Arabic and Urdu, and we make Ferry, the AI sales agent for your website.';
+  'RYX AI is an AI consultancy in India. We find where AI pays off in your business, pilot it in 30 days, then build and run it across sales, marketing and operations, in English, Hindi, Malayalam, Arabic and Urdu. Makers of Ferry.';
 
 export const metadata: Metadata = {
   metadataBase: new URL(`https://${site.domain}`),

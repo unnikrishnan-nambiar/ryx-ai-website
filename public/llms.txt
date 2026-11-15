@@ -19,7 +19,7 @@
 - [Client Document Collection](https://ryxai.in/solutions/document-collection/)
 - [Owner's Daily WhatsApp Brief](https://ryxai.in/solutions/owner-daily-brief/)
 - [Ferry](https://ryxai.in/ferry/): how it works, pricing and FAQ
-- [About](https://ryxai.in/about/): approach and founders
+- [About](https://ryxai.in/about/): who we are and how we work
 - [Contact](https://ryxai.in/contact/): book a 30-minute call or request Ferry early access
 
 ## Ferry pricing (monthly, INR)

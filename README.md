@@ -18,10 +18,11 @@ Open [http://localhost:3000](http://localhost:3000).
 | Route        | What it is                                                        |
 | ------------ | ----------------------------------------------------------------- |
 | `/`          | Home: a night of the agent at work, Ferry demo, calculator        |
+| `/services`  | The three pillars: training, building, ready solutions            |
 | `/solutions` | All 12 use cases, filterable by industry                          |
 | `/solutions/<slug>` | One page per use case                                      |
 | `/ferry`     | Ferry product page with pricing and FAQ                           |
-| `/about`     | Approach and founders                                             |
+| `/about`     | Who we are and how we work                                        |
 | `/contact`   | Contact channels and the Ferry early-access / enquiry form        |
 
 ## Editing content

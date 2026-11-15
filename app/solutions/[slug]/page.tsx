@@ -62,7 +62,7 @@ export default async function UseCasePage({ params }: Props) {
           </nav>
           <div className="mt-9 flex flex-wrap gap-3">
             <Button href="/contact" variant="light">
-              Book a 30-minute call
+              Book a discovery call
             </Button>
             {isFerry && (
               <Button href="/ferry" variant="outline-night">

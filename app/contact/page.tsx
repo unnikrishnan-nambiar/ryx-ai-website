@@ -8,14 +8,14 @@ import { pageMetadata } from '@/lib/metadata';
 export const metadata = pageMetadata(
   '/contact',
   'Contact - RYX AI',
-  'Book a 30-minute call with RYX AI, or request early access to Ferry, the AI sales agent for your website.'
+  'Book a free discovery call with RYX AI, the AI consultancy for Indian businesses, or request early access to Ferry.'
 );
 
 const channels = [
   {
-    label: 'Book a 30-minute call',
+    label: 'Book a discovery call',
     value: 'Ask for a time by email',
-    href: mailto('Book a 30-minute call', "Hi RYX AI, I'd like to book a 30-minute call. Here's a bit about my business:\n\n"),
+    href: mailto('Book a discovery call', "Hi RYX AI, I'd like to book a discovery call. Here's a bit about my business:\n\n"),
   },
   { label: 'WhatsApp', value: site.phoneDisplay, href: site.whatsappUrl, external: true },
   { label: 'Email', value: site.email, href: `mailto:${site.email}` },
@@ -33,8 +33,8 @@ export default function ContactPage() {
       <Nav />
       <main id="main">
         <PageHero
-          title="Tell us what you want off your plate."
-          intro="AI built for your business, or early access to Ferry. Either way it starts here, and we usually reply within one working day."
+          title="Book a discovery call"
+          intro="30 minutes, free. Tell us about your business and we’ll tell you honestly where AI can help, where it can’t, and what we’d do first. We usually reply within one working day."
         />
 
         <section className="container-content grid gap-12 py-16 sm:py-24 lg:grid-cols-[1fr_1.3fr] lg:gap-20">

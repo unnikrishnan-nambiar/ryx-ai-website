@@ -3,13 +3,12 @@ import Footer from '@/components/Footer';
 import PageHero from '@/components/PageHero';
 import CtaBand from '@/components/CtaBand';
 import { pageMetadata } from '@/lib/metadata';
-import Reveal from '@/components/motion/Reveal';
-import { asset, team } from '@/data/team';
+import HeroScene from '@/components/three/HeroScene';
 
 export const metadata = pageMetadata(
     '/about',
     'About - RYX AI',
-    'RYX AI is an AI company from India. We put AI to work in sales, marketing and operations for growing businesses, tested before launch and improved after it, in the languages customers speak.'
+    'RYX AI is an AI consultancy from India. We train teams on AI and put AI to work in sales, marketing and operations for growing businesses, tested before launch and improved after it, in the languages customers speak.'
 );
 
 const principles = [
@@ -37,20 +36,9 @@ export default function AboutPage() {
             <Nav />
             <main id="main">
                 <PageHero
-                    title="An AI company from India, for the businesses that run it"
+                    title="An AI consultancy from India, for the businesses that run it"
                     intro="AI is ready. Putting it to work in a real business is the hard part. That is our job: in sales, marketing and operations, tested before customers see it, and improved from every real conversation."
-                    aside={
-                        <div className="mx-auto w-full max-w-[440px] overflow-hidden rounded-[32px] shadow-[0_50px_120px_-40px_rgba(155,92,255,0.6)] ring-1 ring-white/10">
-                            {/* eslint-disable-next-line @next/next/no-img-element */}
-                            <img
-                                src={asset('/brand/ryx-mark-night.jpg')}
-                                alt="The RYX AI mark"
-                                width={900}
-                                height={896}
-                                className="w-full animate-float-slow"
-                            />
-                        </div>
-                    }
+                    aside={<HeroScene className="mx-auto aspect-square w-full max-w-[460px] [mask-image:radial-gradient(closest-side,#000_75%,transparent)]" />}
                 />
 
                 <section className="container-content py-20 sm:py-28">
@@ -63,29 +51,6 @@ export default function AboutPage() {
                             </div>
                         ))}
                     </dl>
-                </section>
-
-                <section className="bg-card">
-                    <div className="container-content py-20 sm:py-28">
-                        <h2 className="headline max-w-[760px] text-[40px] sm:text-[56px]">Three founders, three jobs, no gaps</h2>
-                        <ul className="mt-14 grid gap-8 lg:grid-cols-3">
-                            {team.map((m, i) => (
-                                <Reveal as="li" key={m.name} delay={i * 120}>
-                                    <div className="h-full overflow-hidden rounded-[28px] bg-paper">
-                                        <div className="p-6">
-                                            <h3 className="font-display text-3xl font-bold tracking-tight">{m.name}</h3>
-                                            <p className="mt-1 font-semibold text-signal-deep">{m.role}</p>
-                                            <ul className="mt-5 space-y-2 text-lg text-ink-2">
-                                                {m.points.map((p) => (
-                                                    <li key={p}>{p}</li>
-                                                ))}
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </Reveal>
-                            ))}
-                        </ul>
-                    </div>
                 </section>
 
                 <CtaBand />

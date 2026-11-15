@@ -1,4 +1,4 @@
-import { asset, integrations } from '@/data/team';
+import { asset, integrations } from '@/data/assets';
 
 // The tools RYX AI connects to, as their real logos, scrolling endlessly.
 // The second copy exists only for the seamless loop and is hidden from

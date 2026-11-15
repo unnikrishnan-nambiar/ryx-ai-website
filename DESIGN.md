@@ -13,6 +13,20 @@ Content sources: the RYX sales deck (problems, three pillars, 12 use cases,
 process, integrations), the Ferry deck and Ferry Starter proposal, and the
 master deck (approach, founders).
 
+## Consultancy positioning (2026-11-15)
+
+RYX AI presents itself as an AI consultancy. The founders' four
+pillars, in their order: **we train people on AI**, **we build AI for you**,
+**we offer AI solutions** (Ferry and the 12 use cases), and **we run your
+marketing on autopilot** (social media, branding, campaigns). `data/services.ts`
+holds the pillars, the engagements (audit, training, pilot, build and run, social media, branding,
+campaigns)
+and the five-step method (Assess, Pilot, Deploy, Measure, Scale). The main
+call to action everywhere is "Book a discovery call". Prices for the audit,
+training and projects are "quoted after the discovery call" until the
+founders set them. Client stories and quotes are not on the site yet: add
+them only from real, approved material.
+
 ## Direction (revised 2026-11-15)
 
 Feedback on the first redesign: too bland, no animation or 3D, reads like
@@ -37,7 +51,7 @@ Feedback on the first redesign: too bland, no animation or 3D, reads like
   five-language sample call (`visuals/VoiceDemo`), the Ferry explainer video,
   and real tool logos (`public/icons`, CC0 from gilbarbara/logos and
   simple-icons). Exports for decks: `/mnt/project-files/website-redesign/sales-visuals`.
-- **No founder photos** (the user asked). Names and roles only.
+- **No founder section or photos, and no gradient "R" mark** (the user asked; the R mark is not their logo). Use only the ryx / ryx ai wordmarks in `public/brand`.
 - Sample businesses and figures are labelled as samples or examples.
 
 ## Earlier idea: night to morning

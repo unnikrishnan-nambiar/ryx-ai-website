@@ -13,46 +13,21 @@ import SolutionScene from '@/components/animations/SolutionScene';
 import BrowserFerry from '@/components/visuals/BrowserFerry';
 import LeadsDashboard from '@/components/visuals/LeadsDashboard';
 import { categories, useCases } from '@/data/useCases';
-import { asset } from '@/data/team';
+import { method, pillars } from '@/data/services';
+import { asset } from '@/data/assets';
 import VoiceDemo from '@/components/visuals/VoiceDemo';
 
-const pillars = [
-    {
-        title: 'AI for sales',
-        promise: 'Win more of the leads you already pay for.',
-        items: ['Answer and qualify every lead', 'Call back within minutes', 'Follow up until they reply', 'Every lead in your CRM'],
-        scene: 'leads' as const,
-        steps: ['Find', 'Get contacts', 'Reach out', 'Shortlist']
-    },
-    {
-        title: 'AI for marketing',
-        promise: 'Get found, then turn visits into enquiries.',
-        items: ['SEO and answer-engine content', 'Ads and creatives made with AI', 'Campaigns on WhatsApp', 'Websites that convert'],
-        scene: 'ads' as const,
-        steps: ['Brief', 'Create', 'Launch', 'Improve']
-    },
-    {
-        title: 'AI for operations',
-        promise: 'Give your team their hours back.',
-        items: ['Support on chat and phone, 24/7', 'Documents read and filed', 'Bookings and reminders', 'A daily report on WhatsApp'],
-        scene: 'workflow' as const,
-        steps: ['Receive', 'Read', 'Compare', 'Report']
-    }
-];
-
-const process = [
-    { title: 'Understand', body: 'Your customers, your team’s day, and the work worth handing to AI.' },
-    { title: 'Build', body: 'The AI, connected to the tools you already use.' },
-    { title: 'Test', body: 'AI-run testing across scenarios, languages and channels before any customer sees it.' },
-    { title: 'Certify', body: 'Checked for quality, safety, compliance and reliability.' },
-    { title: 'Deploy', body: 'Live on your website, WhatsApp or phone line.' },
-    { title: 'Improve', body: 'Real conversations are reviewed by a person and fed back in, every week.' }
-];
+const pillarItems: Record<string, string[]> = {
+    train: ['Hands-on AI training for every team', 'AI opportunity audit and roadmap', 'Prompt libraries and team assistants', 'An AI-use policy your people follow'],
+    build: ['A 30-day pilot on one real problem', 'AI for sales, marketing and operations', 'Connected to your CRM, WhatsApp and phone', 'Run and improved by us, every week'],
+    solutions: ['Ferry, the AI salesperson for websites', 'Instant lead callbacks and follow-ups', 'WhatsApp assistants and booking reminders', 'Document reading and daily reports'],
+    grow: ['Social media posts, every week', 'Branding and a brand guide your AI follows', 'Ad campaigns on Meta and Google', 'Every lead followed up on WhatsApp']
+};
 
 const facts = [
     ['5 languages', 'English, Hindi, Malayalam, Arabic, Urdu'],
     ['3 channels', 'Website, WhatsApp and phone'],
-    ['24/7', 'Answering while you sleep']
+    ['30 days', 'From discovery call to a live pilot']
 ];
 
 export default function Home() {
@@ -78,22 +53,22 @@ export default function Home() {
                                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-whatsapp" />
                                 <span className="relative inline-flex h-2 w-2 rounded-full bg-whatsapp" />
                             </span>
-                            An AI company from India. Ferry, our first product, is launching soon.
+                            An AI consultancy from India. We train, we build, we deliver.
                         </p>
                         <h1 className="hero-in headline mt-7 max-w-[880px] text-[48px] sm:text-[80px] lg:text-[96px]" style={{ animationDelay: '180ms' }}>
-                            <span className="block">AI that grows</span>{' '}
-                            <span className="text-brand-gradient block pb-2">Indian businesses.</span>
+                            <span className="block">The AI consultancy</span>{' '}
+                            <span className="text-brand-gradient block pb-2">for Indian businesses.</span>
                         </h1>
                         <p className="hero-in lede mt-7 max-w-[580px] text-white/80" style={{ animationDelay: '320ms' }}>
-                            RYX AI puts artificial intelligence to work in your sales, marketing and operations. It answers every enquiry, calls back every lead
-                            and runs the repetitive work, in the languages your customers speak.
+                            We train your people on AI, build AI for your sales, marketing and operations, and offer ready AI solutions like Ferry. In
+                            the languages your customers speak.
                         </p>
                         <div className="hero-in mt-10 flex flex-wrap gap-3" style={{ animationDelay: '440ms' }}>
-                            <Button href="/contact" variant="light">
-                                Book a 30-minute call
+                            <Button href="/contact?interest=discovery#early-access" variant="light">
+                                Book a discovery call
                             </Button>
-                            <Button href="/ferry" variant="outline-night">
-                                See Ferry, our AI product
+                            <Button href="/services" variant="outline-night">
+                                See how we work with you
                             </Button>
                         </div>
                         <dl className="hero-in mt-14 grid max-w-[720px] grid-cols-1 gap-4 sm:grid-cols-3" style={{ animationDelay: '560ms' }}>
@@ -111,15 +86,14 @@ export default function Home() {
                 <section className="relative text-white">
                     <div className="container-content py-24 sm:py-32">
                         <Reveal>
-                            <h2 className="headline max-w-[820px] text-[40px] sm:text-[64px]">Three places AI earns its keep in your business</h2>
+                            <h2 className="headline max-w-[820px] text-[40px] sm:text-[64px]">Four ways we bring AI into your business</h2>
                             <p className="lede mt-6 max-w-[600px] text-white/70">
-                                We start where AI pays for itself fastest, then grow from there. Each one is built for you, connected to your tools and looked
-                                after once it is live.
+                                Start wherever you are. Most clients begin with training or a pilot, and grow from there once it has paid off.
                             </p>
                         </Reveal>
-                        <div className="mt-16 grid gap-6 lg:grid-cols-3">
+                        <div className="mt-16 grid gap-6 md:grid-cols-2">
                             {pillars.map((p, i) => (
-                                <Reveal key={p.title} delay={i * 120}>
+                                <Reveal key={p.id} delay={i * 120}>
                                     <article className="group h-full rounded-[28px] border border-white/10 bg-gradient-to-b from-white/[0.07] to-white/[0.02] p-6 transition-transform duration-300 hover:-translate-y-0.5 sm:p-7">
                                         <div className="overflow-hidden rounded-[20px] bg-card p-4">
                                             <SolutionScene name={p.scene} steps={p.steps} compact />
@@ -127,12 +101,18 @@ export default function Home() {
                                         <h3 className="mt-7 font-display text-3xl font-bold tracking-tight">{p.title}</h3>
                                         <p className="mt-2 text-lg text-white/80">{p.promise}</p>
                                         <ul className="mt-5 space-y-2 text-white/70">
-                                            {p.items.map((item) => (
+                                            {pillarItems[p.id].map((item) => (
                                                 <li key={item} className="border-t border-white/10 pt-2">
                                                     {item}
                                                 </li>
                                             ))}
                                         </ul>
+                                        <Link
+                                            href={`/services#${p.id}`}
+                                            className="mt-6 inline-block py-2 font-semibold text-white underline decoration-signal-glow decoration-2 underline-offset-4 hover:decoration-white"
+                                        >
+                                            How it works
+                                        </Link>
                                     </article>
                                 </Reveal>
                             ))}
@@ -274,11 +254,11 @@ export default function Home() {
                 <section className="text-white">
                     <div className="container-content py-24 sm:py-32">
                         <Reveal>
-                            <h2 className="headline max-w-[820px] text-[40px] sm:text-[64px]">Six steps from first call to AI your customers trust</h2>
+                            <h2 className="headline max-w-[820px] text-[40px] sm:text-[64px]">How every engagement runs</h2>
                         </Reveal>
-                        <ol className="mt-16 grid gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
-                            {process.map((step, i) => (
-                                <Reveal as="li" key={step.title} delay={(i % 3) * 120} className="relative border-t border-white/15 pt-6">
+                        <ol className="mt-16 grid gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-5">
+                            {method.map((step, i) => (
+                                <Reveal as="li" key={step.title} delay={i * 100} className="relative border-t border-white/15 pt-6">
                                     <span aria-hidden className="absolute -top-px left-0 h-0.5 w-16 bg-gradient-to-r from-signal-glow to-[#9b5cff]" />
                                     <p className="tnum font-display text-5xl font-bold tracking-tight text-signal-glow">{i + 1}</p>
                                     <h3 className="mt-4 font-display text-2xl font-bold tracking-tight">{step.title}</h3>
