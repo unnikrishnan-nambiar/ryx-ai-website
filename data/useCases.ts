@@ -45,7 +45,7 @@ export const useCases: UseCase[] = [
     problem:
       "Enquiries arrive on WhatsApp and web chat, get answered late, and never reach the CRM. Leads are lost inside salespeople's phones.",
     solution:
-      'An AI agent answers every enquiry in the customer’s language, qualifies budget, need and timeline, then creates the contact and deal in the CRM and assigns the right rep.',
+      'An AI agent answers every enquiry, qualifies budget, need and timeline, then creates the contact and deal in the CRM and assigns the right rep.',
     benefit:
       'Every lead answered in seconds and captured in the CRM. Your sales team only talks to qualified buyers.',
     measure: 'Response time, % of leads logged in CRM, qualified leads per month, lead-to-meeting rate',

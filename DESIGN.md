@@ -48,7 +48,7 @@ Feedback on the first redesign: too bland, no animation or 3D, reads like
 - **Visuals a customer can use:** Ferry on a sample website
   (`visuals/BrowserFerry`), the Ferry dashboard (`visuals/LeadsDashboard`),
   the WhatsApp morning brief on a phone, the live voice AI number with a
-  five-language sample call (`visuals/VoiceDemo`), the Ferry explainer video,
+  sample booking call (`visuals/VoiceDemo`), the Ferry explainer video,
   and real tool logos (`public/icons`, CC0 from gilbarbara/logos and
   simple-icons). Exports for decks: `/mnt/project-files/website-redesign/sales-visuals`.
 - **No founder section or photos, and no gradient "R" mark** (the user asked; the R mark is not their logo). Use only the ryx / ryx ai wordmarks in `public/brand`.

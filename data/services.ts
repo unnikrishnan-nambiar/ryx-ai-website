@@ -121,7 +121,7 @@ export const services: Service[] = [
         forWho: 'Businesses that know they should post more but never have the time.',
         youGet: [
             'A monthly content calendar built from your business and offers',
-            'Posts, reels scripts and captions in English and Indian languages',
+            'Posts, reel scripts and captions in your brand voice',
             'Scheduled to Instagram, Facebook and LinkedIn after your approval',
             'Comments and DMs answered, and leads sent to your team'
         ],
@@ -167,7 +167,7 @@ export const services: Service[] = [
 export const method = [
     { title: 'Assess', body: 'We learn your business, your customers and your numbers, and find where AI pays off first.' },
     { title: 'Pilot', body: 'One use case goes live in 30 days, measured against where you started.' },
-    { title: 'Deploy', body: 'What works is hardened, tested across languages and channels, and rolled out.' },
+    { title: 'Deploy', body: 'What works is hardened, tested across channels, and rolled out.' },
     { title: 'Measure', body: 'Every week we review real conversations and results, and improve the AI.' },
     { title: 'Scale', body: 'The next use case on the roadmap, built on the same knowledge and tools.' }
 ];
