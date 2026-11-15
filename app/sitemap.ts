@@ -1,6 +1,6 @@
 import type { MetadataRoute } from 'next';
 import { site } from '@/data/site';
-import { solutions } from '@/data/solutions';
+import { useCases } from '@/data/useCases';
 
 // Required for `output: 'export'` — without it the build refuses to treat
 // this route as prerenderable static output.
@@ -16,10 +16,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const routes = [
     '',
     '/solutions',
-    ...solutions.filter((s) => s.href.startsWith('/solutions/')).map((s) => s.href),
+    ...useCases.map((u) => `/solutions/${u.slug}`),
     '/ferry',
-    '/how-to-adopt-ai',
-    '/community',
+    '/about',
     '/contact',
   ];
 
@@ -27,6 +26,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     url: `${base}${route}`,
     lastModified: new Date(),
     changeFrequency: route === '' ? 'weekly' : 'monthly',
-    priority: route === '' ? 1 : route === '/ferry' || route === '/how-to-adopt-ai' ? 0.9 : 0.7,
+    priority: route === '' ? 1 : 0.7,
   }));
 }

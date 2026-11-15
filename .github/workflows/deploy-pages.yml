@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - claude/ryx-ai-website-ozme2m
   workflow_dispatch:
 
 permissions:

@@ -1,246 +1,179 @@
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
+import CtaBand from '@/components/CtaBand';
+import Faq from '@/components/Faq';
+import FerryDemo from '@/components/FerryDemo';
+import FerryPricing from '@/components/FerryPricing';
+import JsonLd from '@/components/JsonLd';
 import Button from '@/components/ui/Button';
-import Icon from '@/components/ui/Icon';
-import Reveal from '@/components/ui/Reveal';
-import SectionHeading from '@/components/ui/SectionHeading';
-import GetFerryButton from '@/components/GetFerryButton';
-import Faq from '@/components/sections/Faq';
-import PageHero from '@/components/sections/PageHero';
-import ChatPreview from '@/components/sections/ChatPreview';
-import Pricing from '@/components/sections/Pricing';
-import CtaBand from '@/components/sections/CtaBand';
-import EasiestWay from '@/components/sections/EasiestWay';
-import JsonLd, { breadcrumbLd, faqLd, siteUrl } from '@/components/JsonLd';
-import SolutionAnimation from '@/components/animations/SolutionAnimation';
-import { ferryAnalytics, ferryFaq, ferryFeatures, notAChatbot, plans } from '@/data/ferry';
-import { getSolution } from '@/data/solutions';
-import { site } from '@/data/site';
+import { ferryAnalytics, ferryFaq, ferryFeatures, ferrySteps } from '@/data/ferry';
 import { pageMetadata } from '@/lib/metadata';
+import { ferryFaqLd, ferryLd } from '@/lib/structuredData';
 
 export const metadata = pageMetadata(
   '/ferry',
-  'Ferry: the easiest way to adopt AI in your business | RYX AI',
-  'Ferry is the easiest way to adopt AI: an AI assistant built from your own website that turns visitors into purchases and demo bookings. Set it up yourself in 5 minutes, from ₹2,000 a month.'
+  'Ferry - AI Website Sales Agent by RYX AI',
+  'Ferry is an AI sales agent built from your own website. It answers visitors, qualifies leads and books meetings around the clock. Starter from ₹2,000 a month. Early access open.'
 );
 
-const ferryLd = {
-  '@context': 'https://schema.org',
-  '@type': 'SoftwareApplication',
-  name: 'Ferry',
-  url: `${siteUrl}/ferry`,
-  applicationCategory: 'BusinessApplication',
-  operatingSystem: 'Web',
-  description:
-    'Ferry by RYX AI is the easiest way for a business to adopt AI: an AI assistant built from your own website that answers visitors, collects leads and books meetings or guides purchases. Self-serve setup in about 5 minutes.',
-  publisher: { '@id': `${siteUrl}/#organization` },
-  offers: plans
-    .filter((p) => p.price)
-    .map((p) => ({
-      '@type': 'Offer',
-      name: `Ferry ${p.name}`,
-      price: p.price!.replace(/[^0-9]/g, ''),
-      priceCurrency: 'INR',
-      description: p.summary,
-    })),
-};
+const problems = [
+  { title: 'Unanswered questions', body: 'Visitors leave without what they came for.' },
+  { title: 'Slow responses', body: 'Interest cools before anyone replies.' },
+  { title: 'No engineering time', body: 'Building a custom AI agent is out of reach.' },
+];
 
+// Raw <video> src isn't rewritten by Next, so prefix the Pages basePath.
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? '';
 
 export default function FerryPage() {
-  const ferry = getSolution('ferry')!;
-  const { videoSrc, videoPoster } = site.ferry;
-
   return (
     <>
-      <JsonLd
-        data={[
-          ferryLd,
-          faqLd(ferryFaq),
-          breadcrumbLd([
-            { name: 'Home', path: '/' },
-            { name: 'Ferry', path: '/ferry' },
-          ]),
-        ]}
-      />
+      <JsonLd data={ferryLd} />
+      <JsonLd data={ferryFaqLd} />
       <Nav />
-      <main>
-        <PageHero
-          accent="gold"
-          crumbs={[{ label: 'Ferry', href: '/ferry' }]}
-          eyebrow="Ferry · Our flagship product"
-          title={
-            <>
-              The easiest way to adopt AI <span className="text-gold">in your business.</span>
-            </>
-          }
-          intro="Ferry is an AI assistant for your website. Set it up yourself in 5 minutes: it learns from your own website, answers every visitor, and turns them into sales and booked demos, day and night."
-          aside={<ChatPreview />}
-        >
-          <GetFerryButton>
-            Get Ferry: live in 5 minutes
-            <Icon name="arrow" className="h-4 w-4" />
-          </GetFerryButton>
-          <Button href="#pricing" variant="ghost">
-            See pricing
-          </Button>
-        </PageHero>
-
-        <EasiestWay />
-
-        {/* How it works */}
-        <section className="bg-mist py-20 text-ink sm:py-28">
-          <div className="container-content">
-            <SectionHeading
-              tone="light"
-              eyebrow="How Ferry works"
-              eyebrowClass="text-gold-dark"
-              title="From quiet visitor to booked demo."
-              intro={ferry.definition}
-            />
-            <div className="mt-12 grid gap-10 lg:grid-cols-[1.25fr_1fr] lg:items-start">
-              <Reveal>
-                <div className="rounded-card border border-line bg-white p-4 shadow-card sm:p-7">
-                  <SolutionAnimation name="ferry" steps={ferry.steps.map((s) => s.title)} />
-                </div>
-              </Reveal>
-              <ol className="space-y-3">
-                {ferry.steps.map((step, i) => (
-                  <Reveal key={step.title} as="li" delay={i * 0.08}>
-                    <div className="flex gap-4 rounded-2xl border border-line bg-white p-5">
-                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gold font-display text-sm font-bold text-night">
-                        {i + 1}
-                      </span>
-                      <div>
-                        <h3 className="font-display text-lg font-bold">{step.title}</h3>
-                        <p className="mt-1 leading-relaxed text-ink-secondary">{step.body}</p>
-                      </div>
-                    </div>
-                  </Reveal>
-                ))}
-              </ol>
-            </div>
-          </div>
-        </section>
-
-        {/* Not a chatbot */}
-        <section className="bg-white py-20 text-ink sm:py-24">
-          <div className="container-content">
-            <SectionHeading
-              tone="light"
-              eyebrow="Ferry vs a basic chatbot"
-              eyebrowClass="text-gold-dark"
-              title="Not another chatbot."
-              intro="If you’ve tried a website chatbot before and it didn’t help, here’s the difference."
-            />
-            <Reveal className="mt-10">
-              <div className="overflow-hidden rounded-card border border-line">
-                <table className="w-full text-left text-[15px]">
-                  <caption className="sr-only">A basic chatbot compared with Ferry</caption>
-                  <thead>
-                    <tr className="bg-mist">
-                      <th scope="col" className="w-1/2 px-5 py-4 font-semibold text-ink-secondary sm:px-7">
-                        A basic chatbot
-                      </th>
-                      <th scope="col" className="w-1/2 bg-gold-light px-5 py-4 font-semibold text-gold-dark sm:px-7">
-                        Ferry
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {notAChatbot.map((row) => (
-                      <tr key={row.ferry} className="border-t border-line">
-                        <td className="px-5 py-4 text-ink-muted sm:px-7">{row.chatbot}</td>
-                        <td className="bg-gold-light/40 px-5 py-4 font-medium sm:px-7">{row.ferry}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
+      <main id="main">
+        {/* Hero: the product, working */}
+        <section className="sky -mt-[68px] pt-[68px] text-white">
+          <div className="container-content grid items-center gap-14 pb-20 pt-14 sm:pt-20 lg:grid-cols-[1.1fr_1fr] lg:pb-28">
+            <div>
+              <p className="text-lg font-semibold text-dawn">Launching soon. Early access is open.</p>
+              <h1 className="headline mt-3 text-[96px] sm:text-[150px] lg:text-[180px]">Ferry</h1>
+              <p className="mt-4 max-w-[560px] text-2xl font-semibold leading-snug tracking-tight sm:text-3xl">
+                The AI sales agent for your website, built from your own website.
+              </p>
+              <p className="lede mt-5 max-w-[540px] text-white/80">
+                It answers visitors, qualifies leads and books meetings, around the clock. Try the conversation on the
+                right.
+              </p>
+              <div className="mt-9 flex flex-wrap gap-3">
+                <Button href="/contact?interest=ferry#early-access" variant="light">
+                  Get early access
+                </Button>
+                <Button href="#pricing" variant="outline-night">
+                  See pricing
+                </Button>
               </div>
-            </Reveal>
+              <p className="mt-5 text-white/80">Starter from ₹2,000 a month. Live in a day.</p>
+            </div>
+            <div className="flex lg:justify-end">
+              <FerryDemo />
+            </div>
           </div>
         </section>
 
-        {/* Video + features */}
-        <section className="relative overflow-hidden bg-night-900 py-20 sm:py-28">
-          <div className="bg-grid-dark absolute inset-0 opacity-60" aria-hidden />
-          <div className="container-content relative">
-            <SectionHeading
-              eyebrow="See it in action"
-              eyebrowClass="text-gold"
-              title="Watch Ferry in 30 seconds."
-            />
+        {/* Problem */}
+        <section className="container-content grid gap-10 py-24 sm:py-28 lg:grid-cols-[1fr_1.1fr] lg:gap-20">
+          <div>
+            <h2 className="headline text-[40px] sm:text-[56px]">
+              You already paid to bring those visitors in.
+            </h2>
+            <p className="lede mt-6 max-w-[480px] text-ink-2">
+              Hiring a team to answer every visitor in real time isn’t economical for a small business. So most
+              questions go unanswered, and the visitor leaves.
+            </p>
+          </div>
+          <dl className="divide-y divide-rule self-end border-y border-rule">
+            {problems.map((p) => (
+              <div key={p.title} className="py-6">
+                <dt className="font-display text-2xl font-bold tracking-tight">{p.title}</dt>
+                <dd className="mt-1 text-lg text-ink-2">{p.body}</dd>
+              </div>
+            ))}
+          </dl>
+        </section>
 
-            {videoSrc && (
-              <Reveal className="mt-10">
-                <div className="relative">
-                  <div className="absolute -inset-6 rounded-[36px] bg-gold/10 blur-3xl" aria-hidden />
-                  <div className="relative overflow-hidden rounded-[24px] border border-white/10 bg-night-800 p-2 shadow-lift sm:p-3">
-                    <div className="aspect-video overflow-hidden rounded-[16px] bg-white">
-                      {/^https?:\/\//.test(videoSrc) ? (
-                        <iframe
-                          src={videoSrc}
-                          title="Ferry explainer video"
-                          className="h-full w-full"
-                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                          allowFullScreen
-                        />
-                      ) : (
-                        <video
-                          className="h-full w-full object-cover"
-                          src={`${basePath}${videoSrc}`}
-                          poster={videoPoster ? `${basePath}${videoPoster}` : undefined}
-                          controls
-                          playsInline
-                          preload="metadata"
-                        >
-                          Your browser can&apos;t play this video.
-                        </video>
-                      )}
-                    </div>
-                  </div>
+        {/* How it works: a real sequence */}
+        <section className="bg-card">
+          <div className="container-content py-24 sm:py-28">
+            <h2 className="headline max-w-[760px] text-[40px] sm:text-[56px]">
+              A sales agent that builds itself from your website
+            </h2>
+            <ol className="mt-14 grid gap-10 lg:grid-cols-3">
+              {ferrySteps.map((s, i) => (
+                <li key={s.title} className="border-t-2 border-ink pt-5">
+                  <p className="tnum font-display text-5xl font-bold tracking-tight text-signal">{i + 1}</p>
+                  <h3 className="mt-4 font-display text-2xl font-bold tracking-tight">{s.title}</h3>
+                  <p className="mt-2 text-lg leading-relaxed text-ink-2">{s.body}</p>
+                </li>
+              ))}
+            </ol>
+            <p className="mt-10 text-lg text-ink-2">
+              Go live with one script tag or the WordPress plugin. No developer needed.
+            </p>
+            <figure className="mt-14">
+              <video
+                controls
+                preload="none"
+                playsInline
+                poster={`${basePath}/ferry-explainer-poster.jpg`}
+                className="aspect-video w-full rounded-[24px] bg-night shadow-[0_30px_80px_-40px_rgba(5,8,30,0.6)]"
+              >
+                <source src={`${basePath}/ferry-explainer.mp4`} type="video/mp4" />
+              </video>
+              <figcaption className="mt-3 text-ink-2">Ferry in 30 seconds: from your URL to a live agent.</figcaption>
+            </figure>
+          </div>
+        </section>
+
+        {/* Features */}
+        <section className="container-content py-24 sm:py-28">
+          <h2 className="headline max-w-[760px] text-[40px] sm:text-[56px]">Everything in the box</h2>
+          <dl className="mt-12 grid gap-x-12 border-t border-rule md:grid-cols-2">
+            {ferryFeatures.map((f) => (
+              <div key={f.title} className="border-b border-rule py-7">
+                <dt className="font-display text-2xl font-bold tracking-tight">{f.title}</dt>
+                <dd className="mt-2 text-lg leading-relaxed text-ink-2">{f.body}</dd>
+              </div>
+            ))}
+            <div className="border-b border-rule py-7">
+              <dt className="font-display text-2xl font-bold tracking-tight text-signal-deep">Voice agents</dt>
+              <dd className="mt-2 text-lg leading-relaxed text-ink-2">Coming soon to Ferry.</dd>
+            </div>
+          </dl>
+        </section>
+
+        {/* Analytics */}
+        <section className="bg-signal text-white">
+          <div className="container-content py-24 sm:py-28">
+            <h2 className="headline max-w-[820px] text-[40px] sm:text-[56px]">
+              See how your agent and your website are doing, in one place
+            </h2>
+            <dl className="mt-14 grid gap-10 lg:grid-cols-3">
+              {ferryAnalytics.map((a) => (
+                <div key={a.title} className="border-t-2 border-white pt-5">
+                  <dt className="font-display text-3xl font-bold tracking-tight">{a.question}</dt>
+                  <dd className="mt-3 text-lg leading-relaxed">{a.body}</dd>
                 </div>
-              </Reveal>
-            )}
-
-            <div className="mt-14 grid gap-4 md:grid-cols-3">
-              {ferryFeatures.map((feature, i) => (
-                <Reveal key={feature.title} delay={i * 0.08}>
-                  <div className={`h-full rounded-card p-7 ${i === 0 ? 'bg-gold text-night' : 'border border-white/10 bg-night-800'}`}>
-                    <p className={`font-display text-sm font-bold ${i === 0 ? 'text-night/60' : 'text-gold'}`}>0{i + 1}</p>
-                    <h3 className="mt-3 font-display text-2xl font-bold">{feature.title}</h3>
-                    <p className={`mt-3 leading-relaxed ${i === 0 ? 'text-night/80' : 'text-white/65'}`}>{feature.body}</p>
-                  </div>
-                </Reveal>
               ))}
-            </div>
+            </dl>
+          </div>
+        </section>
 
-            <Reveal className="mt-16">
-              <h3 className="max-w-[640px] font-display text-2xl font-bold tracking-tight sm:text-3xl">
-                One dashboard for Ferry and your website.
-              </h3>
-            </Reveal>
-            <div className="mt-8 grid gap-8 md:grid-cols-3">
-              {ferryAnalytics.map((item, i) => (
-                <Reveal key={item.title} delay={i * 0.08}>
-                  <div className={`border-t-2 pt-5 ${i === 0 ? 'border-white/70' : 'border-gold'}`}>
-                    <p className="eyebrow text-white/45">{item.question}</p>
-                    <h4 className="mt-2 font-display text-xl font-bold">{item.title}</h4>
-                    <p className="mt-2 leading-relaxed text-white/60">{item.body}</p>
-                  </div>
-                </Reveal>
-              ))}
+        {/* Pricing */}
+        <section id="pricing" className="scroll-mt-20">
+          <div className="container-content py-24 sm:py-28">
+            <h2 className="headline max-w-[760px] text-[40px] sm:text-[56px]">Simple monthly pricing</h2>
+            <p className="lede mt-5 max-w-[560px] text-ink-2">
+              Ferry is launching soon. Ask for early access and we’ll set you up first.
+            </p>
+            <div className="mt-12">
+              <FerryPricing />
+              <p className="mt-5 text-ink-2">Prices exclude applicable taxes.</p>
             </div>
           </div>
         </section>
 
-        <Pricing />
-
-        <Faq items={ferryFaq} eyebrowClass="text-gold-dark" title="Good to know." />
+        {/* FAQ */}
+        <section className="border-t border-rule">
+          <div className="container-content grid gap-10 py-24 sm:py-28 lg:grid-cols-[1fr_1.5fr] lg:gap-20">
+            <h2 className="headline text-[40px] sm:text-[56px]">Before you ask</h2>
+            <Faq items={ferryFaq} />
+          </div>
+        </section>
 
         <CtaBand
-          title="See Ferry on your own website, in 5 minutes."
-          intro="Set it up yourself and watch it answer your first visitors today. Prefer to talk first? Book a free call."
+          title="Put Ferry on your website and be first in line."
+          body="Early access is open. Tell us about your business and your website, and we’ll get your agent live."
         />
       </main>
       <Footer />

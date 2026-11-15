@@ -1,21 +1,18 @@
 import type { AnchorHTMLAttributes, ButtonHTMLAttributes } from 'react';
 import Link from 'next/link';
 
-type Variant = 'primary' | 'ghost' | 'gold' | 'light' | 'outline';
+type Variant = 'primary' | 'light' | 'outline' | 'outline-night';
 
 const base =
-  'inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-[15px] font-semibold transition-all duration-300 ease-out hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.97] active:duration-100 disabled:pointer-events-none disabled:opacity-60';
+  'inline-flex min-h-[44px] cursor-pointer items-center justify-center rounded-full px-6 py-2.5 text-[15px] font-semibold transition-colors duration-200 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50';
 
+// `primary` works on both night and paper. `light` is for night and signal
+// backgrounds. The two outlines are paired to their background.
 const variants: Record<Variant, string> = {
-  // The deck's "Book a 30-minute call" button.
-  primary: 'bg-blue text-white shadow-glow hover:bg-blue-dark',
-  // Secondary action on dark surfaces.
-  ghost: 'border border-white/20 bg-white/5 text-white hover:border-white/40 hover:bg-white/10',
-  // Ferry's accent.
-  gold: 'bg-gold text-night shadow-glow-gold hover:brightness-105',
-  light: 'bg-white text-night hover:bg-white/90',
-  // Secondary action on light surfaces.
-  outline: 'border border-ink/15 bg-white text-ink hover:border-ink/40',
+  primary: 'bg-signal text-white hover:bg-signal-deep',
+  light: 'bg-white text-ink hover:bg-signal-soft',
+  outline: 'border border-ink/25 text-ink hover:border-ink hover:bg-ink hover:text-white',
+  'outline-night': 'border border-white/30 text-white hover:border-white hover:bg-white hover:text-ink',
 };
 
 type LinkProps = AnchorHTMLAttributes<HTMLAnchorElement> & {
@@ -29,35 +26,35 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
 };
 
 export default function Button(props: LinkProps | ButtonProps) {
-  const { variant = 'primary', className = '', ...rest } = props;
+  const { variant = 'primary', className = '', children, ...rest } = props;
   const classes = `${base} ${variants[variant]} ${className}`;
+  const content = children;
 
   if ('href' in rest && rest.href) {
     const { href, ...anchorRest } = rest as LinkProps;
 
-    // Internal path (starts with "/", e.g. "/#pricing") — use next/link so
-    // GitHub Pages' basePath gets applied automatically. A plain <a> would
-    // ship the literal path with no prefix and 404 under a repo subpath.
-    // External URLs, mailto:, tel: and same-page "#hash" links stay <a>.
+    // Internal path (starts with "/") — use next/link so GitHub Pages'
+    // basePath gets applied automatically. Plain <a href="/ferry"> would
+    // ship that literal string with no prefix and 404 once deployed under
+    // a repo subpath. External URLs, mailto: and tel: stay plain <a> tags.
     if (href.startsWith('/')) {
       return (
         <Link href={href} className={classes} {...anchorRest}>
-          {props.children}
+          {content}
         </Link>
       );
     }
 
     return (
       <a href={href} className={classes} {...anchorRest}>
-        {props.children}
+        {content}
       </a>
     );
   }
 
-  const buttonRest = rest as ButtonProps;
   return (
-    <button className={classes} {...buttonRest}>
-      {props.children}
+    <button className={classes} {...(rest as ButtonProps)}>
+      {content}
     </button>
   );
 }

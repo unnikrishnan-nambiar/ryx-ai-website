@@ -13,8 +13,12 @@ const nextConfig = {
   // Don't auto-generate AGENTS.md/CLAUDE.md in the repo root.
   agentRules: false,
   images: { unoptimized: true },
-  // Exposed so raw <video>/<img> src paths to /public files (which next/link
-  // and next/image don't rewrite) can be prefixed with the Pages basePath.
+  // Export every route as <route>/index.html. /solutions is both a page and
+  // a folder of use-case pages, and static hosts only resolve that reliably
+  // with index files.
+  trailingSlash: true,
+  // Raw <video>/<img> src paths to /public aren't rewritten by Next, so
+  // pages prefix them with this.
   env: { NEXT_PUBLIC_BASE_PATH: isGithubPages ? `/${repoName}` : '' },
   ...(isGithubPages && {
     output: 'export',

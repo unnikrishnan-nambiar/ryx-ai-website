@@ -1,38 +1,32 @@
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
-import Button from '@/components/ui/Button';
-import Icon from '@/components/ui/Icon';
-import PageHero from '@/components/sections/PageHero';
-import SolutionsGrid from '@/components/sections/SolutionsGrid';
-import HowWeWork from '@/components/sections/HowWeWork';
-import CtaBand from '@/components/sections/CtaBand';
-import { site } from '@/data/site';
+import PageHero from '@/components/PageHero';
+import CtaBand from '@/components/CtaBand';
+import UseCaseExplorer from '@/components/UseCaseExplorer';
 import { pageMetadata } from '@/lib/metadata';
 
 export const metadata = pageMetadata(
   '/solutions',
-  'AI Solutions - RYX AI',
-  'Ferry, the self-serve AI assistant for your website, plus AI lead generation, AI ads, WhatsApp follow-ups, paperwork automation and AI training for teams.'
+  'AI Solutions & Use Cases - RYX AI',
+  'Twelve jobs RYX AI agents do in sales, marketing, customer service and operations: lead agents, instant callbacks, WhatsApp assistants, bookings, reviews and document automation.'
 );
 
 export default function SolutionsPage() {
   return (
     <>
       <Nav />
-      <main>
+      <main id="main">
         <PageHero
-          eyebrow="Solutions"
-          title="What AI can do for your business."
-          intro="Grouped by what you want: more customers, customers who come back, or more time. Start with Ferry yourself today, or let our team build the rest for you."
-        >
-          <Button href={site.bookingUrl} variant="primary">
-            <Icon name="calendar" className="h-[18px] w-[18px]" />
-            Not sure? Book a free call
-          </Button>
-        </PageHero>
-        <SolutionsGrid heading={false} includeFerry />
-        <HowWeWork />
-        <CtaBand />
+          title="Start with the problem, not the technology."
+          intro="Every project begins with where you lose leads, time or money. These are twelve jobs our agents do today. Pick your industry to see the ones that fit."
+        />
+        <section className="container-content py-16 sm:py-24">
+          <UseCaseExplorer />
+        </section>
+        <CtaBand
+          title="Don’t see your problem here? Tell us about it."
+          body="Most of what we build starts as a job nobody has a tool for yet. Bring yours and we’ll show you how an agent could do it."
+        />
       </main>
       <Footer />
     </>

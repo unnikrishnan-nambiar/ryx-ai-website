@@ -1,36 +1,40 @@
 import type { Metadata, Viewport } from 'next';
+import { Bricolage_Grotesque, Hanken_Grotesk } from 'next/font/google';
 import './globals.css';
 import { site } from '@/data/site';
-import JsonLd, { organizationLd } from '@/components/JsonLd';
+import JsonLd from '@/components/JsonLd';
+import { organizationLd } from '@/lib/structuredData';
 
-// Inter (body) and Manrope (headings) load from Google Fonts at runtime via
-// a stylesheet link rather than next/font/google: next/font downloads the
-// font files during the build, and that download intermittently failed in
-// the GitHub Pages build ("next/font/google queries have exactly one
-// entry"), breaking deploys. The CSS variables are set in globals.css.
-const fontsHref =
-  'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@500;600;700;800&display=swap';
+// Body face: plain and warm, stays out of the way.
+const hanken = Hanken_Grotesk({
+  subsets: ['latin'],
+  variable: '--font-sans',
+});
 
-const defaultTitle = 'RYX AI - AI that works for your business';
+// Display face: heavy grotesque with soft, slightly odd curves that echo
+// the rounded ryx wordmark.
+const bricolage = Bricolage_Grotesque({
+  subsets: ['latin'],
+  variable: '--font-display',
+});
+
+const defaultTitle = 'RYX AI - AI agents that answer, call back and follow up for your business';
 const defaultDescription =
-  'The easiest way to put AI to work in your business. Start with Ferry, an AI assistant for your website you can set up yourself in 5 minutes. Then let RYX AI build AI for your lead generation, WhatsApp follow-ups, paperwork and team training.';
+  'RYX AI builds AI for sales, marketing and automation: chat and voice agents that answer every enquiry, follow up every lead and take repetitive work off your team. Makers of Ferry, the AI sales agent for your website.';
 
 export const metadata: Metadata = {
   metadataBase: new URL(`https://${site.domain}`),
   title: defaultTitle,
   description: defaultDescription,
   keywords: [
-    'how to adopt AI in business',
-    'easiest way to adopt AI',
-    'AI adoption for small business',
     'AI solutions',
-    'AI sales agent',
-    'sales automation',
-    'marketing automation',
-    'WhatsApp AI agent',
-    'AI chatbot CRM',
-    'AI consulting',
-    'Ferry AI',
+    'AI agents',
+    'AI chatbot',
+    'WhatsApp AI',
+    'voice AI',
+    'website sales agent',
+    'Ferry',
+    'AI for business India',
   ],
   alternates: { canonical: '/' },
   openGraph: {
@@ -51,7 +55,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: '#111317',
+  themeColor: '#0B1030',
 };
 
 export default function RootLayout({
@@ -60,13 +64,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="stylesheet" href={fontsHref} />
-      </head>
-      <body className="bg-night font-sans text-white">
+    <html lang="en" className={`${hanken.variable} ${bricolage.variable}`}>
+      <body className="bg-paper font-sans text-ink">
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-card focus:px-4 focus:py-2 focus:text-ink"
+        >
+          Skip to content
+        </a>
         <JsonLd data={organizationLd} />
         {children}
       </body>

@@ -8,100 +8,53 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // Dark surfaces, taken from the RYX sales deck's cover/closing slides.
-        night: {
-          DEFAULT: '#111317',
-          900: '#0B0C0F',
-          800: '#16191F',
-          700: '#1D2129',
-          600: '#272C36',
-        },
-        // Light surfaces, from the deck's content slides.
-        paper: '#FFFFFF',
-        mist: '#F6F7F9',
-        line: '#E4E7EC',
-        ink: {
-          DEFAULT: '#101217',
-          secondary: '#4A5160',
-          muted: '#646B78',
-        },
-        // Primary accent: the deck's "Book a 30-minute call" blue.
-        blue: {
+        // Night-to-morning palette. Pages open in `night` (the hours the
+        // agents work unattended) and continue on `paper` (the morning the
+        // owner wakes up to). `signal` is the deck's blue; `dawn` is the
+        // single warm note, kept for times of day and highlights.
+        night: '#0B1030',
+        dusk: '#1A2158',
+        signal: {
           DEFAULT: '#3D5AFE',
-          dark: '#2A44D8',
-          light: '#E8ECFF',
-          soft: '#8C9EFF',
+          deep: '#2A41D6',
+          soft: '#E4E8FF',
+          glow: '#8C9CFF',
         },
-        // Ferry's own accent, from the Ferry deck.
-        gold: {
-          DEFAULT: '#D6A84E',
-          dark: '#8A6620',
-          light: '#F6EBD3',
-        },
-        // Problem / solution tints used on the use-case detail cards.
-        rose: { light: '#FDF2F2', DEFAULT: '#B4333E' },
-        mint: { light: '#EEF7F1', DEFAULT: '#1B6E45' },
+        dawn: '#FFB36B',
+        paper: '#F4F6FB',
+        card: '#FFFFFF',
+        ink: '#0C1024',
+        'ink-2': '#454B66',
+        'ink-3': '#676D8A',
+        rule: 'rgba(12,16,36,0.12)',
+        'rule-night': 'rgba(255,255,255,0.14)',
       },
       fontFamily: {
-        sans: ['var(--font-sans)', 'sans-serif'],
+        sans: ['var(--font-sans)', 'system-ui', 'sans-serif'],
         display: ['var(--font-display)', 'var(--font-sans)', 'sans-serif'],
-      },
-      borderRadius: {
-        card: '20px',
       },
       maxWidth: {
         content: '1200px',
       },
-      boxShadow: {
-        card: '0 1px 2px rgba(16,18,23,0.04), 0 8px 24px -12px rgba(16,18,23,0.12)',
-        lift: '0 2px 4px rgba(16,18,23,0.05), 0 20px 40px -16px rgba(16,18,23,0.22)',
-        glow: '0 10px 40px -10px rgba(61, 90, 254, 0.6)',
-        'glow-gold': '0 10px 40px -12px rgba(214, 168, 78, 0.55)',
-      },
       keyframes: {
-        'fade-up': {
-          from: { opacity: '0', transform: 'translateY(16px)' },
+        // The hero's one orchestrated moment: log entries arrive in order.
+        arrive: {
+          from: { opacity: '0', transform: 'translateY(10px)' },
           to: { opacity: '1', transform: 'translateY(0)' },
         },
         dropdown: {
           from: { opacity: '0', transform: 'translateY(-8px)' },
           to: { opacity: '1', transform: 'translateY(0)' },
         },
-        'backdrop-in': {
-          from: { opacity: '0' },
-          to: { opacity: '1' },
-        },
-        'modal-in': {
-          from: { opacity: '0', transform: 'translateY(12px) scale(0.97)' },
-          to: { opacity: '1', transform: 'translateY(0) scale(1)' },
-        },
-        orbit: {
-          from: { transform: 'rotate(0deg)' },
-          to: { transform: 'rotate(360deg)' },
-        },
-        'msg-in': {
-          from: { opacity: '0', transform: 'translateY(8px)' },
-          to: { opacity: '1', transform: 'translateY(0)' },
-        },
-        blink: {
-          '0%, 100%': { opacity: '0.3' },
-          '50%': { opacity: '1' },
-        },
-        float: {
-          '0%, 100%': { transform: 'translate(-50%, -50%)' },
-          '50%': { transform: 'translate(-50%, calc(-50% - 6px))' },
+        typing: {
+          '0%, 80%, 100%': { opacity: '0.25' },
+          '40%': { opacity: '1' },
         },
       },
       animation: {
-        'fade-up': 'fade-up 700ms cubic-bezier(0.22,1,0.36,1) both',
-        dropdown: 'dropdown 250ms cubic-bezier(0.22,1,0.36,1)',
-        'backdrop-in': 'backdrop-in 200ms ease-out both',
-        'modal-in': 'modal-in 280ms cubic-bezier(0.22,1,0.36,1) both',
-        orbit: 'orbit 80s linear infinite',
-        'orbit-reverse': 'orbit 120s linear infinite reverse',
-        'msg-in': 'msg-in 500ms cubic-bezier(0.22,1,0.36,1) both',
-        blink: 'blink 1.2s ease-in-out infinite',
-        float: 'float 5s ease-in-out infinite',
+        arrive: 'arrive 600ms cubic-bezier(0.22,1,0.36,1) both',
+        dropdown: 'dropdown 220ms cubic-bezier(0.22,1,0.36,1)',
+        typing: 'typing 1.2s ease-in-out infinite',
       },
     },
   },

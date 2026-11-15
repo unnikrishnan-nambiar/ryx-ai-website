@@ -3,73 +3,74 @@
 Working notes on the visual direction, for whoever (human or Claude) touches
 this next.
 
-## Direction
+## What the site is
 
-RYX AI moved from an AI content/community brand to an **AI solutions
-company** (sales, marketing, automation, consulting) with **Ferry** as its
-flagship product. The old maximalist, multi-color site was replaced on
-request ("bad logo and a bad website"). The new site takes its look directly
-from the RYX sales deck and the Ferry deck, so the website, decks and
-proposals read as one brand:
+RYX AI sells **AI agents to businesses** (sales, marketing, automation) and
+has one product, **Ferry**, an AI sales agent for websites. The older
+community/news site is gone; git history has it.
 
-- Dark, near-black navy surfaces (`night`, #111317) with the deck's
-  planet-and-orbit motif in the hero and contact sections.
-- Light content sections (`mist`, #F6F7F9) with white cards, as on the
-  deck's content slides. The page alternates dark and light sections.
-- One primary accent, the deck's call-to-action blue (`blue`, #3D5AFE;
-  `blue-soft` #8C9EFF for text on dark).
-- Ferry has its own accent, gold (`gold`, #D6A84E), from the Ferry deck.
-  Gold is used only in the Ferry and Pricing sections.
+Content sources: the RYX sales deck (problems, three pillars, 12 use cases,
+process, integrations), the Ferry deck and Ferry Starter proposal, and the
+master deck (approach, founders).
 
-## Structure (multipage)
+## The idea: night to morning
 
-The single long page was split on request ("too much Ferry, simplify, go
-multipage"). The homepage only introduces the six solutions; each solution
-has its own page built from one template (`app/solutions/[slug]`), and Ferry,
-the flagship, gets the full product page with pricing at `/ferry`. Keep the
-homepage short: anything detailed belongs on an inner page.
+The brief was "don't make it generic". The site is built on one idea taken
+from the product itself: **the agents work the hours the business is
+closed**. So every page opens at night and continues in daylight.
 
-## Solution animations
+- **Hero** (`.sky`, deep indigo): the headline "You close at 7. Your
+  customers don't." beside `NightLog`, one illustrative night at a clinic,
+  entry by entry. This is the single orchestrated animation on the site
+  (entries arrive in order, once). It is labelled as an illustration.
+- **Daybreak** (`.daybreak`): a gradient band from night through dawn amber
+  to paper.
+- **Morning**: `MorningBrief`, the owner's 8 AM WhatsApp summary, on paper.
+  Everything after this is daylight.
+- The closing CTA and footer return to night.
 
-Each solution has a four-step SVG animation (`components/animations/`) that
-explains it to a non-technical business owner: what goes in, what AI does,
-what comes out. They play only while on screen, loop, can be stepped through
-by tapping the step labels, and show the final frame under reduced motion.
-Keep the four steps identical to `steps` in `data/solutions.ts`.
+## Tokens
 
-## Type
+- `night` #0B1030, `dusk` #1A2158: the hours the agents work.
+- `signal` #3D5AFE (the deck's blue): actions, links, the Ferry band.
+- `dawn` #FFB36B: times of day, focus rings, the calculator result. Keep it
+  rare; it is the one warm note.
+- `paper` #F4F6FB, `card` #FFFFFF, `ink` #0C1024, `ink-2`, `ink-3`.
+- Type: **Bricolage Grotesque** for display (heavy, tight, soft curves that
+  echo the rounded ryx wordmark), **Hanken Grotesk** for body.
 
-`Manrope` (display/headings, `--font-display`) and `Inter` (body), via
-`next/font/google`. Headings are bold, tight tracking, `text-balance`.
-Section headers follow the deck: small uppercase eyebrow, then headline,
-then a short intro (`components/ui/SectionHeading.tsx`).
+## Rules we chose on purpose
 
-## Logo
+- No uppercase eyebrow labels, no italic accent words, no arrows on
+  buttons, no per-section fade-in. Section headings say the thing.
+- Numbers mark only real sequences (the six-step process, Ferry's three
+  steps). Lists that aren't sequences use rules, not numbers or cards.
+- Rounded cards are reserved for things that are objects: the chat demo,
+  the morning brief, the calculator, pricing, the contact form.
+- Buttons say what happens: "Book a 30-minute call", "Get early access".
+- Every interactive target is at least 40px tall; focus is a dawn outline.
 
-`public/brand/ryxai-white.svg` and `ryxai-black.svg` come from the supplied
-logo package (vector traces of the wordmark). Don't redraw or recolor the
-wordmark; use the white version on dark and the black one on light.
+## Interactive pieces
 
-## Content integrity
+- `FerryDemo`: a scripted Ferry conversation driven by suggested replies,
+  for three sample businesses (`data/demo.ts`). Invented businesses, real
+  flow. Ends by showing what the owner sees in the dashboard.
+- `LostRevenueCalculator`: enquiries × share missed × conversion × customer
+  value, all the visitor's own numbers. No industry averages.
+- `UseCaseExplorer`: industry filter over the 12 use cases, each linking to
+  its own page at `/solutions/<slug>`.
 
-No invented stats, client logos or testimonials. The use-case stories are
-labeled "Example scenario", exactly as the deck labels them. The hero chat
-is an illustrative mock of the Ferry widget, not a real customer
-conversation. Prices come from the founder (Starter ₹2,000/month, Premium
-₹5,000/month, early adopters "contact us"); plan features come from the
-Ferry deck and proposal.
+## Pricing and claims
 
-## Motion
+- Ferry pricing is set by the founders: **Starter from ₹2,000/month**,
+  **Premium ₹5,000/month, coming soon**. Older documents show ₹1,000 pilot,
+  999 Pro and $199 plans; those are superseded. Edit `data/ferry.ts`.
+- No fabricated stats, testimonials or customer logos. Investor-deck
+  numbers (customer count, churn, funding) are deliberately left out.
+  Illustrations and examples are labelled as such.
 
-Kept restrained: hero elements fade up on load, sections reveal on scroll
-(`components/ui/Reveal.tsx`), orbit rings rotate slowly, the hero chat
-messages appear in sequence. Everything respects `prefers-reduced-motion`
-(see `globals.css`).
+## Static hosting constraints
 
-## GitHub Pages basePath
-
-The site is served from a repo subpath on GitHub Pages. `next/link` and
-`next/image` apply the basePath automatically; raw `<a href="/...">`,
-`<video src>` and similar do not. Use `Button`/`Link` for internal links,
-static image imports for images, and `process.env.NEXT_PUBLIC_BASE_PATH`
-for anything else that points into `/public` (see `Ferry.tsx`).
+GitHub Pages static export with a `basePath` and `trailingSlash: true`
+(`/solutions` is both a page and a folder). Internal links go through
+`next/link`. No API routes: the contact form hands off to mailto/WhatsApp.
