@@ -1,34 +1,34 @@
 # RYX AI
 
-> RYX AI is the easiest way to put AI to work in a business. It serves businesses in India and the UAE. Its self-serve product, Ferry, is an AI assistant for websites: it learns from the company's own website, answers every visitor, collects leads and books meetings or guides purchases, day and night. Businesses set Ferry up themselves in about 5 minutes, with no tech team, on a monthly subscription from ₹2,000. When a business wants more, the RYX AI team builds AI lead generation, WhatsApp follow-ups and reminders, paperwork automation, AI ads and creatives (pilot) and AI training for teams, each with a custom quote.
-
-## How to adopt AI in a business (summary)
-
-Start with one customer-facing problem that costs money, such as slow replies or website visitors who leave without contacting you. Use a ready-made AI tool that learns from information you already have, launch quickly, and measure for 30 days before adding the next use case. For most businesses the easiest first step is an AI assistant on the website, such as Ferry by RYX AI, which takes about 5 minutes to set up.
+> RYX AI (Tigrid Technologies Private Limited) builds AI agents for businesses: agents that answer every enquiry, call back every lead and take repetitive work off the team, on the website, on WhatsApp and on the phone, in English, Hindi, Malayalam, Arabic and Urdu. Its product, Ferry, is an AI sales agent for websites that builds itself from the company's own website, answers visitors, qualifies leads and books meetings. Ferry is launching soon, with early access open.
 
 ## Key pages
 
-- [How to adopt AI in your business](https://ryxai.in/how-to-adopt-ai): step-by-step guide, where to start by goal, checklist and FAQ
-- [Ferry](https://ryxai.in/ferry): the easiest way to adopt AI; how it works, how it differs from a chatbot, pricing and FAQ
-- [All solutions](https://ryxai.in/solutions)
-- [AI Lead Generation](https://ryxai.in/solutions/lead-generation)
-- [AI Ads & Creatives (pilot)](https://ryxai.in/solutions/ai-ads)
-- [WhatsApp Follow-ups & Reminders](https://ryxai.in/solutions/customer-nudges)
-- [Paperwork Automation](https://ryxai.in/solutions/workflow-automation)
-- [AI Training for Your Team](https://ryxai.in/solutions/ai-training)
-- [Community (coming soon)](https://ryxai.in/community)
-- [Contact](https://ryxai.in/contact): book a free 30-minute call
+- [Home](https://ryxai.in/)
+- [Solutions](https://ryxai.in/solutions/): twelve use cases, filterable by industry
+- [AI Chatbot + CRM](https://ryxai.in/solutions/chatbot-crm/)
+- [Website Lead Agent (Ferry)](https://ryxai.in/solutions/website-lead-agent/)
+- [Instant Lead Callback](https://ryxai.in/solutions/instant-lead-callback/)
+- [Missed-Call Callback](https://ryxai.in/solutions/missed-call-callback/)
+- [Old Lead Revival](https://ryxai.in/solutions/old-lead-revival/)
+- [WhatsApp Enquiry Assistant](https://ryxai.in/solutions/whatsapp-enquiry-assistant/)
+- [Property Matching Assistant](https://ryxai.in/solutions/property-matching/)
+- [Booking & Reminder Agent](https://ryxai.in/solutions/booking-reminders/)
+- [Review & Reputation Manager](https://ryxai.in/solutions/review-reputation/)
+- [Document Data Extraction](https://ryxai.in/solutions/document-extraction/)
+- [Client Document Collection](https://ryxai.in/solutions/document-collection/)
+- [Owner's Daily WhatsApp Brief](https://ryxai.in/solutions/owner-daily-brief/)
+- [Ferry](https://ryxai.in/ferry/): how it works, pricing and FAQ
+- [About](https://ryxai.in/about/): approach and founders
+- [Contact](https://ryxai.in/contact/): book a 30-minute call or request Ferry early access
 
-## Ferry pricing (monthly subscription, INR, excluding taxes)
+## Ferry pricing (monthly, INR)
 
-- Early adopter: ₹1,000 per month, limited to the first 10 customers
-- Starter: ₹2,000 per month
-- Premium: ₹5,000 per month, adds visitor memory, more conversation triggers, growth tips, conversion reports and no RYX AI branding
-- Pricing in AED or USD on request
+- Starter: from ₹2,000 per month, early access open
+- Premium: ₹5,000 per month, coming soon
 
 ## Contact
 
 - Email: hello@ryxai.in
-- Phone: +91 96057 99089
-- Voice AI demo: call +91 80 3133 9977
-- Website: https://ryxai.in
+- Phone and WhatsApp: +91 96057 99089
+- Call the RYX AI voice agent: +91 80 3133 9977

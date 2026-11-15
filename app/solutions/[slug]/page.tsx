@@ -1,169 +1,123 @@
-import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import { notFound } from 'next/navigation';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
+import PageHero from '@/components/PageHero';
+import CtaBand from '@/components/CtaBand';
 import Button from '@/components/ui/Button';
-import Icon from '@/components/ui/Icon';
-import Reveal from '@/components/ui/Reveal';
-import SectionHeading from '@/components/ui/SectionHeading';
-import PageHero from '@/components/sections/PageHero';
-import CtaBand from '@/components/sections/CtaBand';
-import SolutionAnimation from '@/components/animations/SolutionAnimation';
-import { getSolution, solutions } from '@/data/solutions';
-import { site } from '@/data/site';
+import { findUseCase, useCases } from '@/data/useCases';
 import { pageMetadata } from '@/lib/metadata';
 
-// Ferry has its own page at /ferry, so it isn't generated here.
-const pageSolutions = solutions.filter((s) => s.href.startsWith('/solutions/'));
+type Props = { params: Promise<{ slug: string }> };
 
-export function generateStaticParams() {
-  return pageSolutions.map((s) => ({ slug: s.slug }));
-}
-
+// Static export: every use case is prerendered, nothing else resolves.
 export const dynamicParams = false;
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params;
-  const s = getSolution(slug);
-  if (!s) return {};
-  return pageMetadata(`/solutions/${s.slug}`, `${s.title} - RYX AI`, s.short);
+export function generateStaticParams() {
+  return useCases.map((u) => ({ slug: u.slug }));
 }
 
-export default async function SolutionPage({ params }: { params: Promise<{ slug: string }> }) {
+export async function generateMetadata({ params }: Props) {
   const { slug } = await params;
-  const s = getSolution(slug);
-  if (!s || !s.href.startsWith('/solutions/')) notFound();
+  const u = findUseCase(slug);
+  if (!u) return {};
+  return pageMetadata(`/solutions/${u.slug}`, `${u.title} - RYX AI`, `${u.tagline} ${u.solution}`);
+}
 
-  const others = solutions.filter((o) => o.slug !== s.slug);
+export default async function UseCasePage({ params }: Props) {
+  const { slug } = await params;
+  const u = findUseCase(slug);
+  if (!u) notFound();
+
+  const related = useCases.filter((x) => x.category === u.category && x.slug !== u.slug).slice(0, 3);
+  const more = related.length ? related : useCases.filter((x) => x.slug !== u.slug).slice(0, 3);
+  const isFerry = u.slug === 'website-lead-agent';
 
   return (
     <>
       <Nav />
-      <main>
-        <PageHero
-          crumbs={[{ label: 'Solutions', href: '/solutions' }]}
-          eyebrow={s.pilot ? `${s.goal} · Pilot` : s.goal}
-          title={s.title}
-          intro={s.short}
-        >
-          <Button href={site.bookingUrl} variant="primary">
-            <Icon name="calendar" className="h-[18px] w-[18px]" />
-            Book a free 30-minute call
-          </Button>
-          <Button href="#how-it-works" variant="ghost">
-            See how it works
-            <Icon name="arrow" className="h-4 w-4" />
-          </Button>
+      <main id="main">
+        <PageHero title={u.title} intro={u.tagline}>
+          <nav aria-label="Breadcrumb" className="order-first mb-8 text-white/75">
+            <Link href="/solutions" className="underline underline-offset-4 hover:text-white">
+              Solutions
+            </Link>
+            <span aria-hidden className="px-2">
+              /
+            </span>
+            <span aria-current="page">{u.title}</span>
+          </nav>
+          <div className="mt-9 flex flex-wrap gap-3">
+            <Button href="/contact" variant="light">
+              Book a 30-minute call
+            </Button>
+            {isFerry && (
+              <Button href="/ferry" variant="outline-night">
+                See Ferry
+              </Button>
+            )}
+          </div>
         </PageHero>
 
-        {/* What it is */}
-        <section className="bg-mist py-20 text-ink sm:py-24">
-          <div className="container-content grid gap-12 lg:grid-cols-[1.4fr_1fr]">
-            <Reveal>
-              <p className="eyebrow text-blue">In plain words</p>
-              <p className="mt-5 text-balance font-display text-[24px] font-semibold leading-[1.4] tracking-[-0.01em] text-ink sm:text-[30px]">
-                {s.definition}
+        <section className="container-content grid gap-12 py-16 sm:py-24 lg:grid-cols-[1.5fr_1fr] lg:gap-20">
+          <div className="space-y-12">
+            <div>
+              <h2 className="font-display text-3xl font-bold tracking-tight">The problem</h2>
+              <p className="lede mt-3 max-w-[640px] text-ink-2">{u.problem}</p>
+            </div>
+            <div>
+              <h2 className="font-display text-3xl font-bold tracking-tight">What the agent does</h2>
+              <p className="lede mt-3 max-w-[640px] text-ink-2">{u.solution}</p>
+            </div>
+            <div className="border-l-4 border-signal pl-6">
+              <h2 className="font-display text-3xl font-bold tracking-tight">What changes</h2>
+              <p className="mt-3 max-w-[640px] font-display text-2xl font-bold leading-snug tracking-tight text-signal-deep sm:text-3xl">
+                {u.benefit}
               </p>
-            </Reveal>
-            <Reveal delay={0.1}>
-              <div className="rounded-card border border-line bg-white p-7 shadow-card">
-                <p className="eyebrow text-blue">Who it’s for</p>
-                <ul className="mt-5 space-y-3">
-                  {s.whoFor.map((who) => (
-                    <li key={who} className="flex items-center gap-3 text-[15px]">
-                      <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-blue-light text-blue">
-                        <Icon name="check" className="h-3.5 w-3.5" />
-                      </span>
-                      {who}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </Reveal>
-          </div>
-        </section>
-
-        {/* How it works */}
-        <section id="how-it-works" className="scroll-mt-16 bg-white py-20 text-ink sm:py-28">
-          <div className="container-content">
-            <SectionHeading tone="light" eyebrow="How it works" title="Four steps, start to finish." />
-            <div className="mt-12 grid gap-10 lg:grid-cols-[1.25fr_1fr] lg:items-start">
-              <Reveal>
-                <div className="rounded-card border border-line bg-mist p-4 shadow-card sm:p-7">
-                  <SolutionAnimation name={s.animation} steps={s.steps.map((step) => step.title)} />
-                </div>
-              </Reveal>
-              <ol className="space-y-3">
-                {s.steps.map((step, i) => (
-                  <Reveal key={step.title} as="li" delay={i * 0.08}>
-                    <div className="flex gap-4 rounded-2xl border border-line p-5">
-                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-blue font-display text-sm font-bold text-white">
-                        {i + 1}
-                      </span>
-                      <div>
-                        <h3 className="font-display text-lg font-bold">{step.title}</h3>
-                        <p className="mt-1 leading-relaxed text-ink-secondary">{step.body}</p>
-                      </div>
-                    </div>
-                  </Reveal>
-                ))}
-              </ol>
+            </div>
+            <div className="rounded-[24px] bg-card p-6 sm:p-8">
+              <h2 className="font-semibold text-ink-3">An example</h2>
+              <p className="mt-2 max-w-[640px] text-lg leading-relaxed text-ink">{u.example}</p>
             </div>
           </div>
+
+          <aside className="self-start lg:sticky lg:top-24">
+            <dl className="divide-y divide-rule border-y border-rule">
+              <div className="py-5">
+                <dt className="font-semibold">Where it runs</dt>
+                <dd className="mt-1 text-ink-2">{u.channels.join(', ')}</dd>
+              </div>
+              <div className="py-5">
+                <dt className="font-semibold">Who it suits</dt>
+                <dd className="mt-1 text-ink-2">{u.industries}</dd>
+              </div>
+              <div className="py-5">
+                <dt className="font-semibold">What we measure</dt>
+                <dd className="mt-1 text-ink-2">
+                  <ul className="list-disc space-y-1 pl-5">
+                    {u.measure.split(', ').map((m) => (
+                      <li key={m} className="first-letter:uppercase">
+                        {m}
+                      </li>
+                    ))}
+                  </ul>
+                </dd>
+              </div>
+            </dl>
+          </aside>
         </section>
 
-        {/* What you get */}
-        <section className="bg-mist py-20 text-ink sm:py-24">
-          <div className="container-content grid gap-6 lg:grid-cols-2">
-            <Reveal>
-              <div className="h-full rounded-card bg-night p-8 text-white sm:p-10">
-                <p className="eyebrow text-blue-soft">What you get</p>
-                <ul className="mt-6 space-y-4">
-                  {s.outcomes.map((o) => (
-                    <li key={o} className="flex gap-3 text-lg leading-snug">
-                      <Icon name="check" className="mt-1 h-5 w-5 shrink-0 text-blue-soft" />
-                      {o}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </Reveal>
-            <Reveal delay={0.1}>
-              <div className="h-full rounded-card border border-line bg-white p-8 shadow-card sm:p-10">
-                <p className="eyebrow text-blue">
-                  {s.pilot ? 'Pilot programme' : 'From our work · client name kept private'}
-                </p>
-                <h3 className="mt-4 font-display text-2xl font-bold tracking-tight">{s.example.title}</h3>
-                <p className="mt-3 text-lg leading-relaxed text-ink-secondary">{s.example.body}</p>
-                <div className="mt-8">
-                  <Button href={site.bookingUrl} variant="primary">
-                    {s.pilot ? 'Ask about a pilot' : 'Get a custom quote'}
-                    <Icon name="arrow" className="h-4 w-4" />
-                  </Button>
-                </div>
-              </div>
-            </Reveal>
-          </div>
-        </section>
-
-        {/* Other solutions */}
-        <section className="bg-night py-20">
-          <div className="container-content">
-            <h2 className="font-display text-2xl font-bold tracking-tight sm:text-3xl">Explore other solutions</h2>
-            <ul className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
-              {others.map((o) => (
-                <li key={o.slug}>
-                  <Link
-                    href={o.href}
-                    className={`group flex h-full flex-col rounded-2xl border p-5 transition-colors duration-300 ${
-                      o.flagship ? 'border-gold/40 hover:border-gold' : 'border-white/10 hover:border-white/30'
-                    }`}
-                  >
-                    <Icon name={o.icon} className={`h-5 w-5 ${o.flagship ? 'text-gold' : 'text-blue-soft'}`} />
-                    <span className="mt-4 font-display font-bold">{o.title}</span>
-                    <span className="mt-auto inline-flex items-center gap-1 pt-4 text-sm text-white/55 group-hover:text-white">
-                      Learn more <Icon name="arrow" className="h-3.5 w-3.5" />
-                    </span>
+        <section className="border-t border-rule">
+          <div className="container-content py-16 sm:py-20">
+            <h2 className="font-display text-3xl font-bold tracking-tight">Agents that work well alongside it</h2>
+            <ul className="mt-6 grid gap-x-10 border-t border-rule md:grid-cols-3">
+              {more.map((r) => (
+                <li key={r.slug} className="border-b border-rule">
+                  <Link href={`/solutions/${r.slug}`} className="group block py-6">
+                    <h3 className="font-display text-2xl font-bold tracking-tight transition-colors group-hover:text-signal-deep">
+                      {r.title}
+                    </h3>
+                    <p className="mt-1 text-ink-2">{r.tagline}</p>
                   </Link>
                 </li>
               ))}

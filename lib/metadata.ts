@@ -5,7 +5,8 @@ import { site } from '@/data/site';
 // Twitter card data. Next.js does NOT deep-merge object-valued metadata
 // fields (openGraph/twitter) between a page and the root layout — a page
 // that sets its own `openGraph` fully replaces the layout's, so the
-// image/siteName/type have to be repeated here.
+// image/siteName/type have to be repeated here or subpages would lose
+// their OG image entirely.
 export function pageMetadata(path: string, title: string, description: string): Metadata {
   return {
     title,
