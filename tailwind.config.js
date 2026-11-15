@@ -21,6 +21,9 @@ module.exports = {
           glow: '#8C9CFF',
         },
         dawn: '#FFB36B',
+        // Ferry's accent, from the Ferry deck and the previous site.
+        gold: { DEFAULT: '#D6A84E', soft: '#F6EBD3', deep: '#8A6620' },
+        whatsapp: '#25D366',
         paper: '#F4F6FB',
         card: '#FFFFFF',
         ink: '#0C1024',
@@ -50,11 +53,41 @@ module.exports = {
           '0%, 80%, 100%': { opacity: '0.25' },
           '40%': { opacity: '1' },
         },
+        blink: {
+          '0%, 100%': { opacity: '0.3' },
+          '50%': { opacity: '1' },
+        },
+        float: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-10px)' },
+        },
+        orbit: {
+          from: { transform: 'rotate(0deg)' },
+          to: { transform: 'rotate(360deg)' },
+        },
+        marquee: {
+          from: { transform: 'translateX(0)' },
+          to: { transform: 'translateX(-50%)' },
+        },
+        wave: {
+          '0%, 100%': { transform: 'scaleY(0.35)' },
+          '50%': { transform: 'scaleY(1)' },
+        },
+        ping: {
+          '0%': { transform: 'scale(1)', opacity: '0.7' },
+          '100%': { transform: 'scale(2.4)', opacity: '0' },
+        },
       },
       animation: {
         arrive: 'arrive 600ms cubic-bezier(0.22,1,0.36,1) both',
         dropdown: 'dropdown 220ms cubic-bezier(0.22,1,0.36,1)',
         typing: 'typing 1.2s ease-in-out infinite',
+        blink: 'blink 1.2s ease-in-out infinite',
+        float: 'float 6s ease-in-out infinite',
+        'float-slow': 'float 9s ease-in-out infinite',
+        orbit: 'orbit 60s linear infinite',
+        marquee: 'marquee 40s linear infinite',
+        ping: 'ping 2.2s cubic-bezier(0,0,0.2,1) infinite',
       },
     },
   },

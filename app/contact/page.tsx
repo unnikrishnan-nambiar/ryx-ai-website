@@ -34,7 +34,7 @@ export default function ContactPage() {
       <main id="main">
         <PageHero
           title="Tell us what you want off your plate."
-          intro="A custom agent, or early access to Ferry. Either way it starts here, and we usually reply within one working day."
+          intro="AI built for your business, or early access to Ferry. Either way it starts here, and we usually reply within one working day."
         />
 
         <section className="container-content grid gap-12 py-16 sm:py-24 lg:grid-cols-[1fr_1.3fr] lg:gap-20">

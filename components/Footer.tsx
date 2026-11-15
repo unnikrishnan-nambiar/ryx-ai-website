@@ -38,7 +38,7 @@ export default function Footer() {
           <div>
             <Logo className="h-8 w-auto" />
             <p className="mt-5 max-w-[300px] leading-relaxed text-white/70">
-              AI agents for sales, marketing and operations. Built for businesses in India and beyond.
+              An AI company from India. We put AI to work in sales, marketing and operations, and we make Ferry.
             </p>
           </div>
 

@@ -7,6 +7,8 @@ import CtaBand from '@/components/CtaBand';
 import Button from '@/components/ui/Button';
 import { findUseCase, useCases } from '@/data/useCases';
 import { pageMetadata } from '@/lib/metadata';
+import SolutionScene from '@/components/animations/SolutionScene';
+import { sceneFor } from '@/data/scenes';
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -32,12 +34,23 @@ export default async function UseCasePage({ params }: Props) {
   const related = useCases.filter((x) => x.category === u.category && x.slug !== u.slug).slice(0, 3);
   const more = related.length ? related : useCases.filter((x) => x.slug !== u.slug).slice(0, 3);
   const isFerry = u.slug === 'website-lead-agent';
+  const scene = sceneFor(u.slug);
 
   return (
     <>
       <Nav />
       <main id="main">
-        <PageHero title={u.title} intro={u.tagline}>
+        <PageHero
+          title={u.title}
+          intro={u.tagline}
+          aside={
+            <div className="rounded-[28px] border border-white/10 bg-white/[0.05] p-3 shadow-[0_40px_100px_-40px_rgba(61,90,254,0.7)] backdrop-blur">
+              <div className="rounded-[20px] bg-card p-4 sm:p-5">
+                <SolutionScene name={scene.name} steps={scene.steps} />
+              </div>
+            </div>
+          }
+        >
           <nav aria-label="Breadcrumb" className="order-first mb-8 text-white/75">
             <Link href="/solutions" className="underline underline-offset-4 hover:text-white">
               Solutions
@@ -66,7 +79,7 @@ export default async function UseCasePage({ params }: Props) {
               <p className="lede mt-3 max-w-[640px] text-ink-2">{u.problem}</p>
             </div>
             <div>
-              <h2 className="font-display text-3xl font-bold tracking-tight">What the agent does</h2>
+              <h2 className="font-display text-3xl font-bold tracking-tight">What the AI does</h2>
               <p className="lede mt-3 max-w-[640px] text-ink-2">{u.solution}</p>
             </div>
             <div className="border-l-4 border-signal pl-6">
