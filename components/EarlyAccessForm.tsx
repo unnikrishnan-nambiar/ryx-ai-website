@@ -5,9 +5,13 @@ import Button from './ui/Button';
 import { mailto, site } from '@/data/site';
 
 const interests = [
+  { value: 'discovery', label: 'A discovery call' },
+  { value: 'audit', label: 'An AI opportunity audit' },
+  { value: 'pilot', label: 'An AI pilot (one use case in 30 days)' },
+  { value: 'solution', label: 'Build and run AI across my business' },
+  { value: 'training', label: 'AI training for my team' },
   { value: 'ferry', label: 'Ferry early access (Starter)' },
   { value: 'ferry-premium', label: 'Ferry Premium waitlist' },
-  { value: 'solution', label: 'A custom AI solution' },
   { value: 'other', label: 'Something else' },
 ];
 
@@ -132,7 +136,7 @@ export default function EarlyAccessForm() {
         <input ref={summaryRef} type="hidden" name="interest" />
         <label className={label}>
           I&apos;m interested in
-          <select ref={interestRef} name="topic" defaultValue="ferry" className={field}>
+          <select ref={interestRef} name="topic" defaultValue="discovery" className={field}>
             {interests.map((i) => (
               <option key={i.value} value={i.value}>
                 {i.label}

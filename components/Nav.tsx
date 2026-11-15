@@ -54,7 +54,7 @@ export default function Nav() {
         <div className="flex items-center gap-2">
           <div className="hidden md:block">
             <Button href="/contact" variant="light">
-              Book a call
+              Book a discovery call
             </Button>
           </div>
 
@@ -92,7 +92,7 @@ export default function Nav() {
               </Link>
             ))}
             <Button href="/contact" variant="light" className="mt-4 w-full" onClick={() => setOpen(false)}>
-              Book a call
+              Book a discovery call
             </Button>
           </div>
         </nav>

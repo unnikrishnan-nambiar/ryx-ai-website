@@ -8,7 +8,7 @@ import HeroScene from '@/components/three/HeroScene';
 export const metadata = pageMetadata(
     '/about',
     'About - RYX AI',
-    'RYX AI is an AI company from India. We put AI to work in sales, marketing and operations for growing businesses, tested before launch and improved after it, in the languages customers speak.'
+    'RYX AI is an AI consultancy from India. We train teams on AI and put AI to work in sales, marketing and operations for growing businesses, tested before launch and improved after it, in the languages customers speak.'
 );
 
 const principles = [
@@ -36,7 +36,7 @@ export default function AboutPage() {
             <Nav />
             <main id="main">
                 <PageHero
-                    title="An AI company from India, for the businesses that run it"
+                    title="An AI consultancy from India, for the businesses that run it"
                     intro="AI is ready. Putting it to work in a real business is the hard part. That is our job: in sales, marketing and operations, tested before customers see it, and improved from every real conversation."
                     aside={<HeroScene className="mx-auto aspect-square w-full max-w-[460px] [mask-image:radial-gradient(closest-side,#000_75%,transparent)]" />}
                 />

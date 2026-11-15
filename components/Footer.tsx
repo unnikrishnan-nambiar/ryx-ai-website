@@ -6,7 +6,8 @@ const columns = [
   {
     heading: 'Company',
     links: [
-      { label: 'Solutions', href: '/solutions' },
+      { label: 'Services', href: '/services' },
+      { label: 'Use cases', href: '/solutions' },
       { label: 'Ferry', href: '/ferry' },
       { label: 'About', href: '/about' },
       { label: 'Contact', href: '/contact' },
@@ -38,7 +39,7 @@ export default function Footer() {
           <div>
             <Logo className="h-8 w-auto" />
             <p className="mt-5 max-w-[300px] leading-relaxed text-white/70">
-              An AI company from India. We put AI to work in sales, marketing and operations, and we make Ferry.
+              The AI consultancy for Indian businesses. We find where AI pays off, pilot it, then build and run it. Makers of Ferry.
             </p>
           </div>
 

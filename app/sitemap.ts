@@ -15,6 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const base = `https://${site.domain}`;
   const routes = [
     '',
+    '/services',
     '/solutions',
     ...useCases.map((u) => `/solutions/${u.slug}`),
     '/ferry',
