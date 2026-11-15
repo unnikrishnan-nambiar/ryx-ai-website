@@ -15,10 +15,12 @@ master deck (approach, founders).
 
 ## Consultancy positioning (2026-11-15)
 
-RYX AI presents itself as an AI consultancy. The founder's own three
-pillars, in his order: **we train people on AI**, **we build AI for you**,
-**we offer AI solutions** (Ferry and the 12 use cases). `data/services.ts`
-holds the pillars, the engagements (audit, training, pilot, build and run)
+RYX AI presents itself as an AI consultancy. The founders' four
+pillars, in their order: **we train people on AI**, **we build AI for you**,
+**we offer AI solutions** (Ferry and the 12 use cases), and **we run your
+marketing on autopilot** (social media, branding, campaigns). `data/services.ts`
+holds the pillars, the engagements (audit, training, pilot, build and run, social media, branding,
+campaigns)
 and the five-step method (Assess, Pilot, Deploy, Measure, Scale). The main
 call to action everywhere is "Book a discovery call". Prices for the audit,
 training and projects are "quoted after the discovery call" until the

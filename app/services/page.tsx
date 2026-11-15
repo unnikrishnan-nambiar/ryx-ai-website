@@ -22,7 +22,7 @@ export default function ServicesPage() {
             <main id="main">
                 <PageHero
                     title="We train, we build, we deliver AI"
-                    intro="Three ways RYX AI works with Indian businesses. Most start with a free discovery call, then training, an audit or a pilot, and only take the next step once the last one has paid off."
+                    intro="Four ways RYX AI works with Indian businesses. Most start with a free discovery call, then training, an audit or a pilot, and only take the next step once the last one has paid off."
                 >
                     <div className="mt-9 flex flex-wrap gap-3">
                         <Button href="/contact?interest=discovery#early-access" variant="light">
@@ -31,7 +31,7 @@ export default function ServicesPage() {
                     </div>
                 </PageHero>
 
-                {/* The three pillars */}
+                {/* The four pillars */}
                 {pillars.map((pillar, pi) => (
                     <section key={pillar.id} id={pillar.id} className={`scroll-mt-20 ${pi % 2 ? 'bg-card' : 'bg-paper'}`}>
                         <div className="container-content py-20 sm:py-28">

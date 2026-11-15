@@ -14,10 +14,10 @@ export type Service = {
     cta: { label: string; href: string };
 };
 
-export type PillarId = 'train' | 'build' | 'solutions';
+export type PillarId = 'train' | 'build' | 'solutions' | 'grow';
 
-// The three things RYX AI does, in the founders' words and order.
-export const pillars: { id: PillarId; title: string; promise: string; scene: 'training' | 'workflow' | 'ferry'; steps: string[] }[] = [
+// The four things RYX AI does, in the founders' words and order.
+export const pillars: { id: PillarId; title: string; promise: string; scene: 'training' | 'workflow' | 'ferry' | 'ads'; steps: string[] }[] = [
     {
         id: 'train',
         title: 'We train people on AI',
@@ -38,6 +38,13 @@ export const pillars: { id: PillarId; title: string; promise: string; scene: 'tr
         promise: 'Ready-made AI you can switch on: Ferry for your website, and twelve proven jobs for sales, service and operations.',
         scene: 'ferry',
         steps: ['Visit', 'Chat', 'Details', 'Book or buy']
+    },
+    {
+        id: 'grow',
+        title: 'We run your marketing on autopilot',
+        promise: 'Social media, branding and campaigns, planned and produced by AI, checked by our team, and improved from the results.',
+        scene: 'ads',
+        steps: ['Brief', 'Create', 'Launch', 'Improve']
     }
 ];
 
@@ -105,6 +112,54 @@ export const services: Service[] = [
         length: 'Monthly, ongoing',
         price: 'Monthly, based on scope',
         cta: { label: 'Talk to us', href: '/contact?interest=solution#early-access' }
+    },
+    {
+        slug: 'social-media',
+        pillar: 'grow',
+        name: 'Social media marketing',
+        promise: 'Your pages posting every week without anyone on your team writing a post.',
+        forWho: 'Businesses that know they should post more but never have the time.',
+        youGet: [
+            'A monthly content calendar built from your business and offers',
+            'Posts, reels scripts and captions in English and Indian languages',
+            'Scheduled to Instagram, Facebook and LinkedIn after your approval',
+            'Comments and DMs answered, and leads sent to your team'
+        ],
+        length: 'Monthly, ongoing',
+        price: 'Monthly, quoted after the discovery call',
+        cta: { label: 'Ask about social media', href: '/contact?interest=social#early-access' }
+    },
+    {
+        slug: 'branding',
+        pillar: 'grow',
+        name: 'Branding',
+        promise: 'A brand that looks and sounds the same everywhere, and the AI that keeps it that way.',
+        forWho: 'New businesses, and established ones whose look has drifted.',
+        youGet: [
+            'Logo, colours, type and a simple brand guide',
+            'Your tone of voice, written down and taught to your AI',
+            'Templates for posts, ads, brochures and presentations',
+            'Every piece the AI makes checked against the brand guide'
+        ],
+        length: '2 to 4 weeks',
+        price: 'Fixed fee, quoted after the discovery call',
+        cta: { label: 'Ask about branding', href: '/contact?interest=branding#early-access' }
+    },
+    {
+        slug: 'campaigns',
+        pillar: 'grow',
+        name: 'Marketing campaigns',
+        promise: 'Ads and campaigns that launch fast, test many versions and move budget to what works.',
+        forWho: 'Businesses spending on Meta or Google ads, or ready to start.',
+        youGet: [
+            'Campaign plan, audiences and ad copy and creatives in several versions',
+            'Launched on Meta and Google, with WhatsApp follow-up for every lead',
+            'Daily checks that pause what fails and back what works',
+            'A plain weekly report: spend, leads and cost per lead'
+        ],
+        length: 'Per campaign or monthly',
+        price: 'Management fee plus your ad budget, quoted after the discovery call',
+        cta: { label: 'Plan a campaign', href: '/contact?interest=campaigns#early-access' }
     }
 ];
 

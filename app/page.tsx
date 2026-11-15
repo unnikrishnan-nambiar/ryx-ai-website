@@ -20,7 +20,8 @@ import VoiceDemo from '@/components/visuals/VoiceDemo';
 const pillarItems: Record<string, string[]> = {
     train: ['Hands-on AI training for every team', 'AI opportunity audit and roadmap', 'Prompt libraries and team assistants', 'An AI-use policy your people follow'],
     build: ['A 30-day pilot on one real problem', 'AI for sales, marketing and operations', 'Connected to your CRM, WhatsApp and phone', 'Run and improved by us, every week'],
-    solutions: ['Ferry, the AI salesperson for websites', 'Instant lead callbacks and follow-ups', 'WhatsApp assistants and booking reminders', 'Document reading and daily reports']
+    solutions: ['Ferry, the AI salesperson for websites', 'Instant lead callbacks and follow-ups', 'WhatsApp assistants and booking reminders', 'Document reading and daily reports'],
+    grow: ['Social media posts, every week', 'Branding and a brand guide your AI follows', 'Ad campaigns on Meta and Google', 'Every lead followed up on WhatsApp']
 };
 
 const facts = [
@@ -85,12 +86,12 @@ export default function Home() {
                 <section className="relative text-white">
                     <div className="container-content py-24 sm:py-32">
                         <Reveal>
-                            <h2 className="headline max-w-[820px] text-[40px] sm:text-[64px]">Three ways we bring AI into your business</h2>
+                            <h2 className="headline max-w-[820px] text-[40px] sm:text-[64px]">Four ways we bring AI into your business</h2>
                             <p className="lede mt-6 max-w-[600px] text-white/70">
                                 Start wherever you are. Most clients begin with training or a pilot, and grow from there once it has paid off.
                             </p>
                         </Reveal>
-                        <div className="mt-16 grid gap-6 lg:grid-cols-3">
+                        <div className="mt-16 grid gap-6 md:grid-cols-2">
                             {pillars.map((p, i) => (
                                 <Reveal key={p.id} delay={i * 120}>
                                     <article className="group h-full rounded-[28px] border border-white/10 bg-gradient-to-b from-white/[0.07] to-white/[0.02] p-6 transition-transform duration-300 hover:-translate-y-0.5 sm:p-7">
