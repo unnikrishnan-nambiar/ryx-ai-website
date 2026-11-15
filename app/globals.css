@@ -79,3 +79,65 @@
     font-variant-numeric: tabular-nums;
   }
 }
+
+/* Scroll reveal. Hidden only once the page is marked motion-ready by the
+   inline script in layout.tsx, so content never depends on JS. */
+.motion-ready .reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 800ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.motion-ready .reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* Brand gradient from the RYX mark: signal blue into violet. */
+.text-brand-gradient {
+  background: linear-gradient(100deg, #8c9cff 0%, #3d5afe 35%, #9b5cff 70%, #e05cff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Dark glass panel used over the 3D hero. */
+.glass {
+  background: rgba(14, 19, 52, 0.55);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Faint grid on night sections. */
+.grid-night {
+  background-image:
+    linear-gradient(rgba(140, 156, 255, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(140, 156, 255, 0.07) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .motion-ready .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* The hero's entrance: each line rises in once on load. */
+@keyframes hero-in {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+.hero-in {
+  animation: hero-in 900ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}

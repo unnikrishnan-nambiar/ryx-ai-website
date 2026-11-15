@@ -13,21 +13,37 @@ Content sources: the RYX sales deck (problems, three pillars, 12 use cases,
 process, integrations), the Ferry deck and Ferry Starter proposal, and the
 master deck (approach, founders).
 
-## The idea: night to morning
+## Direction (revised 2026-11-15)
 
-The brief was "don't make it generic". The site is built on one idea taken
-from the product itself: **the agents work the hours the business is
-closed**. So every page opens at night and continues in daylight.
+Feedback on the first redesign: too bland, no animation or 3D, reads like
+"agent builders", no visuals good enough to sell with. So:
 
-- **Hero** (`.sky`, deep indigo): the headline "You close at 7. Your
-  customers don't." beside `NightLog`, one illustrative night at a clinic,
-  entry by entry. This is the single orchestrated animation on the site
-  (entries arrive in order, once). It is labelled as an illustration.
-- **Daybreak** (`.daybreak`): a gradient band from night through dawn amber
-  to paper.
-- **Morning**: `MorningBrief`, the owner's 8 AM WhatsApp summary, on paper.
-  Everything after this is daylight.
-- The closing CTA and footer return to night.
+- **Positioning:** RYX AI is an AI company from India. The h1 is "AI that
+  grows Indian businesses." Agents and Ferry are the proof, not the headline.
+- **Look:** dark-first (#070A1F) with the RYX mark's blue-to-violet gradient
+  (`.text-brand-gradient`), Ferry's gold (#D6A84E) on the Ferry page, and
+  daylight sections for the dashboard, use cases and calculator.
+- **3D:** `components/three/AgentCore.tsx`, a three.js scene: the AI core,
+  with enquiries flying in from WhatsApp (green), website (blue) and phone
+  (gold), and qualified leads leaving to the gold CRM ring. It follows the
+  pointer, pauses offscreen, and is a still frame under reduced motion.
+- **Motion:** hero lines rise in once (`.hero-in`), sections reveal on scroll
+  (`components/motion/Reveal.tsx`, hidden only after the inline script marks
+  the page motion-ready), animated SVG scenes per service
+  (`components/animations`, from the previous site), a logo marquee.
+- **Visuals a customer can use:** Ferry on a sample website
+  (`visuals/BrowserFerry`), the Ferry dashboard (`visuals/LeadsDashboard`),
+  the WhatsApp morning brief on a phone, the live voice AI number with a
+  five-language sample call (`visuals/VoiceDemo`), the Ferry explainer video,
+  and real tool logos (`public/icons`, CC0 from gilbarbara/logos and
+  simple-icons). Exports for decks: `/mnt/project-files/website-redesign/sales-visuals`.
+- **No founder photos** (the user asked). Names and roles only.
+- Sample businesses and figures are labelled as samples or examples.
+
+## Earlier idea: night to morning
+
+The "You close at 7" night-to-morning story is kept as one section on the
+home page (NightLog plus the morning brief).
 
 ## Tokens
 

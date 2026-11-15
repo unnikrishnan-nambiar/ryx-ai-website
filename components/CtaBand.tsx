@@ -4,8 +4,8 @@ import { site } from '@/data/site';
 // Closing call to action, shared by every page. Sits on night and runs
 // straight into the footer.
 export default function CtaBand({
-  title = 'Tell us your problem. We’ll show you how AI handles it.',
-  body = 'A 30-minute call. We map where an agent can win you leads or save your team time, and we say so plainly if it can’t.',
+  title = 'Tell us the problem and we’ll show you how AI handles it',
+  body = 'A 30-minute call. We map where AI can win you leads or save your team time, and we say so plainly if it can’t.',
 }: {
   title?: string;
   body?: string;

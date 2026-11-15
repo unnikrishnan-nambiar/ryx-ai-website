@@ -18,9 +18,9 @@ const bricolage = Bricolage_Grotesque({
   variable: '--font-display',
 });
 
-const defaultTitle = 'RYX AI - AI agents that answer, call back and follow up for your business';
+const defaultTitle = 'RYX AI - The AI company for growing Indian businesses';
 const defaultDescription =
-  'RYX AI builds AI for sales, marketing and automation: chat and voice agents that answer every enquiry, follow up every lead and take repetitive work off your team. Makers of Ferry, the AI sales agent for your website.';
+  'RYX AI is an AI company in India. We put AI to work in sales, marketing and operations for growing businesses, in English, Hindi, Malayalam, Arabic and Urdu, and we make Ferry, the AI sales agent for your website.';
 
 export const metadata: Metadata = {
   metadataBase: new URL(`https://${site.domain}`),
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: '#0B1030',
+  themeColor: '#070A1F',
 };
 
 export default function RootLayout({
@@ -64,7 +64,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${hanken.variable} ${bricolage.variable}`}>
+    <html lang="en-IN" className={`${hanken.variable} ${bricolage.variable}`} suppressHydrationWarning>
+      <head>
+        {/* Marks the page ready for scroll-reveal motion before first paint. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('motion-ready')",
+          }}
+        />
+      </head>
       <body className="bg-paper font-sans text-ink">
         <a
           href="#main"
