@@ -25,7 +25,7 @@ const pillarItems: Record<string, string[]> = {
 };
 
 const facts = [
-    ['5 languages', 'English, Hindi, Malayalam, Arabic, Urdu'],
+    ['4 services', 'Training, building, solutions and marketing'],
     ['3 channels', 'Website, WhatsApp and phone'],
     ['30 days', 'From discovery call to a live pilot']
 ];
@@ -60,8 +60,7 @@ export default function Home() {
                             <span className="text-brand-gradient block pb-2">for Indian businesses.</span>
                         </h1>
                         <p className="hero-in lede mt-7 max-w-[580px] text-white/80" style={{ animationDelay: '320ms' }}>
-                            We train your people on AI, build AI for your sales, marketing and operations, and offer ready AI solutions like Ferry. In
-                            the languages your customers speak.
+                            We train your people on AI, build AI for your sales, marketing and operations, and offer ready AI solutions like Ferry.
                         </p>
                         <div className="hero-in mt-10 flex flex-wrap gap-3" style={{ animationDelay: '440ms' }}>
                             <Button href="/contact?interest=discovery#early-access" variant="light">

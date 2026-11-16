@@ -8,17 +8,13 @@ import HeroScene from '@/components/three/HeroScene';
 export const metadata = pageMetadata(
     '/about',
     'About - RYX AI',
-    'RYX AI is an AI consultancy from India. We train teams on AI and put AI to work in sales, marketing and operations for growing businesses, tested before launch and improved after it, in the languages customers speak.'
+    'RYX AI is an AI consultancy from India. We train teams on AI and put AI to work in sales, marketing and operations for growing businesses, tested before launch and improved after it.'
 );
 
 const principles = [
     {
         title: 'Reliable, not just impressive',
         body: 'Deploying an AI agent is easy. Operating it reliably is the hard part. Every agent we ship goes through AI-powered QA across scenarios, personalities and edge cases before customers ever see it.'
-    },
-    {
-        title: "Built for India's languages",
-        body: "Most of India doesn't primarily speak English. We build and test agents natively in regional languages, with cultural context, not just translated after the fact."
     },
     {
         title: 'One knowledge layer, every channel',

@@ -3,45 +3,44 @@
 import { useEffect, useRef, useState } from 'react';
 import { site } from '@/data/site';
 
-// One booking question, answered in each language RYX AI speaks. Cycles
-// while on screen; visitors can pick a language. Next to it, the real
-// number for the RYX AI voice assistant, so they can call and hear it.
-const langs = [
-  { id: 'en', label: 'English', dir: 'ltr', q: 'Do you have a slot on Saturday?', a: 'Yes, 11 AM and 3 PM are free. Shall I book 11 AM for you?' },
-  { id: 'hi', label: 'हिन्दी', dir: 'ltr', q: 'क्या शनिवार को कोई स्लॉट खाली है?', a: 'हाँ, सुबह 11 बजे और दोपहर 3 बजे खाली हैं। क्या 11 बजे बुक कर दूँ?' },
-  { id: 'ml', label: 'മലയാളം', dir: 'ltr', q: 'ശനിയാഴ്ച സ്ലോട്ട് ഉണ്ടോ?', a: 'ഉണ്ട്, രാവിലെ 11 മണിക്കും ഉച്ചയ്ക്ക് 3 മണിക്കും ഒഴിവുണ്ട്. 11 മണിക്ക് ബുക്ക് ചെയ്യട്ടെ?' },
-  { id: 'ar', label: 'العربية', dir: 'rtl', q: 'هل يوجد موعد متاح يوم السبت؟', a: 'نعم، الساعة 11 صباحًا والساعة 3 مساءً متاحتان. هل أحجز لك الساعة 11؟' },
-  { id: 'ur', label: 'اردو', dir: 'rtl', q: 'کیا ہفتے کو کوئی وقت خالی ہے؟', a: 'جی ہاں، صبح 11 بجے اور سہ پہر 3 بجے خالی ہیں۔ کیا 11 بجے بک کر دوں؟' },
+// A sample booking call with the RYX AI voice assistant, played turn by
+// turn while on screen. Next to it, the real number for the assistant, so
+// visitors can call and hear it.
+const turns = [
+  { who: 'caller', text: 'Do you have a slot on Saturday?' },
+  { who: 'ai', text: 'Yes, 11 AM and 3 PM are free. Shall I book 11 AM for you?' },
+  { who: 'caller', text: '11 is perfect.' },
+  { who: 'ai', text: 'Done. You will get a confirmation on WhatsApp in a minute.' },
 ] as const;
 
 const bars = Array.from({ length: 28 }, (_, i) => 0.35 + 0.65 * Math.abs(Math.sin(i * 1.7) * Math.cos(i * 0.45)));
 
 export default function VoiceDemo() {
-  const [i, setI] = useState(0);
-  const [auto, setAuto] = useState(true);
+  const [shown, setShown] = useState<number>(turns.length);
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!auto || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     let t: ReturnType<typeof setInterval> | undefined;
     const io = new IntersectionObserver(([e]) => {
       clearInterval(t);
-      if (e.isIntersecting) t = setInterval(() => setI((n) => (n + 1) % langs.length), 3800);
+      if (!e.isIntersecting) return;
+      setShown(1);
+      t = setInterval(() => setShown((n) => (n >= turns.length + 2 ? 1 : n + 1)), 1600);
     });
     io.observe(ref.current!);
     return () => {
       io.disconnect();
       clearInterval(t);
     };
-  }, [auto]);
+  }, []);
 
-  const l = langs[i];
   return (
     <div ref={ref} className="grid items-center gap-12 lg:grid-cols-[1fr_1.1fr]">
       <div>
         <h2 className="headline text-[40px] sm:text-[64px]">Call our AI right now</h2>
         <p className="lede mt-6 max-w-[520px] text-white/75">
-          Ring the RYX AI voice assistant and ask it anything, in the language you speak at home. This is the same AI
+          Ring the RYX AI voice assistant and ask it anything. This is the same AI
           your customers would talk to.
         </p>
         <a
@@ -62,26 +61,7 @@ export default function VoiceDemo() {
       </div>
 
       <div className="glass rounded-[28px] p-5 sm:p-7">
-        <div role="group" aria-label="Choose a language" className="flex flex-wrap gap-2">
-          {langs.map((x, n) => (
-            <button
-              key={x.id}
-              type="button"
-              aria-pressed={n === i}
-              onClick={() => {
-                setI(n);
-                setAuto(false);
-              }}
-              className={`min-h-[40px] cursor-pointer rounded-full px-4 text-sm font-semibold transition-colors ${
-                n === i ? 'bg-white text-ink' : 'bg-white/10 text-white hover:bg-white/20'
-              }`}
-            >
-              {x.label}
-            </button>
-          ))}
-        </div>
-
-        <div className="mt-6 flex h-14 items-center gap-1" aria-hidden>
+        <div className="flex h-14 items-center gap-1" aria-hidden>
           {bars.map((h, n) => (
             <span
               key={n}
@@ -91,18 +71,19 @@ export default function VoiceDemo() {
           ))}
         </div>
 
-        <div key={l.id} lang={l.id} dir={l.dir} className="mt-6 space-y-3 text-lg leading-relaxed" aria-live="polite">
-          <p className="animate-arrive w-fit max-w-[90%] rounded-2xl bg-white/10 px-4 py-3 ltr:rounded-bl-md rtl:rounded-br-md">
-            {l.q}
-          </p>
-          <p
-            className="animate-arrive ms-auto w-fit max-w-[90%] rounded-2xl bg-signal px-4 py-3 ltr:rounded-br-md rtl:rounded-bl-md"
-            style={{ animationDelay: '500ms' }}
-          >
-            {l.a}
-          </p>
+        <div className="mt-6 min-h-[260px] space-y-3 text-lg leading-relaxed">
+          {turns.slice(0, Math.min(shown, turns.length)).map((t) => (
+            <p
+              key={t.text}
+              className={`animate-arrive w-fit max-w-[90%] rounded-2xl px-4 py-3 ${
+                t.who === 'ai' ? 'ms-auto rounded-br-md bg-signal' : 'rounded-bl-md bg-white/10'
+              }`}
+            >
+              {t.text}
+            </p>
+          ))}
         </div>
-        <p className="mt-6 text-sm text-white/60">A sample booking call, shown in each language our AI speaks.</p>
+        <p className="mt-6 text-sm text-white/60">A sample booking call with our voice AI. Illustration.</p>
       </div>
     </div>
   );

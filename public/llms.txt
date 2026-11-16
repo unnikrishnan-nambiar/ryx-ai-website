@@ -1,6 +1,6 @@
 # RYX AI
 
-> RYX AI (Tigrid Technologies Private Limited) builds AI agents for businesses: agents that answer every enquiry, call back every lead and take repetitive work off the team, on the website, on WhatsApp and on the phone, in English, Hindi, Malayalam, Arabic and Urdu. Its product, Ferry, is an AI sales agent for websites that builds itself from the company's own website, answers visitors, qualifies leads and books meetings. Ferry is launching soon, with early access open.
+> RYX AI (Tigrid Technologies Private Limited) is an AI consultancy in India. It trains teams on AI, builds AI for sales, marketing and operations, offers ready AI solutions, and runs social media, branding and campaigns on autopilot. Its product, Ferry, is an AI sales agent for websites that builds itself from the company's own website, answers visitors, qualifies leads and books meetings. Ferry is launching soon, with early access open.
 
 ## Key pages
 
